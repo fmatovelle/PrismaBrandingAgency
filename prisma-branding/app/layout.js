@@ -1,14 +1,108 @@
 import './globals.css'
 
 export const metadata = {
-  title: 'Prisma Branding | Creative Studio in Barcelona',
-  description: 'Creative and digital studio helping brands grow through design, storytelling, and strategy.',
+  // Meta básicos
+  title: {
+    default: 'Prisma Branding | Estudio Creativo en Barcelona',
+    template: '%s | Prisma Branding'
+  },
+  description: 'Estudio creativo en Barcelona que transforma ideas en marcas memorables con diseño, estrategia y branding profesional',
+  keywords: ['branding barcelona', 'diseño web barcelona', 'identidad de marca', 'estrategia digital', 'agencia creativa barcelona', 'diseño gráfico', 'marketing digital'],
+  authors: [{ name: 'Prisma Branding', url: 'https://prisma-branding.web.app' }],
+  creator: 'Prisma Branding',
+  publisher: 'Prisma Branding',
+  
+  // Idioma y región
+  language: 'es-ES',
+  alternates: {
+    canonical: 'https://prisma-branding.web.app',
+    languages: {
+      'es-ES': 'https://prisma-branding.web.app',
+      'es-EC': 'https://prisma-branding.web.app',
+    },
+  },
+
+  // Open Graph (Facebook, LinkedIn)
+  openGraph: {
+    type: 'website',
+    locale: 'es_ES',
+    url: 'https://prisma-branding.web.app',
+    siteName: 'Prisma Branding',
+    title: 'Prisma Branding | Estudio Creativo en Barcelona',
+    description: 'Estudio creativo en Barcelona que transforma ideas en marcas memorables con diseño, estrategia y branding profesional',
+    images: [
+      {
+        url: 'https://prisma-branding.web.app/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Prisma Branding - Estudio Creativo Barcelona',
+        type: 'image/jpeg',
+      },
+    ],
+  },
+
+  // Twitter Card
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Prisma Branding | Estudio Creativo en Barcelona',
+    description: 'Estudio creativo en Barcelona que transforma ideas en marcas memorables con diseño, estrategia y branding profesional',
+    images: ['https://prisma-branding.web.app/twitter-image.jpg'],
+    creator: '@prismabranding',
+  },
+
+  // Robots y indexación
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+
+  // Verificación (agregar códigos reales cuando los tengas)
+  verification: {
+    google: 'tu-codigo-google-search-console',
+    // yandex: 'tu-codigo-yandex',
+    // bing: 'tu-codigo-bing',
+  },
+
+  // Otros metadatos
+  category: 'Branding & Design',
+  classification: 'Business',
 }
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="es">
+      <head>
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.json" />
+        
+        {/* Preconnect para optimización */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* Google Analytics 4 - Reemplaza con tu ID */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-XXXXXXXXXX');
+            `,
+          }}
+        />
+      </head>
+      <body className="antialiased">{children}</body>
     </html>
   )
 }

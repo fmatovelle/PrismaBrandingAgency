@@ -1,0 +1,23 @@
+# Robots.txt para Prisma Branding
+# Permite a todos los buscadores indexar todo el sitio
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://prisma-branding.web.app/sitemap.xml
+
+# Velocidad de rastreo (opcional)
+Crawl-delay: 1
+
+# Bloquear archivos no necesarios
+Disallow: /api/
+Disallow: /_next/static/
+Disallow: /*.json$
+
+# Permitir explícitamente secciones importantes
+Allow: /$
+Allow: /about$
+Allow: /services$
+Allow: /portfolio$
+Allow: /contact$
