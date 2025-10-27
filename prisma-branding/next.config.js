@@ -1,12 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  images: {
-    unoptimized: true,
-  },
-  trailingSlash: true,
-  eslint: {
-    ignoreDuringBuilds: true,
+  async redirects() {
+    return [
+      // Redirigir www a non-www
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.brandprisma.com',
+          },
+        ],
+        destination: 'https://brandprisma.com/:path*',
+        permanent: true,
+      },
+    ]
   },
 }
 
