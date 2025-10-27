@@ -11,7 +11,7 @@ A step-by-step guide to launch and grow your branding agency.
 **Time:** 30 minutes  
 **Goal:** Get website live on the internet
 
-### [ ] 2. Connect Custom Domain
+### [x] 2. Connect Custom Domain
 **Priority:** 🟠 HIGH  
 **Time:** 1-2 hours  
 **Cost:** €10-15/year

@@ -9,7 +9,7 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Prisma Branding",
-  "description": "Estudio creativo en Barcelona especializado en branding, diseño web y estrategia digital",
+  "description": "Agencia de branding y diseño web en Barcelona especializada en identidad de marca, diseño web profesional y estrategia digital",
   "url": "https://brandprisma.com",
   "logo": "https://brandprisma.com/logo.png",
   "image": "https://brandprisma.com/og-image.jpg",
@@ -17,7 +17,7 @@ const organizationSchema = {
   "email": "hello@prismabranding.com",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Barcelona",
+    "streetAddress": "Calle Ejemplo 123",
     "addressLocality": "Barcelona",
     "addressRegion": "Cataluña",
     "postalCode": "08001",
@@ -50,22 +50,22 @@ const organizationSchema = {
   ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "Servicios de Branding",
+    "name": "Servicios de Branding y Diseño Web",
     "itemListElement": [
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Identidad de Marca",
-          "description": "Diseño de logo, paleta de colores y sistema tipográfico"
+          "name": "Identidad de Marca Profesional",
+          "description": "Diseño completo de identidad visual corporativa incluyendo logotipo, manual de marca y paleta de colores"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Diseño Web",
-          "description": "Sitios web modernos y responsivos"
+          "name": "Diseño Web Profesional",
+          "description": "Páginas web modernas, responsive y optimizadas para conversión con SEO incluido"
         }
       },
       {
@@ -73,14 +73,14 @@ const organizationSchema = {
         "itemOffered": {
           "@type": "Service",
           "name": "Estrategia Digital",
-          "description": "Marketing digital y gestión de redes sociales"
+          "description": "Marketing digital, gestión de redes sociales y estrategia de contenidos"
         }
       }
     ]
   }
 };
 
-// Breadcrumb Schema para home
+// Breadcrumb Schema
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -94,268 +94,287 @@ const breadcrumbSchema = {
   ]
 };
 
-// Textos en Español
+// Textos optimizados para SEO
 const t = {
   nav: {
     home: "Inicio",
-    about: "Nosotros",
+    about: "Agencia",
     services: "Servicios",
-    process: "Proceso",
-    work: "Trabajos",
+    process: "Metodología",
+    work: "Portfolio",
     team: "Equipo",
     contact: "Contacto"
   },
+  
   hero: {
-    title: "Transformamos ideas en marcas que inspiran",
-    subtitle: "Estudio Creativo en Barcelona — Branding · Diseño Web · Estrategia Digital",
-    cta: "Iniciar Proyecto",
-    viewWork: "Ver Trabajos"
+    title: "Agencia de Branding y Diseño Web en Barcelona",
+    subtitle: "Estudio creativo especializado en identidad de marca, diseño web profesional y estrategia digital. Transformamos tu negocio con branding que conecta y convierte.",
+    cta: "Solicitar Presupuesto",
+    viewWork: "Ver Portfolio"
   },
-  trusted: "Marcas que confían en nosotros",
+  
+  trusted: "Empresas que confían en nuestro branding",
+  
   about: {
-    title: "Sobre Nosotros",
-    text1: "Prisma Branding es un estudio creativo y digital con sede en Barcelona. Ayudamos a las marcas a crecer a través del diseño, la narrativa y la estrategia.",
-    text2: "Nuestra misión es crear experiencias de marca auténticas que resuenen con las audiencias e impulsen conexiones significativas. Desde startups hasta empresas establecidas, nos asociamos contigo para desbloquear todo el potencial de tu marca.",
-    projects: "Proyectos",
-    years: "Años",
-    satisfaction: "Satisfacción"
+    title: "Agencia de Branding en Barcelona con +10 Años de Experiencia",
+    text1: "Prisma Branding es un estudio creativo y agencia digital especializada en Barcelona. Ayudamos a empresas y startups a crecer mediante diseño de marca profesional, desarrollo web y estrategia de marketing digital que genera resultados medibles.",
+    text2: "Nuestra misión es crear identidades de marca auténticas y memorables que conectan emocionalmente con tu audiencia objetivo. Desde el diseño de logotipo hasta la estrategia digital completa, te acompañamos en cada fase para posicionar tu marca en el mercado español y europeo.",
+    projects: "Proyectos Completados",
+    years: "Años de Experiencia",
+    satisfaction: "Clientes Satisfechos"
   },
+  
   services: {
-    title: "Nuestros Servicios",
-    subtitle: "Todo lo que necesitas para construir una marca excepcional",
+    title: "Servicios de Branding y Diseño Digital en Barcelona",
+    subtitle: "Soluciones integrales para construir, posicionar y hacer crecer tu marca",
     items: [
       {
-        title: "Identidad de Marca",
-        description: "Sistemas completos de identidad visual incluyendo logotipos, paletas de color y tipografía."
+        title: "Identidad de Marca Profesional",
+        description: "Diseño completo de identidad visual corporativa: logotipo único, manual de marca, paleta de colores estratégica y sistema tipográfico. Branding que refleja los valores de tu empresa."
       },
       {
-        title: "Estrategia de Marca",
-        description: "Posicionamiento estratégico, mensajería y análisis competitivo para definir tu marca."
+        title: "Estrategia de Marca y Posicionamiento",
+        description: "Definición estratégica de tu marca: análisis competitivo, posicionamiento en el mercado, propuesta de valor, naming y mensajería de marca que diferencia tu negocio."
       },
       {
-        title: "Diseño y Desarrollo Web",
-        description: "Sitios web modernos y responsivos con UX/UI excepcional y rendimiento óptimo."
+        title: "Diseño Web y Desarrollo Profesional",
+        description: "Páginas web modernas, responsive y optimizadas para conversión. Diseño UX/UI profesional, desarrollo en WordPress, Shopify o Next.js con SEO técnico incluido."
       },
       {
-        title: "Marketing Digital",
-        description: "Estrategia de redes sociales, creación de contenido y gestión de campañas."
+        title: "Marketing Digital y Redes Sociales",
+        description: "Estrategia digital 360°: gestión de redes sociales, creación de contenido visual, campañas publicitarias en Meta Ads y Google Ads. Aumentamos tu visibilidad online."
       },
       {
-        title: "Fotografía y Video",
-        description: "Fotografía y producción de video profesional para todas las plataformas."
+        title: "Fotografía de Producto y Video Marketing",
+        description: "Producción audiovisual profesional para e-commerce, redes sociales y campañas publicitarias. Fotografía de producto, sesiones corporativas y videos promocionales en Barcelona."
       },
       {
-        title: "Diseño de Packaging",
-        description: "Packaging llamativo que cuenta la historia de tu marca en el punto de venta."
+        title: "Diseño de Packaging y Etiquetas",
+        description: "Packaging atractivo y funcional que destaca en el punto de venta. Diseño de etiquetas, cajas y envases personalizados para productos retail, alimentación y cosmética."
       },
       {
-        title: "Diseño Gráfico",
-        description: "Tarjetas de visita, folletos, catálogos y todo el material de marketing."
+        title: "Diseño Gráfico y Material Corporativo",
+        description: "Papelería corporativa completa: tarjetas de visita, catálogos de producto, folletos comerciales, presentaciones corporativas y todo el material gráfico para tu empresa."
       },
       {
-        title: "Consultoría de Marca",
-        description: "Asesoramiento experto en evolución de marca, reposicionamiento y estrategias de crecimiento."
+        title: "Consultoría de Branding y Rebranding",
+        description: "Asesoramiento estratégico para evolucionar tu marca: rebranding, auditoría de marca, estrategias de crecimiento y expansión a nuevos mercados. Consultores expertos en Barcelona."
       }
     ]
   },
+  
   industries: {
-    title: "Sectores que Servimos",
-    subtitle: "Experiencia en diversos mercados",
+    title: "Sectores y Empresas con las que Trabajamos",
+    subtitle: "Experiencia en branding para múltiples industrias en España y Latinoamérica",
     items: [
-      "Hostelería y Restaurantes",
-      "Retail y E-commerce",
-      "Startups Tecnológicas",
-      "Salud y Bienestar",
-      "Moda y Belleza",
-      "Inmobiliaria"
+      "Restaurantes y Hostelería en Barcelona",
+      "E-commerce y Tiendas Online",
+      "Startups Tecnológicas y SaaS",
+      "Clínicas de Salud y Bienestar",
+      "Marcas de Moda y Cosmética",
+      "Sector Inmobiliario y Construcción"
     ]
   },
+  
   process: {
-    title: "Nuestro Proceso",
-    subtitle: "Cómo damos vida a tu marca",
+    title: "Nuestra Metodología de Trabajo en Branding",
+    subtitle: "Proceso probado en más de 200 proyectos de branding exitosos",
     steps: [
       {
-        title: "Descubrimiento e Investigación",
-        description: "Nos sumergimos en tu negocio, mercado y audiencia para entender tus desafíos únicos y oportunidades."
+        title: "Discovery: Investigación y Análisis de Marca",
+        description: "Analizamos en profundidad tu negocio, competencia, mercado objetivo y audiencia. Identificamos oportunidades de diferenciación y establecemos los objetivos estratégicos del proyecto de branding."
       },
       {
-        title: "Estrategia y Planificación",
-        description: "Desarrollamos una estrategia de marca integral con posicionamiento claro, mensajería y dirección visual."
+        title: "Estrategia: Posicionamiento y Concepto Creativo",
+        description: "Desarrollamos la estrategia de marca completa: propuesta de valor única, posicionamiento competitivo, tono de comunicación, personalidad de marca y dirección creativa visual."
       },
       {
-        title: "Diseño y Desarrollo",
-        description: "Nuestro equipo creativo da vida a tu marca con visuales impresionantes y diseños funcionales."
+        title: "Diseño: Creación de Identidad Visual",
+        description: "Nuestro equipo creativo diseña todos los elementos visuales: logotipo, paleta cromática, tipografías, aplicaciones de marca y guidelines. Diseño profesional con múltiples revisiones incluidas."
       },
       {
-        title: "Lanzamiento y Crecimiento",
-        description: "Te ayudamos a lanzar con éxito y proporcionamos soporte continuo para que tu marca prospere."
+        title: "Lanzamiento: Implementación y Soporte",
+        description: "Lanzamos tu nueva marca al mercado con un plan de comunicación estratégico. Proporcionamos soporte continuo, formación al equipo y acompañamiento en las primeras campañas de marketing."
       }
     ]
   },
+  
   pricing: {
-    title: "Planes y Precios",
-    subtitle: "Elige el paquete perfecto para tus necesidades",
+    title: "Precios de Branding y Diseño Web",
+    subtitle: "Paquetes adaptados a cada fase de tu empresa",
     starter: {
       name: "Starter",
       price: "1.500€",
-      description: "Perfecto para startups y pequeños negocios",
+      description: "Ideal para startups y pequeñas empresas que inician",
       features: [
-        "Diseño de Logotipo",
-        "Paleta de Colores",
-        "Tipografía",
-        "Tarjetas de Visita",
-        "2 Revisiones"
+        "Diseño de Logotipo Profesional (3 propuestas)",
+        "Paleta de Colores y Tipografías",
+        "Manual de Marca Básico (PDF)",
+        "Tarjetas de Visita Digitales",
+        "2 Rondas de Revisiones",
+        "Entrega en 2-3 semanas"
       ]
     },
     professional: {
       name: "Professional",
       price: "3.500€",
-      description: "Ideal para negocios en crecimiento",
+      description: "El más elegido por empresas en crecimiento",
       features: [
         "Identidad de Marca Completa",
-        "Diseño Web (5 páginas)",
-        "Gestión de Redes Sociales (1 mes)",
-        "Fotografía de Producto",
-        "Revisiones Ilimitadas"
+        "Diseño Web Profesional (hasta 5 páginas)",
+        "Optimización SEO Básica",
+        "Estrategia de Redes Sociales (1 mes)",
+        "Sesión de Fotografía de Producto",
+        "Revisiones Ilimitadas",
+        "Soporte 30 días post-lanzamiento"
       ],
       popular: true
     },
     enterprise: {
       name: "Enterprise",
-      price: "Personalizado",
-      description: "Para marcas establecidas con necesidades complejas",
+      price: "Desde 8.000€",
+      description: "Para empresas consolidadas que buscan resultados premium",
       features: [
-        "Todo del plan Professional",
-        "Estrategia de Marca 360°",
-        "Desarrollo Web Avanzado",
-        "Consultoría Continua",
-        "Soporte Prioritario"
+        "Todo del Plan Professional",
+        "Estrategia de Marca 360° Completa",
+        "Desarrollo Web Avanzado (E-commerce, CMS)",
+        "Producción Audiovisual Profesional",
+        "Consultoría Estratégica Continua",
+        "Account Manager Dedicado",
+        "Soporte Prioritario 24/7"
       ]
     },
-    cta: "Comenzar Ahora",
-    contact: "Contactar Ventas"
+    cta: "Solicitar Presupuesto",
+    contact: "Contactar con Ventas"
   },
+  
   work: {
-    title: "Nuestro Trabajo",
-    subtitle: "Proyectos destacados que transformaron marcas",
-    cta: "Ver Proyecto Completo"
+    title: "Portfolio: Proyectos de Branding en Barcelona",
+    subtitle: "Casos de éxito de marcas que transformamos con diseño estratégico",
+    cta: "Ver Caso de Estudio Completo"
   },
+  
   testimonials: {
-    title: "Lo Que Dicen Nuestros Clientes",
-    subtitle: "Historias de éxito reales de marcas que han crecido con nosotros",
+    title: "Opiniones de Clientes Sobre Nuestro Servicio de Branding",
+    subtitle: "Testimonios reales de empresas que confiaron en Prisma Branding",
     items: [
       {
-        text: "Prisma Branding transformó completamente nuestra identidad visual. Su profesionalismo y creatividad superaron nuestras expectativas.",
+        text: "Prisma Branding renovó completamente nuestra identidad visual. El equipo entendió perfectamente nuestra industria tech y creó una marca moderna que triplicó nuestras conversiones en web. Profesionalismo de 10.",
         author: "María González",
-        role: "CEO, TechStart",
+        role: "CEO, TechStart Barcelona",
         rating: 5
       },
       {
-        text: "El equipo de Prisma entendió perfectamente nuestra visión y la hizo realidad. Nuestro sitio web ahora convierte 3x más que antes.",
+        text: "Necesitábamos un diseño web que convirtiera visitas en ventas. Prisma no solo diseñó una web espectacular, sino que optimizaron todo para SEO. Ahora estamos en primera página de Google para 'productos ecológicos Barcelona'.",
         author: "Carlos Rodríguez",
-        role: "Fundador, EcoLife",
+        role: "Fundador, EcoLife Shop",
         rating: 5
       },
       {
-        text: "Desde el branding hasta la estrategia digital, Prisma ha sido un socio invaluable para nuestro crecimiento.",
+        text: "Trabajar con Prisma fue una experiencia increíble. Desde el branding hasta la gestión de redes sociales, todo mejoró. Nuestras ventas online aumentaron un 250% en 6 meses. Mejor inversión que hemos hecho.",
         author: "Ana Martínez",
-        role: "Marketing Director, StyleHub",
+        role: "Directora de Marketing, StyleHub",
         rating: 5
       }
     ]
   },
+  
   team: {
-    title: "Nuestro Equipo",
-    subtitle: "Conoce a los creativos detrás de las marcas",
+    title: "Equipo de Diseñadores y Estrategas en Barcelona",
+    subtitle: "Profesionales creativos especializados en branding y marketing digital",
     members: [
       {
         name: "Laura Sánchez",
-        role: "Directora Creativa",
-        bio: "15 años de experiencia en branding"
+        role: "Directora Creativa & Fundadora",
+        bio: "+15 años liderando proyectos de branding para empresas en España"
       },
       {
         name: "David Torres",
-        role: "Lead Designer",
-        bio: "Especialista en identidad visual"
+        role: "Lead Designer & Brand Strategist",
+        bio: "Especialista en identidad visual corporativa y diseño de logotipos"
       },
       {
         name: "Sara López",
-        role: "Estratega Digital",
-        bio: "Experta en marketing digital y growth"
+        role: "Digital Marketing Manager",
+        bio: "Experta en estrategia digital, SEO y campañas de performance marketing"
       },
       {
         name: "Miguel Ruiz",
-        role: "Desarrollador Web",
-        bio: "Full-stack developer apasionado por UX"
+        role: "Senior Web Developer",
+        bio: "Full-stack developer especializado en WordPress, Shopify y Next.js"
       }
     ]
   },
+  
   faq: {
-    title: "Preguntas Frecuentes",
-    subtitle: "Todo lo que necesitas saber sobre trabajar con nosotros",
+    title: "Preguntas Frecuentes sobre Branding y Diseño Web",
+    subtitle: "Resolvemos tus dudas sobre nuestros servicios de branding en Barcelona",
     items: [
       {
-        q: "¿Cuánto tiempo toma un proyecto de branding?",
-        a: "Un proyecto típico de branding toma entre 4-8 semanas, dependiendo del alcance. Proyectos más complejos pueden extenderse hasta 12 semanas."
+        q: "¿Cuánto tiempo tarda un proyecto completo de branding?",
+        a: "Un proyecto de branding completo (identidad visual + manual de marca) suele tomar entre 4 y 8 semanas. Proyectos más complejos que incluyen diseño web, estrategia digital y material corporativo pueden extenderse hasta 12 semanas. El plazo exacto depende del alcance y las revisiones necesarias."
       },
       {
-        q: "¿Ofrecen soporte después del lanzamiento?",
-        a: "Sí, todos nuestros proyectos incluyen 30 días de soporte post-lanzamiento. También ofrecemos paquetes de mantenimiento continuo."
+        q: "¿Incluyen soporte y mantenimiento después del lanzamiento?",
+        a: "Sí, todos nuestros proyectos incluyen 30 días de soporte post-lanzamiento sin coste adicional. Además, ofrecemos paquetes de mantenimiento mensual que incluyen actualizaciones de web, gestión de redes sociales y soporte técnico continuo."
       },
       {
-        q: "¿Trabajan con clientes internacionales?",
-        a: "Absolutamente. Trabajamos con clientes en España, Ecuador y toda Europa. La comunicación se realiza de forma remota o presencial según prefieras."
+        q: "¿Trabajan con clientes fuera de Barcelona o España?",
+        a: "Absolutamente. Trabajamos con clientes en toda España, Latinoamérica (especialmente Ecuador, México y Colombia) y Europa. Nuestra metodología de trabajo remoto está optimizada para proyectos internacionales, con comunicación fluida por videollamada y herramientas colaborativas."
       },
       {
-        q: "¿Qué incluye un proyecto de diseño web?",
-        a: "Incluye diseño responsivo, desarrollo, optimización SEO básica, integración de CMS y capacitación para gestionar el contenido."
+        q: "¿Qué incluye exactamente un proyecto de diseño web profesional?",
+        a: "Nuestro servicio de diseño web incluye: diseño UX/UI responsive, desarrollo frontend y backend, optimización SEO técnica (on-page), integración de CMS (WordPress, Shopify o custom), formularios de contacto, Google Analytics, velocidad de carga optimizada y capacitación para gestionar contenidos."
       },
       {
-        q: "¿Puedo ver ejemplos de su trabajo anterior?",
-        a: "Por supuesto. Navega a nuestra sección de 'Trabajos' o contáctanos para ver casos de estudio específicos de tu industria."
+        q: "¿Puedo ver casos de estudio o portfolio de proyectos anteriores?",
+        a: "Por supuesto. En nuestra sección de Portfolio puedes ver proyectos destacados con casos de estudio completos. Si necesitas ver ejemplos específicos de tu industria (hostelería, tech, moda, etc.), contáctanos y te mostraremos casos relevantes y resultados medibles de clientes similares."
       }
     ]
   },
+  
   blog: {
-    title: "Últimas Insights",
-    subtitle: "Consejos y tendencias en branding y diseño",
-    cta: "Leer Más"
+    title: "Blog de Branding y Marketing Digital",
+    subtitle: "Artículos, guías y recursos sobre diseño de marca y estrategia digital",
+    cta: "Leer Artículo Completo"
   },
+  
   contact: {
-    title: "Hablemos de Tu Proyecto",
-    subtitle: "¿Listo para llevar tu marca al siguiente nivel? Contáctanos hoy.",
-    name: "Nombre",
-    email: "Email",
-    phone: "Teléfono",
-    service: "Servicio de Interés",
-    message: "Mensaje",
-    messagePlaceholder: "Cuéntanos sobre tu proyecto...",
-    send: "Enviar Mensaje",
+    title: "Solicita tu Presupuesto de Branding Gratis",
+    subtitle: "¿Listo para transformar tu marca? Agencia de branding en Barcelona con atención personalizada. Respuesta en menos de 24h.",
+    name: "Nombre completo",
+    email: "Email corporativo",
+    phone: "Teléfono (WhatsApp)",
+    service: "¿Qué servicio necesitas?",
+    message: "Cuéntanos sobre tu proyecto",
+    messagePlaceholder: "Ej: Necesito rediseñar la identidad de mi restaurante en Barcelona. Busco un logotipo moderno, menú digital y presencia en redes sociales...",
+    send: "Solicitar Presupuesto Gratis",
     services: {
-      branding: "Identidad de Marca",
-      web: "Diseño Web",
-      strategy: "Estrategia Digital",
-      photography: "Fotografía y Video",
-      consulting: "Consultoría",
-      notSure: "No estoy seguro"
+      branding: "Identidad de Marca Completa",
+      web: "Diseño y Desarrollo Web",
+      strategy: "Estrategia Digital y Marketing",
+      photography: "Fotografía y Video Profesional",
+      consulting: "Consultoría de Branding",
+      notSure: "No estoy seguro / Asesoramiento"
     },
-    success: "¡Gracias! Te contactaremos pronto.",
-    schedule: "Agenda una Llamada",
-    calendar: "¿Prefieres programar una reunión?"
+    success: "¡Gracias! Tu solicitud ha sido recibida. Nuestro equipo te contactará en menos de 24 horas laborables.",
+    schedule: "Agendar Videollamada",
+    calendar: "¿Prefieres una reunión por videollamada? Reserva tu slot aquí"
   },
+  
   footer: {
-    description: "Estudio creativo especializado en transformar marcas a través del diseño y la estrategia.",
-    services: "Servicios",
-    company: "Empresa",
+    description: "Agencia de branding y diseño web en Barcelona. Especializados en transformar empresas mediante identidad de marca profesional y estrategia digital.",
+    services: "Servicios de Branding",
+    company: "La Agencia",
     aboutUs: "Sobre Nosotros",
-    ourWork: "Nuestro Trabajo",
-    team: "Equipo",
-    blog: "Blog",
+    ourWork: "Portfolio de Proyectos",
+    team: "Equipo Creativo",
+    blog: "Blog y Recursos",
     contact: "Contacto",
-    location: "Barcelona, España",
+    location: "Barcelona, Cataluña, España",
     rights: "Todos los derechos reservados.",
     privacy: "Política de Privacidad",
-    terms: "Términos de Servicio"
+    terms: "Términos y Condiciones"
   }
 };
 
@@ -711,7 +730,7 @@ export default function PrismaBrandingPage() {
               <div className="aspect-square rounded-2xl overflow-hidden">
                 <img
                   src="/api/placeholder/600/600"
-                  alt="Prisma Branding Team"
+                  alt="Equipo de Prisma Branding trabajando en diseño de marca en Barcelona"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -906,7 +925,7 @@ export default function PrismaBrandingPage() {
               <ul className="space-y-3 mb-8">
                 {t.pricing.starter.features.map((feature, idx) => (
                   <li key={idx} className="flex items-center space-x-3">
-                    <Check className="w-5 h-5 text-gray-900" />
+                    <Check className="w-5 h-5 text-gray-900 flex-shrink-0" />
                     <span className="text-gray-700">{feature}</span>
                   </li>
                 ))}
@@ -936,7 +955,7 @@ export default function PrismaBrandingPage() {
               <ul className="space-y-3 mb-8">
                 {t.pricing.professional.features.map((feature, idx) => (
                   <li key={idx} className="flex items-center space-x-3">
-                    <Check className="w-5 h-5 text-white" />
+                    <Check className="w-5 h-5 text-white flex-shrink-0" />
                     <span className="text-gray-200">{feature}</span>
                   </li>
                 ))}
@@ -963,7 +982,7 @@ export default function PrismaBrandingPage() {
               <ul className="space-y-3 mb-8">
                 {t.pricing.enterprise.features.map((feature, idx) => (
                   <li key={idx} className="flex items-center space-x-3">
-                    <Check className="w-5 h-5 text-gray-900" />
+                    <Check className="w-5 h-5 text-gray-900 flex-shrink-0" />
                     <span className="text-gray-700">{feature}</span>
                   </li>
                 ))}
@@ -1010,7 +1029,7 @@ export default function PrismaBrandingPage() {
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
                     src={project.image}
-                    alt={project.title}
+                    alt={`Proyecto de branding ${project.title} - ${project.category}`}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
@@ -1085,7 +1104,7 @@ export default function PrismaBrandingPage() {
                   className={`w-3 h-3 rounded-full transition-all ${
                     currentTestimonial === index ? 'bg-gray-900 w-8' : 'bg-gray-300'
                   }`}
-                  aria-label={`View testimonial ${index + 1}`}
+                  aria-label={`Ver testimonio ${index + 1}`}
                 />
               ))}
             </div>
@@ -1093,7 +1112,7 @@ export default function PrismaBrandingPage() {
             <button
               onClick={() => setCurrentTestimonial(currentTestimonial === 0 ? t.testimonials.items.length - 1 : currentTestimonial - 1)}
               className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all"
-              aria-label="Previous testimonial"
+              aria-label="Testimonio anterior"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
@@ -1101,7 +1120,7 @@ export default function PrismaBrandingPage() {
             <button
               onClick={() => setCurrentTestimonial(currentTestimonial === t.testimonials.items.length - 1 ? 0 : currentTestimonial + 1)}
               className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all"
-              aria-label="Next testimonial"
+              aria-label="Siguiente testimonio"
             >
               <ChevronRight className="w-6 h-6" />
             </button>
@@ -1143,7 +1162,7 @@ export default function PrismaBrandingPage() {
                 <div className="aspect-square overflow-hidden">
                   <img
                     src="/api/placeholder/400/400"
-                    alt={member.name}
+                    alt={`${member.name} - ${member.role} en Prisma Branding Barcelona`}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
@@ -1509,7 +1528,7 @@ export default function PrismaBrandingPage() {
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all transform hover:scale-110 z-40"
-        aria-label="Contact us on WhatsApp"
+        aria-label="Contactar por WhatsApp con Prisma Branding"
       >
         <MessageSquare className="w-6 h-6" />
       </a>
