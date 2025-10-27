@@ -5,7 +5,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://prisma-branding.web.app/sitemap.xml
+Sitemap: https://brandprisma.com/sitemap.xml
 
 # Velocidad de rastreo (opcional)
 Crawl-delay: 1

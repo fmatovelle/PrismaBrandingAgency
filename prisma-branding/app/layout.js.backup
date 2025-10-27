@@ -9,17 +9,17 @@ export const metadata = {
   },
   description: 'Estudio creativo en Barcelona que transforma ideas en marcas memorables con diseño, estrategia y branding profesional',
   keywords: ['branding barcelona', 'diseño web barcelona', 'identidad de marca', 'estrategia digital', 'agencia creativa barcelona', 'diseño gráfico', 'marketing digital'],
-  authors: [{ name: 'Prisma Branding', url: 'https://brandprisma.com' }],
+  authors: [{ name: 'Prisma Branding', url: 'https://prisma-branding.web.app' }],
   creator: 'Prisma Branding',
   publisher: 'Prisma Branding',
   
   // Idioma y región
   language: 'es-ES',
   alternates: {
-    canonical: 'https://brandprisma.com',
+    canonical: 'https://prisma-branding.web.app',
     languages: {
-      'es-ES': 'https://brandprisma.com',
-      'es-EC': 'https://brandprisma.com',
+      'es-ES': 'https://prisma-branding.web.app',
+      'es-EC': 'https://prisma-branding.web.app',
     },
   },
 
@@ -27,13 +27,13 @@ export const metadata = {
   openGraph: {
     type: 'website',
     locale: 'es_ES',
-    url: 'https://brandprisma.com',
+    url: 'https://prisma-branding.web.app',
     siteName: 'Prisma Branding',
     title: 'Prisma Branding | Estudio Creativo en Barcelona',
     description: 'Estudio creativo en Barcelona que transforma ideas en marcas memorables con diseño, estrategia y branding profesional',
     images: [
       {
-        url: 'https://brandprisma.com/og-image.jpg',
+        url: 'https://prisma-branding.web.app/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Prisma Branding - Estudio Creativo Barcelona',
@@ -47,7 +47,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Prisma Branding | Estudio Creativo en Barcelona',
     description: 'Estudio creativo en Barcelona que transforma ideas en marcas memorables con diseño, estrategia y branding profesional',
-    images: ['https://brandprisma.com/twitter-image.jpg'],
+    images: ['https://prisma-branding.web.app/twitter-image.jpg'],
     creator: '@prismabranding',
   },
 

@@ -10,9 +10,9 @@ const organizationSchema = {
   "@type": "LocalBusiness",
   "name": "Prisma Branding",
   "description": "Estudio creativo en Barcelona especializado en branding, diseño web y estrategia digital",
-  "url": "https://prisma-branding.web.app",
-  "logo": "https://prisma-branding.web.app/logo.png",
-  "image": "https://prisma-branding.web.app/og-image.jpg",
+  "url": "https://brandprisma.com",
+  "logo": "https://brandprisma.com/logo.png",
+  "image": "https://brandprisma.com/og-image.jpg",
   "telephone": "+34123456789",
   "email": "hello@prismabranding.com",
   "address": {
@@ -78,6 +78,20 @@ const organizationSchema = {
       }
     ]
   }
+};
+
+// Breadcrumb Schema para home
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "https://brandprisma.com"
+    }
+  ]
 };
 
 // Textos en Español
@@ -179,219 +193,162 @@ const t = {
     ]
   },
   pricing: {
-    title: "Elige tu Plan",
-    subtitle: "Precios transparentes para branding profesional",
-    identity: {
-      name: "Pack Identidad",
+    title: "Planes y Precios",
+    subtitle: "Elige el paquete perfecto para tus necesidades",
+    starter: {
+      name: "Starter",
+      price: "1.500€",
+      description: "Perfecto para startups y pequeños negocios",
       features: [
-        "Diseño de logo + 3 variaciones",
-        "Paleta de color (5 colores)",
-        "Sistema tipográfico (2-3 fuentes)",
-        "Guía de marca básica (PDF)",
-        "Diseño de tarjeta de visita",
-        "Plantillas para redes sociales",
-        "Entrega en 2-3 semanas"
+        "Diseño de Logotipo",
+        "Paleta de Colores",
+        "Tipografía",
+        "Tarjetas de Visita",
+        "2 Revisiones"
       ]
     },
-    brandWeb: {
-      name: "Pack Marca & Web",
+    professional: {
+      name: "Professional",
+      price: "3.500€",
+      description: "Ideal para negocios en crecimiento",
       features: [
-        "Todo lo del Pack Identidad",
-        "Guía de estilo completa (20+ páginas)",
-        "Sitio web de 4 páginas responsive",
-        "Configuración y optimización SEO",
-        "Soporte de copywriting",
-        "Integración Instagram/WhatsApp",
-        "2 semanas de soporte post-lanzamiento",
-        "Entrega en 4-5 semanas"
+        "Identidad de Marca Completa",
+        "Diseño Web (5 páginas)",
+        "Gestión de Redes Sociales (1 mes)",
+        "Fotografía de Producto",
+        "Revisiones Ilimitadas"
+      ],
+      popular: true
+    },
+    enterprise: {
+      name: "Enterprise",
+      price: "Personalizado",
+      description: "Para marcas establecidas con necesidades complejas",
+      features: [
+        "Todo del plan Professional",
+        "Estrategia de Marca 360°",
+        "Desarrollo Web Avanzado",
+        "Consultoría Continua",
+        "Soporte Prioritario"
       ]
     },
-    rebrand: {
-      name: "Rebrand Completo",
-      features: [
-        "Taller de estrategia de marca",
-        "Sistema completo de identidad visual",
-        "Sitio web multipágina personalizado con animaciones",
-        "Material de marketing (folletos, presentaciones)",
-        "Dirección de arte para fotografía",
-        "Kit de lanzamiento para redes sociales",
-        "3 meses de soporte y actualizaciones continuas",
-        "Entrega en 6-8 semanas"
-      ]
-    },
-    cta: "Comenzar",
-    custom: "¿Necesitas algo único? Desde diseño de packaging hasta campañas de marca, creamos soluciones personalizadas."
+    cta: "Comenzar Ahora",
+    contact: "Contactar Ventas"
   },
-  caseStudies: {
-    title: "Casos de Éxito",
-    subtitle: "Resultados reales para negocios reales",
-    challenge: "Desafío",
-    solution: "Solución",
-    results: "Resultados",
-    viewFull: "Ver Caso Completo",
+  work: {
+    title: "Nuestro Trabajo",
+    subtitle: "Proyectos destacados que transformaron marcas",
+    cta: "Ver Proyecto Completo"
+  },
+  testimonials: {
+    title: "Lo Que Dicen Nuestros Clientes",
+    subtitle: "Historias de éxito reales de marcas que han crecido con nosotros",
     items: [
       {
-        name: "Voilà Concept Store",
-        category: "Identidad de Marca Completa",
-        challenge: "Una nueva boutique en Barcelona necesitaba destacar en un mercado competitivo",
-        solution: "Creamos una identidad de marca sofisticada con elegancia de inspiración francesa",
-        results: "300% de aumento en tráfico, destacado en Elle Decor España"
+        text: "Prisma Branding transformó completamente nuestra identidad visual. Su profesionalismo y creatividad superaron nuestras expectativas.",
+        author: "María González",
+        role: "CEO, TechStart",
+        rating: 5
       },
       {
-        name: "Terra Restaurant",
-        category: "Diseño Web y Estrategia",
-        challenge: "Restaurante de granja a mesa necesitaba presencia online para reservas",
-        solution: "Construimos un sitio web inmersivo mostrando su filosofía y menú de temporada",
-        results: "Reservas online subieron 450%, duplicó seguidores en Instagram"
+        text: "El equipo de Prisma entendió perfectamente nuestra visión y la hizo realidad. Nuestro sitio web ahora convierte 3x más que antes.",
+        author: "Carlos Rodríguez",
+        role: "Fundador, EcoLife",
+        rating: 5
       },
       {
-        name: "Bloom Studio",
-        category: "Estrategia de Marca y Digital",
-        challenge: "Estudio de yoga quería modernizarse y atraer clientela más joven",
-        solution: "Rebrand completo con identidad fresca y estrategia de redes sociales",
-        results: "40% de aumento en nuevas membresías, 5x engagement social"
+        text: "Desde el branding hasta la estrategia digital, Prisma ha sido un socio invaluable para nuestro crecimiento.",
+        author: "Ana Martínez",
+        role: "Marketing Director, StyleHub",
+        rating: 5
       }
     ]
   },
   team: {
-    title: "Conoce Nuestro Equipo",
-    subtitle: "Las mentes creativas detrás de tu éxito",
+    title: "Nuestro Equipo",
+    subtitle: "Conoce a los creativos detrás de las marcas",
     members: [
       {
         name: "Laura Sánchez",
         role: "Directora Creativa",
-        bio: "+15 años dando forma a marcas en Europa y Latinoamérica"
+        bio: "15 años de experiencia en branding"
       },
       {
-        name: "Marc Dubois",
-        role: "Diseñador Principal",
-        bio: "Diseñador galardonado especializado en identidad visual"
+        name: "David Torres",
+        role: "Lead Designer",
+        bio: "Especialista en identidad visual"
       },
       {
-        name: "Ana Costa",
-        role: "Directora de Estrategia",
-        bio: "Experta en posicionamiento de marca e investigación de mercado"
+        name: "Sara López",
+        role: "Estratega Digital",
+        bio: "Experta en marketing digital y growth"
       },
       {
-        name: "David Kim",
+        name: "Miguel Ruiz",
         role: "Desarrollador Web",
-        bio: "Desarrollador full-stack creando experiencias digitales excepcionales"
-      }
-    ]
-  },
-  testimonials: {
-    title: "Lo que Dicen Nuestros Clientes",
-    subtitle: "Palabras de quienes confían en nosotros",
-    items: [
-      {
-        quote: "Prisma Branding transformó completamente nuestra presencia online. El equipo es profesional, creativo y realmente entendió nuestra visión.",
-        author: "Milly Anderson",
-        company: "Voilà Concept Store",
-        role: "Fundadora"
-      },
-      {
-        quote: "Trabajar con Prisma fue perfecto. Entregaron un sitio web impresionante que superó nuestras expectativas y nos ayudó a destacar en la escena gastronómica de Barcelona.",
-        author: "Carlos Martínez",
-        company: "Terra Restaurant",
-        role: "Propietario y Chef"
-      },
-      {
-        quote: "El taller de estrategia de marca fue increíblemente valioso. Prisma nos ayudó a aclarar nuestro mensaje y llegar a nuestro público objetivo de manera efectiva.",
-        author: "Sofía Chen",
-        company: "Bloom Studio",
-        role: "Directora del Estudio"
-      }
-    ]
-  },
-  blog: {
-    title: "Últimas Publicaciones",
-    subtitle: "Consejos, tendencias e inspiración",
-    viewAll: "Ver Todos los Artículos",
-    readMore: "Leer Más",
-    items: [
-      {
-        title: "5 Errores de Branding a Evitar en 2025",
-        category: "Estrategia de Marca",
-        date: "15 Mar 2025"
-      },
-      {
-        title: "Cómo Elegir la Paleta de Color Perfecta",
-        category: "Consejos de Diseño",
-        date: "10 Mar 2025"
-      },
-      {
-        title: "El ROI del Branding Profesional",
-        category: "Crecimiento Empresarial",
-        date: "5 Mar 2025"
+        bio: "Full-stack developer apasionado por UX"
       }
     ]
   },
   faq: {
     title: "Preguntas Frecuentes",
-    subtitle: "Todo lo que necesitas saber",
+    subtitle: "Todo lo que necesitas saber sobre trabajar con nosotros",
     items: [
       {
-        question: "¿Cuánto dura un proyecto típico de branding?",
-        answer: "La mayoría de proyectos tardan de 4 a 8 semanas dependiendo del alcance. Los paquetes iniciales se pueden entregar en 2 semanas, mientras que los proyectos completos de rebranding pueden tomar de 8 a 12 semanas."
+        q: "¿Cuánto tiempo toma un proyecto de branding?",
+        a: "Un proyecto típico de branding toma entre 4-8 semanas, dependiendo del alcance. Proyectos más complejos pueden extenderse hasta 12 semanas."
       },
       {
-        question: "¿Trabajan con clientes fuera de Barcelona?",
-        answer: "¡Por supuesto! Aunque estamos en Barcelona, trabajamos con clientes globalmente. Usamos videollamadas, herramientas de gestión de proyectos y comunicación regular para asegurar una colaboración fluida."
+        q: "¿Ofrecen soporte después del lanzamiento?",
+        a: "Sí, todos nuestros proyectos incluyen 30 días de soporte post-lanzamiento. También ofrecemos paquetes de mantenimiento continuo."
       },
       {
-        question: "¿Qué incluye un paquete de identidad de marca?",
-        answer: "Una identidad de marca completa incluye diseño de logo, paleta de color, sistema tipográfico, guías de marca, diseño de tarjetas de visita y recursos digitales. Nos aseguramos de que tengas todo lo necesario para una aplicación consistente de la marca."
+        q: "¿Trabajan con clientes internacionales?",
+        a: "Absolutamente. Trabajamos con clientes en España, Ecuador y toda Europa. La comunicación se realiza de forma remota o presencial según prefieras."
       },
       {
-        question: "¿Pueden ayudar con marketing continuo después del lanzamiento?",
-        answer: "¡Sí! Ofrecemos paquetes mensuales de retención para gestión de redes sociales, creación de contenido y soporte de diseño continuo para ayudar a tu marca a crecer continuamente."
+        q: "¿Qué incluye un proyecto de diseño web?",
+        a: "Incluye diseño responsivo, desarrollo, optimización SEO básica, integración de CMS y capacitación para gestionar el contenido."
       },
       {
-        question: "¿Qué pasa si necesito revisiones?",
-        answer: "Todos nuestros paquetes incluyen rondas de revisión (2-3 dependiendo del paquete). Trabajamos estrechamente contigo para asegurarnos de que estés encantado con el resultado final."
-      },
-      {
-        question: "¿Ofrecen planes de pago?",
-        answer: "Sí, ofrecemos planes de pago flexibles. Típicamente dividimos los pagos en 50% por adelantado y 50% al completar, pero podemos discutir arreglos personalizados."
+        q: "¿Puedo ver ejemplos de su trabajo anterior?",
+        a: "Por supuesto. Navega a nuestra sección de 'Trabajos' o contáctanos para ver casos de estudio específicos de tu industria."
       }
     ]
   },
-  newsletter: {
-    title: "Mantente Inspirado",
-    subtitle: "Recibe consejos de branding, tendencias de diseño e insights exclusivos mensualmente en tu bandeja de entrada.",
-    placeholder: "Ingresa tu email",
-    cta: "Suscribirse",
-    success: "¡Gracias por suscribirte! Revisa tu email para actualizaciones.",
-    footer: "Únete a 2,000+ creativos. Cancela cuando quieras."
+  blog: {
+    title: "Últimas Insights",
+    subtitle: "Consejos y tendencias en branding y diseño",
+    cta: "Leer Más"
   },
   contact: {
-    title: "Trabajemos Juntos",
-    subtitle: "Construyamos algo increíble juntos.",
-    reach: "Completa el formulario o contáctanos directamente:",
+    title: "Hablemos de Tu Proyecto",
+    subtitle: "¿Listo para llevar tu marca al siguiente nivel? Contáctanos hoy.",
     name: "Nombre",
     email: "Email",
-    phone: "Teléfono (opcional)",
+    phone: "Teléfono",
     service: "Servicio de Interés",
     message: "Mensaje",
     messagePlaceholder: "Cuéntanos sobre tu proyecto...",
     send: "Enviar Mensaje",
-    success: "¡Mensaje enviado! Te responderemos dentro de 24 horas.",
-    calendar: "O agenda una consulta gratuita",
     services: {
       branding: "Identidad de Marca",
       web: "Diseño Web",
       strategy: "Estrategia Digital",
       photography: "Fotografía y Video",
-      consulting: "Consultoría de Marca",
-      notSure: "No Estoy Seguro"
-    }
+      consulting: "Consultoría",
+      notSure: "No estoy seguro"
+    },
+    success: "¡Gracias! Te contactaremos pronto.",
+    schedule: "Agenda una Llamada",
+    calendar: "¿Prefieres programar una reunión?"
   },
   footer: {
-    description: "Estudio creativo transformando marcas a través del diseño y la estrategia.",
+    description: "Estudio creativo especializado en transformar marcas a través del diseño y la estrategia.",
     services: "Servicios",
     company: "Empresa",
-    aboutUs: "Nosotros",
-    ourWork: "Trabajos",
+    aboutUs: "Sobre Nosotros",
+    ourWork: "Nuestro Trabajo",
     team: "Equipo",
     blog: "Blog",
     contact: "Contacto",
@@ -402,11 +359,10 @@ const t = {
   }
 };
 
-export default function PrismaBranding() {
+export default function PrismaBrandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [currentCase, setCurrentCase] = useState(0);
   const [expandedFaq, setExpandedFaq] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
@@ -415,271 +371,361 @@ export default function PrismaBranding() {
     service: 'branding',
     message: ''
   });
-  const [newsletterEmail, setNewsletterEmail] = useState('');
   const [formStatus, setFormStatus] = useState('');
-  const [newsletterStatus, setNewsletterStatus] = useState('');
 
   const { scrollYProgress } = useScroll();
-  const headerBg = useTransform(scrollYProgress, [0, 0.1], ['rgba(255,255,255,0)', 'rgba(255,255,255,0.98)']);
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
+
+  // Proyectos destacados
+  const projects = [
+    {
+      title: "Café Artisan",
+      category: "Branding & Packaging",
+      image: "/api/placeholder/600/400",
+      color: "from-amber-500 to-orange-600"
+    },
+    {
+      title: "TechFlow",
+      category: "Web Design & Development",
+      image: "/api/placeholder/600/400",
+      color: "from-blue-500 to-purple-600"
+    },
+    {
+      title: "EcoStyle",
+      category: "Brand Strategy & Identity",
+      image: "/api/placeholder/600/400",
+      color: "from-green-500 to-teal-600"
+    },
+    {
+      title: "Urban Eats",
+      category: "Digital Strategy",
+      image: "/api/placeholder/600/400",
+      color: "from-red-500 to-pink-600"
+    }
+  ];
+
+  // Blog posts
+  const blogPosts = [
+    {
+      title: "10 Tendencias de Branding para 2025",
+      date: "15 Ene 2025",
+      image: "/api/placeholder/400/300",
+      excerpt: "Descubre las tendencias que definirán el diseño de marcas este año."
+    },
+    {
+      title: "Cómo Crear una Identidad Visual Memorable",
+      date: "8 Ene 2025",
+      image: "/api/placeholder/400/300",
+      excerpt: "Guía completa para desarrollar una identidad que destaque."
+    },
+    {
+      title: "El Poder del Storytelling en el Branding",
+      date: "2 Ene 2025",
+      image: "/api/placeholder/400/300",
+      excerpt: "Por qué contar historias auténticas impulsa la conexión con tu audiencia."
+    }
+  ];
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
+  };
+
+  const staggerChildren = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const sections = ['home', 'about', 'services', 'process', 'work', 'team', 'contact'];
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => 
+        prev === t.testimonials.items.length - 1 ? 0 : prev + 1
+      );
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      element.scrollIntoView({ behavior: 'smooth' });
       setIsMenuOpen(false);
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          access_key: '02efd0d3-bcec-40f9-a6fc-63b6d42927fd',
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone || 'Not provided',
-          service: formData.service,
-          message: formData.message,
-          subject: 'New Contact Form Submission - Prisma Branding',
-        }),
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setFormStatus(t.contact.success);
-        setFormData({ name: '', email: '', phone: '', service: 'branding', message: '' });
-      } else {
-        setFormStatus('Error al enviar el mensaje. Por favor intenta de nuevo.');
-      }
-    } catch (error) {
-      setFormStatus('Error al enviar el mensaje. Por favor intenta de nuevo.');
-    }
-    
-    setTimeout(() => setFormStatus(''), 4000);
+    setFormStatus(t.contact.success);
+    setTimeout(() => setFormStatus(''), 3000);
   };
 
-  const handleNewsletterSubmit = (e) => {
-    e.preventDefault();
-    setNewsletterStatus(t.newsletter.success);
-    setTimeout(() => setNewsletterStatus(''), 4000);
-    setNewsletterEmail('');
-  };
-
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
+  const toggleFaq = (index) => {
+    setExpandedFaq(expandedFaq === index ? null : index);
   };
 
   return (
-    <div className="font-sans antialiased bg-white text-gray-900">
-      {/* Header */}
-      <motion.header
-        style={{ backgroundColor: headerBg }}
-        className="fixed top-0 left-0 right-0 z-50 shadow-sm backdrop-blur-sm"
-      >
-        <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="text-2xl font-bold cursor-pointer"
-            onClick={() => scrollToSection('home')}
-          >
-            Prisma Branding
-          </motion.div>
+    <div className="font-sans antialiased">
+      {/* JSON-LD Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
 
-          <div className="hidden md:flex items-center space-x-8">
-            {Object.values(t.nav).map((item, index) => (
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="text-2xl font-bold text-gray-900"
+            >
+              Prisma Branding
+            </motion.div>
+
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center space-x-8">
+              {Object.entries(t.nav).map(([key, value]) => (
+                <button
+                  key={key}
+                  onClick={() => scrollToSection(key === 'home' ? 'home' : key)}
+                  className={`text-sm font-medium transition-colors ${
+                    activeSection === key ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'
+                  }`}
+                >
+                  {value}
+                </button>
+              ))}
               <button
-                key={index}
-                onClick={() => scrollToSection(Object.keys(t.nav)[index])}
-                className="text-gray-700 hover:text-gray-900 transition-colors font-medium"
+                onClick={() => scrollToSection('contact')}
+                className="bg-gray-900 text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-gray-800 transition-all transform hover:scale-105"
               >
-                {item}
+                {t.hero.cta}
               </button>
-            ))}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-2"
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
 
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2"
-          >
-            {isMenuOpen ? <X /> : <Menu />}
-          </button>
-        </nav>
-
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white border-t"
-            >
-              <div className="px-6 py-4 space-y-4">
-                {Object.values(t.nav).map((item, index) => (
+          {/* Mobile Menu */}
+          <AnimatePresence>
+            {isMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                className="md:hidden mt-4 pb-4 space-y-4"
+              >
+                {Object.entries(t.nav).map(([key, value]) => (
                   <button
-                    key={index}
-                    onClick={() => scrollToSection(Object.keys(t.nav)[index])}
-                    className="block w-full text-left text-gray-700 hover:text-gray-900 font-medium"
+                    key={key}
+                    onClick={() => scrollToSection(key === 'home' ? 'home' : key)}
+                    className="block w-full text-left text-gray-700 hover:text-gray-900 py-2"
                   >
-                    {item}
+                    {value}
                   </button>
                 ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.header>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </nav>
 
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 px-6 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white -z-10"></div>
-        <div className="absolute inset-0 opacity-5 -z-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl"></div>
-          <div className="absolute bottom-20 right-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl"></div>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center max-w-4xl mx-auto"
+      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100" />
+        
+        <motion.div 
+          style={{ opacity, scale }}
+          className="relative z-10 text-center px-6 max-w-5xl mx-auto"
         >
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+            transition={{ duration: 0.8 }}
+            className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight"
           >
             {t.hero.title}
           </motion.h1>
+          
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="text-xl md:text-2xl text-gray-600 mb-8"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-xl md:text-2xl text-gray-600 mb-12"
           >
             {t.hero.subtitle}
           </motion.p>
+
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <button
               onClick={() => scrollToSection('contact')}
-              className="bg-gray-900 text-white px-8 py-4 rounded-full font-medium inline-flex items-center space-x-2 hover:bg-gray-800 transition-all transform hover:scale-105"
+              className="bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-800 transition-all transform hover:scale-105 inline-flex items-center space-x-2"
             >
               <span>{t.hero.cta}</span>
               <ArrowRight className="w-5 h-5" />
             </button>
             <button
               onClick={() => scrollToSection('work')}
-              className="border-2 border-gray-900 text-gray-900 px-8 py-4 rounded-full font-medium hover:bg-gray-900 hover:text-white transition-all"
+              className="border-2 border-gray-900 text-gray-900 px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-900 hover:text-white transition-all transform hover:scale-105"
             >
               {t.hero.viewWork}
             </button>
           </motion.div>
         </motion.div>
+
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+              rotate: [0, 90, 0],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-10 blur-3xl"
+          />
+          <motion.div
+            animate={{
+              scale: [1, 1.3, 1],
+              rotate: [0, -90, 0],
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full opacity-10 blur-3xl"
+          />
+        </div>
       </section>
 
-      {/* Client Logos */}
-      <section className="py-16 px-6 bg-gray-50 border-y border-gray-200">
-        <div className="max-w-7xl mx-auto">
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            className="text-center text-gray-500 mb-8 uppercase text-sm tracking-wider"
-          >
+      {/* Trusted Brands */}
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <p className="text-center text-sm text-gray-500 mb-8 uppercase tracking-wider">
             {t.trusted}
-          </motion.p>
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center"
-          >
-            {["Voilà", "Terra", "Bloom", "Urban Coffee", "Azur Hotel", "Lux Cosmetics", "Verde Market", "Casa Nova"].map((client, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                className="text-center text-2xl font-bold text-gray-400 hover:text-gray-600 transition-colors"
-              >
-                {client}
-              </motion.div>
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 opacity-50">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i} className="text-2xl font-bold text-gray-400">
+                Logo {i}
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* About Section */}
       <section id="about" className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeInUp}
-            className="grid md:grid-cols-2 gap-12 items-center"
-          >
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">{t.about.title}</h2>
-              <p className="text-lg text-gray-600 leading-relaxed mb-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                {t.about.title}
+              </h2>
+              <p className="text-lg text-gray-600 mb-6">
                 {t.about.text1}
               </p>
-              <p className="text-lg text-gray-600 leading-relaxed mb-6">
+              <p className="text-lg text-gray-600 mb-8">
                 {t.about.text2}
               </p>
-              <div className="grid grid-cols-3 gap-6 text-center">
+              <div className="grid grid-cols-3 gap-6">
                 <div>
-                  <div className="text-3xl font-bold text-gray-900">150+</div>
-                  <div className="text-sm text-gray-600">{t.about.projects}</div>
+                  <div className="text-4xl font-bold text-gray-900 mb-2">200+</div>
+                  <div className="text-gray-600">{t.about.projects}</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-gray-900">8+</div>
-                  <div className="text-sm text-gray-600">{t.about.years}</div>
+                  <div className="text-4xl font-bold text-gray-900 mb-2">10+</div>
+                  <div className="text-gray-600">{t.about.years}</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-gray-900">95%</div>
-                  <div className="text-sm text-gray-600">{t.about.satisfaction}</div>
+                  <div className="text-4xl font-bold text-gray-900 mb-2">98%</div>
+                  <div className="text-gray-600">{t.about.satisfaction}</div>
                 </div>
               </div>
-            </div>
-            <div className="relative h-96 rounded-2xl overflow-hidden shadow-xl">
-              <img
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop"
-                alt="Team"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </motion.div>
+            </motion.div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+              className="relative"
+            >
+              <div className="aspect-square rounded-2xl overflow-hidden">
+                <img
+                  src="/api/placeholder/600/600"
+                  alt="Prisma Branding Team"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl">
+                <div className="flex items-center space-x-3">
+                  <Target className="w-8 h-8 text-gray-900" />
+                  <div>
+                    <div className="font-bold text-gray-900">Enfoque 360°</div>
+                    <div className="text-sm text-gray-600">Branding completo</div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -689,39 +735,40 @@ export default function PrismaBranding() {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true }}
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">{t.services.title}</h2>
-            <p className="text-xl text-gray-600">{t.services.subtitle}</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              {t.services.title}
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              {t.services.subtitle}
+            </p>
           </motion.div>
 
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
+            viewport={{ once: true }}
+            variants={staggerChildren}
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
           >
-            {[
-              { icon: <Palette className="w-8 h-8" /> },
-              { icon: <Target className="w-8 h-8" /> },
-              { icon: <Globe className="w-8 h-8" /> },
-              { icon: <TrendingUp className="w-8 h-8" /> },
-              { icon: <Camera className="w-8 h-8" /> },
-              { icon: <Package className="w-8 h-8" /> },
-              { icon: <FileText className="w-8 h-8" /> },
-              { icon: <Lightbulb className="w-8 h-8" /> }
-            ].map((service, index) => (
+            {t.services.items.map((service, index) => (
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+                className="bg-white p-8 rounded-xl hover:shadow-xl transition-all group cursor-pointer"
               >
-                <div className="text-gray-900 mb-4">{service.icon}</div>
-                <h3 className="text-xl font-bold mb-3">{t.services.items[index].title}</h3>
-                <p className="text-gray-600 text-sm">{t.services.items[index].description}</p>
+                <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-gray-900 transition-colors">
+                  <Palette className="w-6 h-6 text-gray-900 group-hover:text-white transition-colors" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  {service.title}
+                </h3>
+                <p className="text-gray-600">
+                  {service.description}
+                </p>
               </motion.div>
             ))}
           </motion.div>
@@ -738,25 +785,31 @@ export default function PrismaBranding() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">{t.industries.title}</h2>
-            <p className="text-xl text-gray-600">{t.industries.subtitle}</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              {t.industries.title}
+            </h2>
+            <p className="text-xl text-gray-600">
+              {t.industries.subtitle}
+            </p>
           </motion.div>
 
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6"
+            variants={staggerChildren}
+            className="grid md:grid-cols-3 gap-6"
           >
-            {["🍽️", "🛍️", "💻", "🧘", "👗", "🏠"].map((icon, index) => (
+            {t.industries.items.map((industry, index) => (
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                className="text-center p-6 bg-gray-50 rounded-2xl hover:bg-white hover:shadow-lg transition-all"
+                className="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:border-gray-900 transition-all"
               >
-                <div className="text-4xl mb-3">{icon}</div>
-                <div className="text-sm font-medium text-gray-700">{t.industries.items[index]}</div>
+                <Globe className="w-8 h-8 text-gray-900 mb-3" />
+                <h3 className="text-lg font-semibold text-gray-900">
+                  {industry}
+                </h3>
               </motion.div>
             ))}
           </motion.div>
@@ -764,7 +817,7 @@ export default function PrismaBranding() {
       </section>
 
       {/* Process Section */}
-      <section id="process" className="py-24 px-6 bg-gray-50">
+      <section id="process" className="py-24 px-6 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial="hidden"
@@ -773,31 +826,38 @@ export default function PrismaBranding() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">{t.process.title}</h2>
-            <p className="text-xl text-gray-600">{t.process.subtitle}</p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              {t.process.title}
+            </h2>
+            <p className="text-xl text-gray-400">
+              {t.process.subtitle}
+            </p>
           </motion.div>
 
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={staggerContainer}
+            variants={staggerChildren}
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
           >
-            {["01", "02", "03", "04"].map((num, index) => (
+            {t.process.steps.map((step, index) => (
               <motion.div
                 key={index}
                 variants={fadeInUp}
                 className="relative"
               >
-                <div className="text-6xl font-bold text-gray-200 mb-4">{num}</div>
-                <h3 className="text-2xl font-bold mb-3">{t.process.steps[index].title}</h3>
-                <p className="text-gray-600">{t.process.steps[index].description}</p>
-                {index < 3 && (
-                  <div className="hidden lg:block absolute top-12 -right-4 text-gray-300">
-                    <ArrowRight className="w-8 h-8" />
-                  </div>
-                )}
+                <div className="absolute -left-4 top-0 text-8xl font-bold text-gray-800 opacity-30">
+                  {index + 1}
+                </div>
+                <div className="relative z-10 pt-12">
+                  <h3 className="text-xl font-bold mb-4">
+                    {step.title}
+                  </h3>
+                  <p className="text-gray-400">
+                    {step.description}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -805,7 +865,7 @@ export default function PrismaBranding() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-24 px-6">
+      <section className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial="hidden"
@@ -814,76 +874,109 @@ export default function PrismaBranding() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">{t.pricing.title}</h2>
-            <p className="text-xl text-gray-600">{t.pricing.subtitle}</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              {t.pricing.title}
+            </h2>
+            <p className="text-xl text-gray-600">
+              {t.pricing.subtitle}
+            </p>
           </motion.div>
 
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={staggerContainer}
+            variants={staggerChildren}
             className="grid md:grid-cols-3 gap-8"
           >
-            {[
-              { emoji: "💡", name: t.pricing.identity.name, price: "€800", features: t.pricing.identity.features },
-              { emoji: "🔥", name: t.pricing.brandWeb.name, price: "€1,800", features: t.pricing.brandWeb.features, featured: true },
-              { emoji: "✨", name: t.pricing.rebrand.name, price: "€3,500", features: t.pricing.rebrand.features }
-            ].map((plan, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                className={`bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-2 ${
-                  plan.featured ? 'ring-2 ring-gray-900' : ''
-                }`}
-              >
-                <div className="text-4xl mb-4">{plan.emoji}</div>
-                <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                <div className="text-4xl font-bold mb-6">{plan.price}</div>
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start space-x-2">
-                      <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-600">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <button
-                  onClick={() => scrollToSection('contact')}
-                  className={`w-full py-3 rounded-full font-medium transition-all ${
-                    plan.featured
-                      ? 'bg-gray-900 text-white hover:bg-gray-800'
-                      : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
-                  }`}
-                >
-                  {t.pricing.cta}
-                </button>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            className="mt-12 text-center"
-          >
-            <div className="bg-gradient-to-r from-gray-50 to-white p-8 rounded-2xl border border-gray-200">
-              <p className="text-lg text-gray-700 mb-4">{t.pricing.custom}</p>
-              <button
-                onClick={() => scrollToSection('contact')}
-                className="inline-flex items-center space-x-2 text-gray-900 font-semibold hover:underline"
-              >
-                <span>{t.contact.title}</span>
-                <ArrowRight className="w-4 h-4" />
+            {/* Starter Plan */}
+            <motion.div
+              variants={fadeInUp}
+              className="bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-gray-900 transition-all"
+            >
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                {t.pricing.starter.name}
+              </h3>
+              <div className="text-4xl font-bold text-gray-900 mb-4">
+                {t.pricing.starter.price}
+              </div>
+              <p className="text-gray-600 mb-6">
+                {t.pricing.starter.description}
+              </p>
+              <ul className="space-y-3 mb-8">
+                {t.pricing.starter.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-center space-x-3">
+                    <Check className="w-5 h-5 text-gray-900" />
+                    <span className="text-gray-700">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <button className="w-full bg-gray-100 text-gray-900 py-3 rounded-full font-medium hover:bg-gray-200 transition-all">
+                {t.pricing.cta}
               </button>
-            </div>
+            </motion.div>
+
+            {/* Professional Plan (Popular) */}
+            <motion.div
+              variants={fadeInUp}
+              className="bg-gray-900 text-white p-8 rounded-2xl relative transform scale-105 shadow-2xl"
+            >
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-1 rounded-full text-sm font-medium">
+                Más Popular
+              </div>
+              <h3 className="text-2xl font-bold mb-2">
+                {t.pricing.professional.name}
+              </h3>
+              <div className="text-4xl font-bold mb-4">
+                {t.pricing.professional.price}
+              </div>
+              <p className="text-gray-300 mb-6">
+                {t.pricing.professional.description}
+              </p>
+              <ul className="space-y-3 mb-8">
+                {t.pricing.professional.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-center space-x-3">
+                    <Check className="w-5 h-5 text-white" />
+                    <span className="text-gray-200">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <button className="w-full bg-white text-gray-900 py-3 rounded-full font-medium hover:bg-gray-100 transition-all">
+                {t.pricing.cta}
+              </button>
+            </motion.div>
+
+            {/* Enterprise Plan */}
+            <motion.div
+              variants={fadeInUp}
+              className="bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-gray-900 transition-all"
+            >
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                {t.pricing.enterprise.name}
+              </h3>
+              <div className="text-4xl font-bold text-gray-900 mb-4">
+                {t.pricing.enterprise.price}
+              </div>
+              <p className="text-gray-600 mb-6">
+                {t.pricing.enterprise.description}
+              </p>
+              <ul className="space-y-3 mb-8">
+                {t.pricing.enterprise.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-center space-x-3">
+                    <Check className="w-5 h-5 text-gray-900" />
+                    <span className="text-gray-700">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <button className="w-full bg-gray-900 text-white py-3 rounded-full font-medium hover:bg-gray-800 transition-all">
+                {t.pricing.contact}
+              </button>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Case Studies Section */}
+      {/* Work/Portfolio Section */}
       <section id="work" className="py-24 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -893,129 +986,44 @@ export default function PrismaBranding() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">{t.caseStudies.title}</h2>
-            <p className="text-xl text-gray-600">{t.caseStudies.subtitle}</p>
-          </motion.div>
-
-          <div className="relative">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentCase}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.5 }}
-                className="bg-white rounded-2xl shadow-xl overflow-hidden"
-              >
-                <div className="grid md:grid-cols-2">
-                  <div className="relative h-64 md:h-auto">
-                    <img
-                      src={["https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop", "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop", "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=600&fit=crop"][currentCase]}
-                      alt={t.caseStudies.items[currentCase].name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="p-8 md:p-12 flex flex-col justify-center">
-                    <div className="text-sm text-gray-500 mb-2 uppercase tracking-wider">
-                      {t.caseStudies.items[currentCase].category}
-                    </div>
-                    <h3 className="text-3xl font-bold mb-6">{t.caseStudies.items[currentCase].name}</h3>
-                    
-                    <div className="space-y-4 mb-6">
-                      <div>
-                        <div className="font-semibold text-gray-900 mb-1">{t.caseStudies.challenge}</div>
-                        <p className="text-gray-600">{t.caseStudies.items[currentCase].challenge}</p>
-                      </div>
-                      <div>
-                        <div className="font-semibold text-gray-900 mb-1">{t.caseStudies.solution}</div>
-                        <p className="text-gray-600">{t.caseStudies.items[currentCase].solution}</p>
-                      </div>
-                      <div>
-                        <div className="font-semibold text-gray-900 mb-1">{t.caseStudies.results}</div>
-                        <p className="text-gray-600 font-medium">{t.caseStudies.items[currentCase].results}</p>
-                      </div>
-                    </div>
-
-                    <button className="text-gray-900 inline-flex items-center space-x-2 font-medium hover:underline">
-                      <span>{t.caseStudies.viewFull}</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            <div className="flex justify-center items-center space-x-4 mt-8">
-              <button
-                onClick={() => setCurrentCase((prev) => (prev === 0 ? 2 : prev - 1))}
-                className="p-3 rounded-full bg-white shadow-lg hover:shadow-xl transition-all"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-              <div className="flex space-x-2">
-                {[0, 1, 2].map((index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentCase(index)}
-                    className={`w-2 h-2 rounded-full transition-all ${
-                      index === currentCase ? 'bg-gray-900 w-8' : 'bg-gray-300'
-                    }`}
-                  />
-                ))}
-              </div>
-              <button
-                onClick={() => setCurrentCase((prev) => (prev === 2 ? 0 : prev + 1))}
-                className="p-3 rounded-full bg-white shadow-lg hover:shadow-xl transition-all"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section id="team" className="py-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">{t.team.title}</h2>
-            <p className="text-xl text-gray-600">{t.team.subtitle}</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              {t.work.title}
+            </h2>
+            <p className="text-xl text-gray-600">
+              {t.work.subtitle}
+            </p>
           </motion.div>
 
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+            variants={staggerChildren}
+            className="grid md:grid-cols-2 gap-8"
           >
-            {[
-              { img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop" },
-              { img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop" },
-              { img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop" },
-              { img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop" }
-            ].map((member, index) => (
+            {projects.map((project, index) => (
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                className="text-center group"
+                className="group relative overflow-hidden rounded-2xl cursor-pointer"
               >
-                <div className="relative mb-4 overflow-hidden rounded-2xl">
+                <div className="aspect-[4/3] overflow-hidden">
                   <img
-                    src={member.img}
-                    alt={t.team.members[index].name}
-                    className="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-500"
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
-                <h3 className="text-xl font-bold mb-1">{t.team.members[index].name}</h3>
-                <div className="text-gray-500 mb-2">{t.team.members[index].role}</div>
-                <p className="text-sm text-gray-600">{t.team.members[index].bio}</p>
+                <div className={`absolute inset-0 bg-gradient-to-t ${project.color} opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex items-end p-8`}>
+                  <div className="text-white">
+                    <h3 className="text-3xl font-bold mb-2">{project.title}</h3>
+                    <p className="text-lg mb-4">{project.category}</p>
+                    <button className="inline-flex items-center space-x-2 text-white font-medium">
+                      <span>{t.work.cta}</span>
+                      <ArrowRight className="w-5 h-5" />
+                    </button>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -1023,7 +1031,7 @@ export default function PrismaBranding() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-24 px-6 bg-gray-50">
+      <section className="py-24 px-6">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial="hidden"
@@ -1032,114 +1040,119 @@ export default function PrismaBranding() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">{t.testimonials.title}</h2>
-            <p className="text-xl text-gray-600">{t.testimonials.subtitle}</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              {t.testimonials.title}
+            </h2>
+            <p className="text-xl text-gray-600">
+              {t.testimonials.subtitle}
+            </p>
           </motion.div>
 
           <div className="relative">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentTestimonial}
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
+                exit={{ opacity: 0, x: -50 }}
                 transition={{ duration: 0.5 }}
-                className="bg-white p-12 rounded-2xl shadow-xl text-center"
+                className="bg-white p-12 rounded-2xl shadow-xl"
               >
-                <p className="text-2xl text-gray-700 mb-6 italic">
-                  "{t.testimonials.items[currentTestimonial].quote}"
+                <div className="flex justify-center mb-6">
+                  {[...Array(t.testimonials.items[currentTestimonial].rating)].map((_, i) => (
+                    <TrendingUp key={i} className="w-6 h-6 text-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-2xl text-gray-700 mb-8 text-center italic">
+                  "{t.testimonials.items[currentTestimonial].text}"
                 </p>
-                <div className="font-bold text-lg">{t.testimonials.items[currentTestimonial].author}</div>
-                <div className="text-gray-500">{t.testimonials.items[currentTestimonial].role}</div>
-                <div className="text-gray-500">{t.testimonials.items[currentTestimonial].company}</div>
+                <div className="text-center">
+                  <div className="font-bold text-gray-900 text-lg">
+                    {t.testimonials.items[currentTestimonial].author}
+                  </div>
+                  <div className="text-gray-600">
+                    {t.testimonials.items[currentTestimonial].role}
+                  </div>
+                </div>
               </motion.div>
             </AnimatePresence>
 
-            <div className="flex justify-center items-center space-x-4 mt-8">
-              <button
-                onClick={() => setCurrentTestimonial((prev) => (prev === 0 ? 2 : prev - 1))}
-                className="p-2 rounded-full bg-white shadow hover:shadow-lg transition-all"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-              <div className="flex space-x-2">
-                {[0, 1, 2].map((index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentTestimonial(index)}
-                    className={`w-2 h-2 rounded-full transition-all ${
-                      index === currentTestimonial ? 'bg-gray-900 w-8' : 'bg-gray-300'
-                    }`}
-                  />
-                ))}
-              </div>
-              <button
-                onClick={() => setCurrentTestimonial((prev) => (prev === 2 ? 0 : prev + 1))}
-                className="p-2 rounded-full bg-white shadow hover:shadow-lg transition-all"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
+            <div className="flex justify-center mt-8 space-x-2">
+              {t.testimonials.items.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentTestimonial(index)}
+                  className={`w-3 h-3 rounded-full transition-all ${
+                    currentTestimonial === index ? 'bg-gray-900 w-8' : 'bg-gray-300'
+                  }`}
+                  aria-label={`View testimonial ${index + 1}`}
+                />
+              ))}
             </div>
+
+            <button
+              onClick={() => setCurrentTestimonial(currentTestimonial === 0 ? t.testimonials.items.length - 1 : currentTestimonial - 1)}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all"
+              aria-label="Previous testimonial"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+
+            <button
+              onClick={() => setCurrentTestimonial(currentTestimonial === t.testimonials.items.length - 1 ? 0 : currentTestimonial + 1)}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
           </div>
         </div>
       </section>
 
-      {/* Blog Preview Section */}
-      <section className="py-24 px-6">
+      {/* Team Section */}
+      <section id="team" className="py-24 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
-            className="flex items-center justify-between mb-16"
+            className="text-center mb-16"
           >
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">{t.blog.title}</h2>
-              <p className="text-xl text-gray-600">{t.blog.subtitle}</p>
-            </div>
-            <button className="hidden md:inline-flex items-center space-x-2 text-gray-900 font-medium hover:underline">
-              <span>{t.blog.viewAll}</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              {t.team.title}
+            </h2>
+            <p className="text-xl text-gray-600">
+              {t.team.subtitle}
+            </p>
           </motion.div>
 
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid md:grid-cols-3 gap-8"
+            variants={staggerChildren}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
           >
-            {[
-              { img: "https://images.unsplash.com/photo-1542744094-3a31f272c490?w=600&h=400&fit=crop" },
-              { img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop" },
-              { img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" }
-            ].map((post, index) => (
+            {t.team.members.map((member, index) => (
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group cursor-pointer"
+                className="bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all group"
               >
-                <div className="relative h-48 overflow-hidden">
+                <div className="aspect-square overflow-hidden">
                   <img
-                    src={post.img}
-                    alt={t.blog.items[index].title}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                    src="/api/placeholder/400/400"
+                    alt={member.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
                 <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-sm text-gray-500">{t.blog.items[index].category}</span>
-                    <span className="text-sm text-gray-400">{t.blog.items[index].date}</span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-gray-600 transition-colors">
-                    {t.blog.items[index].title}
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">
+                    {member.name}
                   </h3>
-                  <button className="text-gray-900 inline-flex items-center space-x-2 font-medium hover:underline">
-                    <span>{t.blog.readMore}</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
+                  <div className="text-gray-600 mb-3">{member.role}</div>
+                  <p className="text-sm text-gray-500">{member.bio}</p>
                 </div>
               </motion.div>
             ))}
@@ -1148,7 +1161,7 @@ export default function PrismaBranding() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24 px-6 bg-gray-50">
+      <section className="py-24 px-6">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial="hidden"
@@ -1157,45 +1170,51 @@ export default function PrismaBranding() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">{t.faq.title}</h2>
-            <p className="text-xl text-gray-600">{t.faq.subtitle}</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              {t.faq.title}
+            </h2>
+            <p className="text-xl text-gray-600">
+              {t.faq.subtitle}
+            </p>
           </motion.div>
 
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={staggerContainer}
+            variants={staggerChildren}
             className="space-y-4"
           >
-            {t.faq.items.map((faq, index) => (
+            {t.faq.items.map((item, index) => (
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden"
+                className="bg-white rounded-xl border border-gray-200 overflow-hidden"
               >
                 <button
-                  onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
-                  className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
+                  onClick={() => toggleFaq(index)}
+                  className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
                 >
-                  <span className="font-semibold text-lg pr-4">{faq.question}</span>
+                  <h3 className="text-lg font-semibold text-gray-900 pr-8">
+                    {item.q}
+                  </h3>
                   {expandedFaq === index ? (
-                    <Minus className="w-5 h-5 flex-shrink-0 text-gray-600" />
+                    <Minus className="w-5 h-5 text-gray-900 flex-shrink-0" />
                   ) : (
-                    <Plus className="w-5 h-5 flex-shrink-0 text-gray-600" />
+                    <Plus className="w-5 h-5 text-gray-900 flex-shrink-0" />
                   )}
                 </button>
                 <AnimatePresence>
                   {expandedFaq === index && (
                     <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
+                      initial={{ height: 0 }}
+                      animate={{ height: 'auto' }}
+                      exit={{ height: 0 }}
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-5 text-gray-600">
-                        {faq.answer}
+                      <div className="p-6 pt-0 text-gray-600">
+                        {item.a}
                       </div>
                     </motion.div>
                   )}
@@ -1206,101 +1225,109 @@ export default function PrismaBranding() {
         </div>
       </section>
 
-      {/* Newsletter Section */}
-      <section className="py-24 px-6 bg-gray-900 text-white">
-        <div className="max-w-4xl mx-auto text-center">
+      {/* Blog Section */}
+      <section className="py-24 px-6 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
+            className="text-center mb-16"
           >
-            <Newspaper className="w-16 h-16 mx-auto mb-6 text-white" />
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">{t.newsletter.title}</h2>
-            <p className="text-xl text-gray-300 mb-8">
-              {t.newsletter.subtitle}
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              {t.blog.title}
+            </h2>
+            <p className="text-xl text-gray-600">
+              {t.blog.subtitle}
             </p>
+          </motion.div>
 
-            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
-              <input
-                type="email"
-                value={newsletterEmail}
-                onChange={(e) => setNewsletterEmail(e.target.value)}
-                required
-                placeholder={t.newsletter.placeholder}
-                className="flex-1 px-6 py-4 rounded-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
-              />
-              <button
-                type="submit"
-                className="bg-white text-gray-900 px-8 py-4 rounded-full font-medium hover:bg-gray-100 transition-all inline-flex items-center justify-center space-x-2"
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerChildren}
+            className="grid md:grid-cols-3 gap-8"
+          >
+            {blogPosts.map((post, index) => (
+              <motion.article
+                key={index}
+                variants={fadeInUp}
+                className="bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all group cursor-pointer"
               >
-                <Send className="w-5 h-5" />
-                <span>{t.newsletter.cta}</span>
-              </button>
-            </form>
-
-            {newsletterStatus && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-4 text-green-300"
-              >
-                {newsletterStatus}
-              </motion.div>
-            )}
-
-            <p className="text-sm text-gray-400 mt-4">
-              {t.newsletter.footer}
-            </p>
+                <div className="aspect-video overflow-hidden">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
+                <div className="p-6">
+                  <div className="text-sm text-gray-500 mb-3">{post.date}</div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-gray-700 transition-colors">
+                    {post.title}
+                  </h3>
+                  <p className="text-gray-600 mb-4">{post.excerpt}</p>
+                  <button className="inline-flex items-center space-x-2 text-gray-900 font-medium group-hover:space-x-3 transition-all">
+                    <span>{t.blog.cta}</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </motion.article>
+            ))}
           </motion.div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 px-6 bg-gray-50">
-        <div className="max-w-4xl mx-auto">
+      <section id="contact" className="py-24 px-6">
+        <div className="max-w-5xl mx-auto">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">{t.contact.title}</h2>
-            <p className="text-xl text-gray-600 mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              {t.contact.title}
+            </h2>
+            <p className="text-xl text-gray-600">
               {t.contact.subtitle}
             </p>
-            <p className="text-lg text-gray-500 mb-6">
-              {t.contact.reach}
-            </p>
+          </motion.div>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
-              <a
-                href="mailto:hello@prismabranding.com"
-                className="inline-flex items-center space-x-2 text-gray-700 hover:text-gray-900 transition-colors"
-              >
-                <Mail className="w-4 h-4" />
-                <span>hello@prismabranding.com</span>
-              </a>
-              <span className="text-gray-300">|</span>
-              <a
-                href="tel:+34123456789"
-                className="inline-flex items-center space-x-2 text-gray-700 hover:text-gray-900 transition-colors"
-              >
-                <Phone className="w-4 h-4" />
-                <span>+34 123 456 789</span>
-              </a>
-              <span className="text-gray-300">|</span>
-              <a
-                href="https://wa.me/34123456789"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center space-x-2 text-gray-700 hover:text-gray-900 transition-colors"
-              >
-                <MessageSquare className="w-4 h-4" />
-                <span>WhatsApp</span>
-              </a>
-            </div>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="grid md:grid-cols-3 gap-6 mb-12"
+          >
+            <a
+              href="mailto:hello@prismabranding.com"
+              className="flex items-center justify-center space-x-2 bg-white p-4 rounded-xl hover:shadow-lg transition-all"
+            >
+              <Mail className="w-4 h-4" />
+              <span>Email</span>
+            </a>
+            <a
+              href="tel:+34123456789"
+              className="flex items-center justify-center space-x-2 bg-white p-4 rounded-xl hover:shadow-lg transition-all"
+            >
+              <Phone className="w-4 h-4" />
+              <span>Teléfono</span>
+            </a>
+            <a
+              href="https://wa.me/34123456789"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center space-x-2 bg-white p-4 rounded-xl hover:shadow-lg transition-all"
+            >
+              <MessageSquare className="w-4 h-4" />
+              <span>WhatsApp</span>
+            </a>
           </motion.div>
 
           <motion.form

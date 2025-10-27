@@ -6,33 +6,10 @@ A step-by-step guide to launch and grow your branding agency.
 
 ## ✅ PHASE 1: IMMEDIATE (This Week)
 
-### [ ] 1. Deploy to Production
+### [x] 1. Deploy to Production
 **Priority:** 🔴 CRITICAL  
 **Time:** 30 minutes  
 **Goal:** Get website live on the internet
-
-```bash
-# Make sure everything is committed
-git status
-git add .
-git commit -m "Complete Prisma Branding website"
-git push origin main
-
-# Deploy to Vercel
-npm install -g vercel
-vercel login
-vercel
-
-# Follow prompts, should deploy in 2-3 minutes
-```
-
-**Resources:**
-- [Vercel Deployment Docs](https://vercel.com/docs)
-- Vercel gives you free hosting + auto SSL
-
-**Success Criteria:** ✅ Website is live at `your-project.vercel.app`
-
----
 
 ### [ ] 2. Connect Custom Domain
 **Priority:** 🟠 HIGH  
@@ -64,7 +41,7 @@ vercel
 
 ---
 
-### [ ] 3. Set Up Real Email Form
+### [x] 3. Set Up Real Email Form
 **Priority:** 🔴 CRITICAL  
 **Time:** 1-2 hours  
 **Goal:** Actually receive contact form submissions

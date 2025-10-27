@@ -3,7 +3,7 @@
   
   <!-- Home Page -->
   <url>
-    <loc>https://prisma-branding.web.app/</loc>
+    <loc>https://brandprisma.com/</loc>
     <lastmod>2025-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -11,7 +11,7 @@
   
   <!-- About Page -->
   <url>
-    <loc>https://prisma-branding.web.app/about</loc>
+    <loc>https://brandprisma.com/about</loc>
     <lastmod>2025-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -19,7 +19,7 @@
   
   <!-- Services Page -->
   <url>
-    <loc>https://prisma-branding.web.app/services</loc>
+    <loc>https://brandprisma.com/services</loc>
     <lastmod>2025-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -27,7 +27,7 @@
   
   <!-- Portfolio Page -->
   <url>
-    <loc>https://prisma-branding.web.app/portfolio</loc>
+    <loc>https://brandprisma.com/portfolio</loc>
     <lastmod>2025-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -35,7 +35,7 @@
   
   <!-- Contact Page -->
   <url>
-    <loc>https://prisma-branding.web.app/contact</loc>
+    <loc>https://brandprisma.com/contact</loc>
     <lastmod>2025-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
