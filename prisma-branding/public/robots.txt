@@ -1,23 +1,29 @@
-# Robots.txt para Prisma Branding
-# Permite a todos los buscadores indexar todo el sitio
+# Robots.txt para Prisma Branding - Single Page Application
+# https://brandprisma.com
 
 User-agent: *
 Allow: /
 
-# Sitemap
+# Sitemap location
 Sitemap: https://brandprisma.com/sitemap.xml
-
-# Velocidad de rastreo (opcional)
-Crawl-delay: 1
 
 # Bloquear archivos no necesarios
 Disallow: /api/
 Disallow: /_next/static/
+Disallow: /_next/data/
 Disallow: /*.json$
 
-# Permitir explícitamente secciones importantes
-Allow: /$
-Allow: /about$
-Allow: /services$
-Allow: /portfolio$
-Allow: /contact$
+# Permitir recursos importantes
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.webp$
+Allow: /*.svg$
+Allow: /*.gif$
+Allow: /*.woff$
+Allow: /*.woff2$
+
+# Velocidad de rastreo opcional (solo si tienes problemas de servidor)
+# Crawl-delay: 1

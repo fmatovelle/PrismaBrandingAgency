@@ -1,44 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   
-  <!-- Home Page -->
+  <!-- Página Principal - Single Page App -->
   <url>
     <loc>https://brandprisma.com/</loc>
-    <lastmod>2025-10-23</lastmod>
+    <lastmod>2025-10-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- 
+  NOTA: Como es single page app, todas las secciones están en la misma página.
+  Google rastreará e indexará automáticamente las secciones cuando visite la página principal.
   
-  <!-- About Page -->
-  <url>
-    <loc>https://brandprisma.com/about</loc>
-    <lastmod>2025-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  Las secciones incluyen:
+  - #inicio (Hero)
+  - #servicios (Services)
+  - #portfolio (Work)
+  - #proceso (Process)
+  - #equipo (Team)
+  - #contacto (Contact)
   
-  <!-- Services Page -->
-  <url>
-    <loc>https://brandprisma.com/services</loc>
-    <lastmod>2025-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <!-- Portfolio Page -->
-  <url>
-    <loc>https://brandprisma.com/portfolio</loc>
-    <lastmod>2025-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <!-- Contact Page -->
-  <url>
-    <loc>https://brandprisma.com/contact</loc>
-    <lastmod>2025-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
+  No es necesario (ni recomendado) añadir URLs con anclas (#) al sitemap.
+  Google las descubrirá automáticamente al rastrear la página.
+  -->
+
 </urlset>

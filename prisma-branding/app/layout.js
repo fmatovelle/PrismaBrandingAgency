@@ -1,20 +1,44 @@
 import './globals.css'
-import { OrganizationSchema, WebsiteSchema } from '@/components/JsonLd'
+import { OrganizationSchema, WebsiteSchema, LocalBusinessSchema } from '@/components/JsonLd'
 
 export const metadata = {
+  // URL base para todas las rutas
+  metadataBase: new URL('https://brandprisma.com'),
+  
   // Meta básicos
   title: {
     default: 'Prisma Branding | Estudio Creativo en Barcelona',
     template: '%s | Prisma Branding'
   },
-  description: 'Estudio creativo en Barcelona que transforma ideas en marcas memorables con diseño, estrategia y branding profesional',
-  keywords: ['branding barcelona', 'diseño web barcelona', 'identidad de marca', 'estrategia digital', 'agencia creativa barcelona', 'diseño gráfico', 'marketing digital'],
+  description: 'Estudio creativo en Barcelona que transforma ideas en marcas memorables con diseño, estrategia y branding profesional. Especialistas en identidad corporativa y diseño web.',
+  
+  keywords: [
+    'branding barcelona', 
+    'diseño web barcelona', 
+    'identidad de marca', 
+    'estrategia digital', 
+    'agencia creativa barcelona', 
+    'diseño gráfico',
+    'marketing digital',
+    'identidad corporativa',
+    'estudio creativo',
+    'agencia de branding',
+    'diseño de logos barcelona',
+    'branding corporativo'
+  ],
+  
   authors: [{ name: 'Prisma Branding', url: 'https://brandprisma.com' }],
   creator: 'Prisma Branding',
   publisher: 'Prisma Branding',
   
+  // Formato de detección
+  formatDetection: {
+    email: true,
+    address: true,
+    telephone: true,
+  },
+  
   // Idioma y región
-  language: 'es-ES',
   alternates: {
     canonical: 'https://brandprisma.com',
     languages: {
@@ -30,10 +54,10 @@ export const metadata = {
     url: 'https://brandprisma.com',
     siteName: 'Prisma Branding',
     title: 'Prisma Branding | Estudio Creativo en Barcelona',
-    description: 'Estudio creativo en Barcelona que transforma ideas en marcas memorables con diseño, estrategia y branding profesional',
+    description: 'Estudio creativo en Barcelona especializado en branding, diseño web y estrategia digital. Transformamos ideas en marcas memorables.',
     images: [
       {
-        url: 'https://brandprisma.com/og-image.jpg',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Prisma Branding - Estudio Creativo Barcelona',
@@ -46,8 +70,8 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Prisma Branding | Estudio Creativo en Barcelona',
-    description: 'Estudio creativo en Barcelona que transforma ideas en marcas memorables con diseño, estrategia y branding profesional',
-    images: ['https://brandprisma.com/twitter-image.jpg'],
+    description: 'Estudio creativo en Barcelona especializado en branding y diseño web profesional',
+    images: ['/og-image.jpg'],
     creator: '@prismabranding',
   },
 
@@ -55,9 +79,11 @@ export const metadata = {
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
+      noimageindex: false,
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
@@ -66,21 +92,27 @@ export const metadata = {
 
   // Icons
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon.png', type: 'image/png', sizes: '32x32' },
+      { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
+    ],
     shortcut: '/favicon-16x16.png',
-    apple: '/apple-touch-icon.png',
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
   },
 
   // Manifest
-  manifest: '/site.webmanifest',
+  manifest: '/manifest.json',
 
-  // Verificación (agregar códigos reales cuando los tengas)
+  // Verificación - ACTUALIZAR con tu código real cuando lo tengas
   verification: {
-    google: 'tu-codigo-google-search-console',
+    google: 'tu-codigo-google-search-console', // ⚠️ CAMBIAR después
   },
 
   // Otros metadatos
-  category: 'Branding & Design',
+  category: 'business',
   classification: 'Business',
 }
 
@@ -91,12 +123,13 @@ export default function RootLayout({ children }) {
         {/* Schema.org JSON-LD para Google Rich Snippets */}
         <OrganizationSchema />
         <WebsiteSchema />
+        <LocalBusinessSchema /> {/* ✅ AGREGADO para mejor SEO local */}
         
         {/* Preconnect para optimización */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
-        {/* Google Analytics 4 - Reemplaza con tu ID */}
+        {/* Google Analytics 4 - ⚠️ ACTUALIZAR con tu ID real */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
         <script
           dangerouslySetInnerHTML={{
@@ -109,7 +142,16 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {/* ✅ AGREGADO: Navegación */}
+        
+        {/* Contenido principal con altura mínima */}
+        <main className="min-h-screen">
+          {children}
+        </main>
+        
+        {/* ✅ AGREGADO: Footer */}
+      </body>
     </html>
   )
 }
