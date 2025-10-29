@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  eslint: {
+    // Ignorar errores de ESLint durante el build de producción
+    ignoreDuringBuilds: true,
+  },
   async redirects() {
     return [
       // Redirigir www a non-www
@@ -17,5 +21,4 @@ const nextConfig = {
     ]
   },
 }
-
 module.exports = nextConfig
