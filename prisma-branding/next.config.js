@@ -1,12 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  trailingSlash: true,
   eslint: {
-    // Ignorar errores de ESLint durante el build de producción
     ignoreDuringBuilds: true,
+  },
+  images: {
+    unoptimized: true,
   },
   async redirects() {
     return [
-      // Redirigir www a non-www
       {
         source: '/:path*',
         has: [
