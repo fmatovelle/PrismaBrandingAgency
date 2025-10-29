@@ -1,13 +1,10 @@
-// app/sitemap.js
-// Genera sitemap.xml dinámicamente en Next.js
+export const dynamic = 'force-static';
 
 export default function sitemap() {
-  const baseUrl = 'https://brandprisma.com';
-  
   return [
     {
-      url: baseUrl,
-      lastModified: new Date(),
+      url: 'https://brandprisma.com',
+      lastModified: new Date().toISOString(),
       changeFrequency: 'weekly',
       priority: 1.0,
     },
