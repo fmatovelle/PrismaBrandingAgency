@@ -3,7 +3,7 @@
 
 export const siteConfig = {
   name: "Prisma Branding",
-  url: "https://prisma-branding.web.app",
+  url: "https://brandprisma.com/",
   ogImage: "/og-image.jpg",
   description: "Estudio creativo en Barcelona que transforma ideas en marcas memorables con diseño, estrategia y branding profesional",
   keywords: [
@@ -18,7 +18,7 @@ export const siteConfig = {
     "diseño corporativo"
   ],
   creator: "Prisma Branding",
-  authors: [{ name: "Prisma Branding", url: "https://prisma-branding.web.app" }],
+  authors: [{ name: "Prisma Branding", url: "https://brandprisma.com/" }],
   locale: "es_ES",
   alternateLocales: ["es_EC", "en_US"],
 }
