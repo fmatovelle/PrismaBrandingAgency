@@ -503,10 +503,48 @@ export default function PrismaBrandingPage() {
     }
   };
 
-  const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormStatus(t.contact.success);
-    setTimeout(() => setFormStatus(''), 3000);
+    
+    // Preparar datos para Web3Forms
+    const formDataToSend = new FormData();
+    formDataToSend.append('access_key', '02efd0d3-bcec-40f9-a6fc-63b6d42927fd');
+    formDataToSend.append('subject', 'Nuevo contacto desde Prisma Branding');
+    formDataToSend.append('from_name', 'Formulario Web - Prisma Branding');
+    formDataToSend.append('name', formData.name);
+    formDataToSend.append('email', formData.email);
+    formDataToSend.append('phone', formData.phone || 'No proporcionado');
+    formDataToSend.append('service', formData.service);
+    formDataToSend.append('message', formData.message);
+    
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formDataToSend
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        setFormStatus(t.contact.success);
+        // Limpiar formulario después de envío exitoso
+        setFormData({ 
+          name: '', 
+          email: '', 
+          phone: '', 
+          service: 'branding', 
+          message: '' 
+        });
+        setTimeout(() => setFormStatus(''), 5000);
+      } else {
+        setFormStatus('Error al enviar. Por favor intenta de nuevo.');
+        setTimeout(() => setFormStatus(''), 5000);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setFormStatus('Error al enviar. Por favor intenta de nuevo.');
+      setTimeout(() => setFormStatus(''), 5000);
+    }
   };
 
   const toggleFaq = (index) => {
