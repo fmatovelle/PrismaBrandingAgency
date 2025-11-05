@@ -286,22 +286,26 @@ const t = {
       {
         name: "Laura Sánchez",
         role: "Directora Creativa & Fundadora",
-        bio: "+15 años liderando proyectos de branding para empresas en España"
+        bio: "+15 años liderando proyectos de branding para empresas en España",
+        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&q=80"
       },
       {
         name: "David Torres",
         role: "Lead Designer & Brand Strategist",
-        bio: "Especialista en identidad visual corporativa y diseño de logotipos"
+        bio: "Especialista en identidad visual corporativa y diseño de logotipos",
+        image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&q=80"
       },
       {
         name: "Sara López",
         role: "Digital Marketing Manager",
-        bio: "Experta en estrategia digital, SEO y campañas de performance marketing"
+        bio: "Experta en estrategia digital, SEO y campañas de performance marketing",
+        image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&q=80"
       },
       {
         name: "Miguel Ruiz",
         role: "Senior Web Developer",
-        bio: "Full-stack developer especializado en WordPress, Shopify y Next.js"
+        bio: "Full-stack developer especializado en WordPress, Shopify y Next.js",
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80"
       }
     ]
   },
@@ -396,52 +400,52 @@ export default function PrismaBrandingPage() {
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
 
-  // Proyectos destacados
+  // Proyectos destacados con imágenes de Unsplash
   const projects = [
     {
       title: "Café Artisan",
       category: "Branding & Packaging",
-      image: "/api/placeholder/600/400",
+      image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80",
       color: "from-amber-500 to-orange-600"
     },
     {
       title: "TechFlow",
       category: "Web Design & Development",
-      image: "/api/placeholder/600/400",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
       color: "from-blue-500 to-purple-600"
     },
     {
       title: "EcoStyle",
       category: "Brand Strategy & Identity",
-      image: "/api/placeholder/600/400",
+      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
       color: "from-green-500 to-teal-600"
     },
     {
       title: "Urban Eats",
       category: "Digital Strategy",
-      image: "/api/placeholder/600/400",
+      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
       color: "from-red-500 to-pink-600"
     }
   ];
 
-  // Blog posts
+  // Blog posts con imágenes de Unsplash
   const blogPosts = [
     {
       title: "10 Tendencias de Branding para 2025",
       date: "15 Ene 2025",
-      image: "/api/placeholder/400/300",
+      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80",
       excerpt: "Descubre las tendencias que definirán el diseño de marcas este año."
     },
     {
       title: "Cómo Crear una Identidad Visual Memorable",
       date: "8 Ene 2025",
-      image: "/api/placeholder/400/300",
+      image: "https://images.unsplash.com/photo-1558655146-364adaf1fcc9?w=600&q=80",
       excerpt: "Guía completa para desarrollar una identidad que destaque."
     },
     {
       title: "El Poder del Storytelling en el Branding",
       date: "2 Ene 2025",
-      image: "/api/placeholder/400/300",
+      image: "https://images.unsplash.com/photo-1542435503-956c469947f6?w=600&q=80",
       excerpt: "Por qué contar historias auténticas impulsa la conexión con tu audiencia."
     }
   ];
@@ -527,7 +531,6 @@ const handleSubmit = async (e) => {
       
       if (result.success) {
         setFormStatus(t.contact.success);
-        // Limpiar formulario después de envío exitoso
         setFormData({ 
           name: '', 
           email: '', 
@@ -767,7 +770,7 @@ const handleSubmit = async (e) => {
             >
               <div className="aspect-square rounded-2xl overflow-hidden">
                 <img
-                  src="/api/placeholder/600/600"
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"
                   alt="Equipo de Prisma Branding trabajando en diseño de marca en Barcelona"
                   className="w-full h-full object-cover"
                 />
@@ -1199,7 +1202,7 @@ const handleSubmit = async (e) => {
               >
                 <div className="aspect-square overflow-hidden">
                   <img
-                    src="/api/placeholder/400/400"
+                    src={member.image}
                     alt={`${member.name} - ${member.role} en Prisma Branding Barcelona`}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
