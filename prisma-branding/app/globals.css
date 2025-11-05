@@ -2,8 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
 img {
+  image-rendering: -webkit-optimize-contrast;
   transition: opacity 0.3s ease-in-out;
+  max-width: 100%;
+  height: auto;
 }
 
 img[loading="lazy"] {
@@ -15,10 +32,23 @@ img[loading="eager"] {
   opacity: 1;
 }
 
-* {
-  scroll-behavior: smooth;
-}
-
 .transition-all {
   will-change: transform;
+}
+
+.aspect-square,
+.aspect-video,
+.aspect-\[4\/3\] {
+  background: #f3f4f6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
