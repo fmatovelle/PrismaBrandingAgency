@@ -450,14 +450,14 @@ export default function PrismaBrandingPage() {
     }
   ];
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
-  };
+const fadeInUp = {
+  hidden: { opacity: 0, y: 10 },  // ← Reducido de 30 a 10
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.3, ease: "easeOut" }  // ← Reducido de 0.6 a 0.3
+  }
+};
 
   const staggerChildren = {
     hidden: { opacity: 0 },
@@ -568,7 +568,7 @@ const handleSubmit = async (e) => {
 
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -639,13 +639,13 @@ const handleSubmit = async (e) => {
         
         <motion.div 
           style={{ opacity, scale }}
-          className="relative z-10 text-center px-6 max-w-5xl mx-auto"
+          className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto"
         >
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight"
+            className="text-3xl sm:text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight"
           >
             {t.hero.title}
           </motion.h1>
@@ -712,7 +712,7 @@ const handleSubmit = async (e) => {
 
       {/* Trusted Brands */}
       <section className="py-12 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <p className="text-center text-sm text-gray-500 mb-8 uppercase tracking-wider">
             {t.trusted}
           </p>
@@ -728,15 +728,15 @@ const handleSubmit = async (e) => {
 
       {/* About Section */}
       <section id="about" className="py-24 px-6">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto w-full">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.05, margin: "0px" }}
               variants={fadeInUp}
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 {t.about.title}
               </h2>
               <p className="text-lg text-gray-600 mb-6">
@@ -764,7 +764,7 @@ const handleSubmit = async (e) => {
             <motion.div
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.05, margin: "0px" }}
               variants={fadeInUp}
               className="relative"
             >
@@ -791,15 +791,15 @@ const handleSubmit = async (e) => {
 
       {/* Services Section */}
       <section id="services" className="py-24 px-6 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               {t.services.title}
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -810,7 +810,7 @@ const handleSubmit = async (e) => {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
             variants={staggerChildren}
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
           >
@@ -837,15 +837,15 @@ const handleSubmit = async (e) => {
 
       {/* Industries Section */}
       <section className="py-24 px-6">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               {t.industries.title}
             </h2>
             <p className="text-xl text-gray-600">
@@ -856,7 +856,7 @@ const handleSubmit = async (e) => {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
             variants={staggerChildren}
             className="grid md:grid-cols-3 gap-6"
           >
@@ -878,15 +878,15 @@ const handleSubmit = async (e) => {
 
       {/* Process Section */}
       <section id="process" className="py-24 px-6 bg-gray-900 text-white">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4">
               {t.process.title}
             </h2>
             <p className="text-xl text-gray-400">
@@ -897,7 +897,7 @@ const handleSubmit = async (e) => {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
             variants={staggerChildren}
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
           >
@@ -926,15 +926,15 @@ const handleSubmit = async (e) => {
 
       {/* Pricing Section */}
       <section className="py-24 px-6">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               {t.pricing.title}
             </h2>
             <p className="text-xl text-gray-600">
@@ -945,7 +945,7 @@ const handleSubmit = async (e) => {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
             variants={staggerChildren}
             className="grid md:grid-cols-3 gap-8"
           >
@@ -1038,15 +1038,15 @@ const handleSubmit = async (e) => {
 
       {/* Work/Portfolio Section */}
       <section id="work" className="py-24 px-6 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               {t.work.title}
             </h2>
             <p className="text-xl text-gray-600">
@@ -1057,7 +1057,7 @@ const handleSubmit = async (e) => {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
             variants={staggerChildren}
             className="grid md:grid-cols-2 gap-8"
           >
@@ -1096,11 +1096,11 @@ const handleSubmit = async (e) => {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               {t.testimonials.title}
             </h2>
             <p className="text-xl text-gray-600">
@@ -1171,15 +1171,15 @@ const handleSubmit = async (e) => {
 
       {/* Team Section */}
       <section id="team" className="py-24 px-6 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               {t.team.title}
             </h2>
             <p className="text-xl text-gray-600">
@@ -1190,7 +1190,7 @@ const handleSubmit = async (e) => {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
             variants={staggerChildren}
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
           >
@@ -1226,11 +1226,11 @@ const handleSubmit = async (e) => {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               {t.faq.title}
             </h2>
             <p className="text-xl text-gray-600">
@@ -1241,7 +1241,7 @@ const handleSubmit = async (e) => {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
             variants={staggerChildren}
             className="space-y-4"
           >
@@ -1287,15 +1287,15 @@ const handleSubmit = async (e) => {
 
       {/* Blog Section */}
       <section className="py-24 px-6 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               {t.blog.title}
             </h2>
             <p className="text-xl text-gray-600">
@@ -1306,7 +1306,7 @@ const handleSubmit = async (e) => {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
             variants={staggerChildren}
             className="grid md:grid-cols-3 gap-8"
           >
@@ -1346,11 +1346,11 @@ const handleSubmit = async (e) => {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               {t.contact.title}
             </h2>
             <p className="text-xl text-gray-600">
@@ -1361,7 +1361,7 @@ const handleSubmit = async (e) => {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
             variants={fadeInUp}
             className="grid md:grid-cols-3 gap-6 mb-12"
           >
@@ -1393,7 +1393,7 @@ const handleSubmit = async (e) => {
           <motion.form
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
             variants={fadeInUp}
             onSubmit={handleSubmit}
             className="bg-white p-8 md:p-12 rounded-2xl shadow-xl"
@@ -1481,7 +1481,7 @@ const handleSubmit = async (e) => {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
             variants={fadeInUp}
             className="mt-8 text-center"
           >
@@ -1501,7 +1501,7 @@ const handleSubmit = async (e) => {
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12 px-6">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto w-full">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="text-2xl font-bold mb-4">Prisma Branding</div>
