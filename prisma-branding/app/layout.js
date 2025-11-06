@@ -7,7 +7,7 @@ const GA_MEASUREMENT_ID = 'G-WM6R6V3B74'
 export const metadata = {
   metadataBase: new URL('https://brandprisma.com'),
   title: { default: 'Prisma Branding | Estudio Creativo en Barcelona', template: '%s | Prisma Branding' },
-  description: 'Estudio creativo en Barcelona que transforma ideas en marcas memorables con diseño, estrategia y branding profesional. Especialistas en identidad corporativa y diseño web.',
+  description: 'Estudio creativo en Barcelona que impulsa marcas con diseño, estrategia y branding profesional. Expertos en identidad visual y diseño web.',
   keywords: ['branding barcelona', 'diseño web barcelona', 'identidad de marca', 'estrategia digital', 'agencia creativa barcelona', 'diseño gráfico', 'marketing digital', 'identidad corporativa', 'estudio creativo', 'agencia de branding', 'diseño de logos barcelona', 'branding corporativo'],
   authors: [{ name: 'Prisma Branding', url: 'https://brandprisma.com' }],
   creator: 'Prisma Branding',

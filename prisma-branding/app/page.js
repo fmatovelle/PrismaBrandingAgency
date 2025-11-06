@@ -302,9 +302,9 @@ const t = {
         image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&q=80"
       },
       {
-        name: "Miguel Ruiz",
+        name: "Federico Matovelle",
         role: "Senior Web Developer",
-        bio: "Full-stack developer especializado en WordPress, Shopify y Next.js",
+        bio: "Full-stack developer especializado en Next.js, Shopify y WordPress",
         image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80"
       }
     ]
