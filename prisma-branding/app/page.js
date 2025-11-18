@@ -221,7 +221,7 @@ const t = {
       description: "El más elegido por empresas en crecimiento",
       features: [
         "Identidad de Marca Completa",
-        "Diseño Web Profesional (hasta 5 páginas)",
+        "Diseño Web Profesional",
         "Optimización SEO Básica",
         "Estrategia de Redes Sociales (1 mes)",
         "Sesión de Fotografía de Producto",
@@ -284,9 +284,9 @@ const t = {
     subtitle: "Profesionales creativos especializados en branding y marketing digital",
     members: [
       {
-        name: "Laura Sánchez",
-        role: "Directora Creativa & Fundadora",
-        bio: "+15 años liderando proyectos de branding para empresas en España",
+        name: "Federico Matovelle",
+        role: "Senior Web Developer & Fundador",
+        bio: "Full-stack developer especializado en Next.js, Shopify y WordPress",
         image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&q=80"
       },
       {
@@ -710,21 +710,35 @@ const handleSubmit = async (e) => {
         </div>
       </section>
 
-      {/* Trusted Brands */}
-      <section className="py-12 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <p className="text-center text-sm text-gray-500 mb-8 uppercase tracking-wider">
-            {t.trusted}
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 opacity-50">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="text-2xl font-bold text-gray-400">
-                Logo {i}
-              </div>
-            ))}
-          </div>
+    {/* Trusted Brands
+<section className="py-12 bg-gray-50">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <p className="text-center text-sm text-gray-500 mb-8 uppercase tracking-wider">
+      {t.trusted}
+    </p>
+    <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
+      {[
+        { name: 'VOILÀ Concept Store', logo: '/logos/voila.svg' },
+        { name: 'Cliente 2', logo: '/logos/client2.svg' },
+        { name: 'Cliente 3', logo: '/logos/client3.svg' },
+        { name: 'Cliente 4', logo: '/logos/client4.svg' },
+        { name: 'Cliente 5', logo: '/logos/client5.svg' },
+        { name: 'Cliente 6', logo: '/logos/client6.svg' },
+      ].map((client, i) => (
+        <div 
+          key={i} 
+          className="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
+        >
+          <img
+            src={client.logo}
+            alt={`Logo ${client.name}`}
+            className="h-12 w-auto object-contain"
+          />
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section> */}
 
       {/* About Section */}
       <section id="about" className="py-24 px-6">
