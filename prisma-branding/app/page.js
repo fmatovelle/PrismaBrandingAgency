@@ -287,7 +287,7 @@ const t = {
         name: "Federico Matovelle",
         role: "Senior Web Developer & Fundador",
         bio: "Full-stack developer especializado en Next.js, Shopify y WordPress",
-        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&q=80"
+        image: "/federicomatovellepf.jpg"
       },
       {
         name: "David Torres",
@@ -300,12 +300,6 @@ const t = {
         role: "Digital Marketing Manager",
         bio: "Experta en estrategia digital, SEO y campañas de performance marketing",
         image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&q=80"
-      },
-      {
-        name: "Federico Matovelle",
-        role: "Senior Web Developer",
-        bio: "Full-stack developer especializado en Next.js, Shopify y WordPress",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80"
       }
     ]
   },
@@ -1206,7 +1200,7 @@ const handleSubmit = async (e) => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.05, margin: "0px" }}
             variants={staggerChildren}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {t.team.members.map((member, index) => (
               <motion.div
@@ -1354,164 +1348,7 @@ const handleSubmit = async (e) => {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-24 px-6">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={fadeInUp}
-            className="text-center mb-16"
-          >
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              {t.contact.title}
-            </h2>
-            <p className="text-xl text-gray-600">
-              {t.contact.subtitle}
-            </p>
-          </motion.div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={fadeInUp}
-            className="grid md:grid-cols-3 gap-6 mb-12"
-          >
-            <a
-              href="mailto:contact@brandprisma.com"
-              className="flex items-center justify-center space-x-2 bg-white p-4 rounded-xl hover:shadow-lg transition-all"
-            >
-              <Mail className="w-4 h-4" />
-              <span>Email</span>
-            </a>
-            <a
-              href="tel:+34637738054"
-              className="flex items-center justify-center space-x-2 bg-white p-4 rounded-xl hover:shadow-lg transition-all"
-            >
-              <Phone className="w-4 h-4" />
-              <span>Teléfono</span>
-            </a>
-            <a
-              href="https://wa.me/34637738054"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center space-x-2 bg-white p-4 rounded-xl hover:shadow-lg transition-all"
-            >
-              <MessageSquare className="w-4 h-4" />
-              <span>WhatsApp</span>
-            </a>
-          </motion.div>
-
-          <motion.form
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={fadeInUp}
-            onSubmit={handleSubmit}
-            className="bg-white p-8 md:p-12 rounded-2xl shadow-xl"
-          >
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label className="block text-sm font-medium mb-2">{t.contact.name}</label>
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none"
-                  placeholder={t.contact.name}
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">{t.contact.email}</label>
-                <input
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none"
-                  placeholder={t.contact.email}
-                />
-              </div>
-            </div>
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label className="block text-sm font-medium mb-2">{t.contact.phone}</label>
-                <input
-                  type="tel"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none"
-                  placeholder="+34 637 73 80 54"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">{t.contact.service}</label>
-                <select
-                  value={formData.service}
-                  onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none"
-                >
-                  <option value="branding">{t.contact.services.branding}</option>
-                  <option value="web-design">{t.contact.services.web}</option>
-                  <option value="digital-strategy">{t.contact.services.strategy}</option>
-                  <option value="photography">{t.contact.services.photography}</option>
-                  <option value="consulting">{t.contact.services.consulting}</option>
-                  <option value="not-sure">{t.contact.services.notSure}</option>
-                </select>
-              </div>
-            </div>
-            <div className="mb-6">
-              <label className="block text-sm font-medium mb-2">{t.contact.message}</label>
-              <textarea
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                required
-                rows="5"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none resize-none"
-                placeholder={t.contact.messagePlaceholder}
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-gray-900 text-white py-4 rounded-full font-medium hover:bg-gray-800 transition-all transform hover:scale-105 inline-flex items-center justify-center space-x-2"
-            >
-              <Mail className="w-5 h-5" />
-              <span>{t.contact.send}</span>
-            </button>
-            {formStatus && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-4 p-4 bg-green-50 text-green-800 rounded-lg text-center"
-              >
-                {formStatus}
-              </motion.div>
-            )}
-          </motion.form>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={fadeInUp}
-            className="mt-8 text-center"
-          >
-            <a
-              href="https://calendly.com/prismabranding"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center space-x-2 text-gray-700 hover:text-gray-900 font-medium"
-            >
-              <Calendar className="w-5 h-5" />
-              <span>{t.contact.calendar}</span>
-              <ArrowRight className="w-4 h-4" />
-            </a>
-          </motion.div>
-        </div>
-      </section>
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12 px-6">
@@ -1526,7 +1363,7 @@ const handleSubmit = async (e) => {
                 <a href="https://instagram.com/prismabranding" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">
                   <Instagram className="w-5 h-5" />
                 </a>
-                <a href="https://linkedin.com/prismabranding" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">
+                <a href="https://www.linkedin.com/company/prismabranding" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">
                   <Linkedin className="w-5 h-5" />
                 </a>
                 <a href="mailto:contact@brandprisma.com" className="hover:text-gray-300 transition-colors">
