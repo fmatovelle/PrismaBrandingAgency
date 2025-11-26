@@ -199,54 +199,85 @@ const t = {
     ]
   },
   
-  pricing: {
-    title: "Precios de Branding y Diseño Web",
-    subtitle: "Paquetes adaptados a cada fase de tu empresa",
-    starter: {
-      name: "Starter",
-      price: "1.500€",
-      description: "Ideal para startups y pequeñas empresas que inician",
-      features: [
-        "Diseño de Logotipo Profesional (3 propuestas)",
-        "Paleta de Colores y Tipografías",
-        "Manual de Marca Básico (PDF)",
-        "Tarjetas de Visita Digitales",
-        "2 Rondas de Revisiones",
-        "Entrega en 2-3 semanas"
-      ]
-    },
-    professional: {
-      name: "Professional",
-      price: "3.500€",
-      description: "El más elegido por empresas en crecimiento",
-      features: [
-        "Identidad de Marca Completa",
-        "Diseño Web Profesional",
-        "Optimización SEO Básica",
-        "Estrategia de Redes Sociales (1 mes)",
-        "Sesión de Fotografía de Producto",
-        "Revisiones Ilimitadas",
-        "Soporte 30 días post-lanzamiento"
-      ],
-      popular: true
-    },
-    enterprise: {
-      name: "Enterprise",
-      price: "Desde 8.000€",
-      description: "Para empresas consolidadas que buscan resultados premium",
-      features: [
-        "Todo del Plan Professional",
-        "Estrategia de Marca 360° Completa",
-        "Desarrollo Web Avanzado (E-commerce, CMS)",
-        "Producción Audiovisual Profesional",
-        "Consultoría Estratégica Continua",
-        "Account Manager Dedicado",
-        "Soporte Prioritario 24/7"
-      ]
-    },
-    cta: "Solicitar Presupuesto",
-    contact: "Contactar con Ventas"
+pricing: {
+  title: "Precios de Branding y Diseño Web",
+  subtitle: "Paquetes adaptados a cada fase de tu empresa",
+  
+  starter: {
+    name: "Starter",
+    price: "799€",
+    description: "Presencia profesional rápida y moderna",
+    features: [
+      "Landing Page (1 página)",
+      "Diseño responsive",
+      "Formulario de contacto",
+      "Google Maps integrado",
+      "Optimización ligera de velocidad",
+      "1 ronda de revisión",
+      "Entrega en 1-2 semanas"
+    ]
   },
+  
+  growth: {
+    name: "Growth",
+    price: "1.500€",
+    description: "Web + identidad visual para negocios en expansión",
+    features: [
+      "Todo del Plan Starter",
+      "Logotipo (2 propuestas)",
+      "Paleta de colores y tipografías",
+      "Tarjetas digitales",
+      "Sitio web hasta 3 páginas",
+      "Redes sociales integradas",
+      "SEO On-Page básico",
+      "Google Analytics",
+      "Entrega en 2-3 semanas"
+    ],
+    popular: true
+  },
+  
+  professional: {
+    name: "Professional",
+    price: "3.500€",
+    description: "Branding completo + web avanzada",
+    features: [
+      "Todo del Plan Growth",
+      "3 propuestas de logotipo",
+      "Manual de marca (20-30 págs)",
+      "Papelería corporativa",
+      "Iconografía personalizada (6 íconos)",
+      "Web de 5 páginas + blog",
+      "Formularios avanzados",
+      "Email marketing conectado",
+      "3 rondas de revisión",
+      "30 días de soporte",
+      "Entrega en 4-5 semanas"
+    ]
+  },
+  
+  premium: {
+    name: "Premium",
+    price: "4.500€",
+    description: "Estrategia + branding + web + contenido profesional",
+    features: [
+      "Todo del Plan Professional",
+      "Estrategia de marca 360°",
+      "Manual avanzado (40-50 págs)",
+      "Kit visual completo + señalética",
+      "Web hasta 8 páginas",
+      "UX/UI avanzado con animaciones",
+      "SEO avanzado + panel personalizado",
+      "Fotografía profesional (4 horas)",
+      "Copywriting web completo",
+      "Revisiones ilimitadas",
+      "60 días de soporte",
+      "Entrega en 6-8 semanas"
+    ]
+  },
+  
+  cta: "Solicitar Presupuesto",
+  contact: "Contactar con Ventas"
+},
   
   work: {
     title: "Portfolio: Proyectos de Branding en Barcelona",
@@ -932,117 +963,179 @@ const handleSubmit = async (e) => {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section className="py-24 px-6">
-        <div className="max-w-7xl mx-auto w-full">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={fadeInUp}
-            className="text-center mb-16"
-          >
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              {t.pricing.title}
-            </h2>
-            <p className="text-xl text-gray-600">
-              {t.pricing.subtitle}
-            </p>
-          </motion.div>
+{/* Pricing Section */}
+<section className="py-24 px-6">
+  <div className="max-w-7xl mx-auto w-full">
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.05, margin: "0px" }}
+      variants={fadeInUp}
+      className="text-center mb-16"
+    >
+      <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        {t.pricing.title}
+      </h2>
+      <p className="text-xl text-gray-600">
+        {t.pricing.subtitle}
+      </p>
+    </motion.div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={staggerChildren}
-            className="grid md:grid-cols-3 gap-8"
-          >
-            {/* Starter Plan */}
-            <motion.div
-              variants={fadeInUp}
-              className="bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-gray-900 transition-all"
-            >
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                {t.pricing.starter.name}
-              </h3>
-              <div className="text-4xl font-bold text-gray-900 mb-4">
-                {t.pricing.starter.price}
-              </div>
-              <p className="text-gray-600 mb-6">
-                {t.pricing.starter.description}
-              </p>
-              <ul className="space-y-3 mb-8">
-                {t.pricing.starter.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center space-x-3">
-                    <Check className="w-5 h-5 text-gray-900 flex-shrink-0" />
-                    <span className="text-gray-700">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <button className="w-full bg-gray-100 text-gray-900 py-3 rounded-full font-medium hover:bg-gray-200 transition-all">
-                {t.pricing.cta}
-              </button>
-            </motion.div>
-
-            {/* Professional Plan (Popular) */}
-            <motion.div
-              variants={fadeInUp}
-              className="bg-gray-900 text-white p-8 rounded-2xl relative transform scale-105 shadow-2xl"
-            >
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-1 rounded-full text-sm font-medium">
-                Más Popular
-              </div>
-              <h3 className="text-2xl font-bold mb-2">
-                {t.pricing.professional.name}
-              </h3>
-              <div className="text-4xl font-bold mb-4">
-                {t.pricing.professional.price}
-              </div>
-              <p className="text-gray-300 mb-6">
-                {t.pricing.professional.description}
-              </p>
-              <ul className="space-y-3 mb-8">
-                {t.pricing.professional.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center space-x-3">
-                    <Check className="w-5 h-5 text-white flex-shrink-0" />
-                    <span className="text-gray-200">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <button className="w-full bg-white text-gray-900 py-3 rounded-full font-medium hover:bg-gray-100 transition-all">
-                {t.pricing.cta}
-              </button>
-            </motion.div>
-
-            {/* Enterprise Plan */}
-            <motion.div
-              variants={fadeInUp}
-              className="bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-gray-900 transition-all"
-            >
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                {t.pricing.enterprise.name}
-              </h3>
-              <div className="text-4xl font-bold text-gray-900 mb-4">
-                {t.pricing.enterprise.price}
-              </div>
-              <p className="text-gray-600 mb-6">
-                {t.pricing.enterprise.description}
-              </p>
-              <ul className="space-y-3 mb-8">
-                {t.pricing.enterprise.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center space-x-3">
-                    <Check className="w-5 h-5 text-gray-900 flex-shrink-0" />
-                    <span className="text-gray-700">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <button className="w-full bg-gray-900 text-white py-3 rounded-full font-medium hover:bg-gray-800 transition-all">
-                {t.pricing.contact}
-              </button>
-            </motion.div>
-          </motion.div>
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.05, margin: "0px" }}
+      variants={staggerChildren}
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-[1400px] mx-auto"
+    >
+      {/* Starter Plan */}
+      <motion.div
+        variants={fadeInUp}
+        className="bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-gray-400 transition-all flex flex-col hover:shadow-lg"
+      >
+        <h3 className="text-xl font-bold text-gray-900 mb-1.5">
+          {t.pricing.starter.name}
+        </h3>
+        <div className="text-3xl font-bold text-gray-900 mb-2.5">
+          {t.pricing.starter.price}
         </div>
-      </section>
+        <p className="text-gray-600 text-sm mb-5 leading-snug min-h-[40px]">
+          {t.pricing.starter.description}
+        </p>
+        <ul className="space-y-2 mb-6 flex-grow">
+          {t.pricing.starter.features.map((feature, idx) => (
+            <li key={idx} className="flex items-start space-x-2.5">
+              <Check className="w-4 h-4 text-gray-900 flex-shrink-0 mt-0.5" />
+              <span className="text-gray-700 text-sm leading-snug">{feature}</span>
+            </li>
+          ))}
+        </ul>
+        <button 
+          onClick={() => {
+            const element = document.getElementById('contact');
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}
+          className="w-full bg-gray-900 text-white py-3 rounded-full text-sm font-semibold hover:bg-gray-800 transition-all"
+        >
+          {t.pricing.cta}
+        </button>
+      </motion.div>
+
+      {/* Growth Plan */}
+      <motion.div
+        variants={fadeInUp}
+        className="bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-gray-400 transition-all flex flex-col hover:shadow-lg"
+      >
+        <h3 className="text-xl font-bold text-gray-900 mb-1.5">
+          {t.pricing.growth.name}
+        </h3>
+        <div className="text-3xl font-bold text-gray-900 mb-2.5">
+          {t.pricing.growth.price}
+        </div>
+        <p className="text-gray-600 text-sm mb-5 leading-snug min-h-[40px]">
+          {t.pricing.growth.description}
+        </p>
+        <ul className="space-y-2 mb-6 flex-grow">
+          {t.pricing.growth.features.map((feature, idx) => (
+            <li key={idx} className="flex items-start space-x-2.5">
+              <Check className="w-4 h-4 text-gray-900 flex-shrink-0 mt-0.5" />
+              <span className="text-gray-700 text-sm leading-snug">{feature}</span>
+            </li>
+          ))}
+        </ul>
+        <button 
+          onClick={() => {
+            const element = document.getElementById('contact');
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}
+          className="w-full bg-gray-900 text-white py-3 rounded-full text-sm font-semibold hover:bg-gray-800 transition-all"
+        >
+          {t.pricing.cta}
+        </button>
+      </motion.div>
+
+      {/* Professional Plan (Most Popular) */}
+      <motion.div
+        variants={fadeInUp}
+        className="bg-gradient-to-br from-gray-900 to-gray-800 text-white p-6 rounded-xl relative shadow-2xl border-2 border-gray-900 flex flex-col transform lg:scale-105"
+      >
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-1 rounded-full text-xs font-bold whitespace-nowrap shadow-lg">
+          Más Popular
+        </div>
+        <h3 className="text-xl font-bold mb-1.5 mt-1">
+          {t.pricing.professional.name}
+        </h3>
+        <div className="text-3xl font-bold mb-2.5">
+          {t.pricing.professional.price}
+        </div>
+        <p className="text-gray-300 text-sm mb-5 leading-snug min-h-[40px]">
+          {t.pricing.professional.description}
+        </p>
+        <ul className="space-y-2 mb-6 flex-grow">
+          {t.pricing.professional.features.map((feature, idx) => (
+            <li key={idx} className="flex items-start space-x-2.5">
+              <Check className="w-4 h-4 text-white flex-shrink-0 mt-0.5" />
+              <span className="text-gray-200 text-sm leading-snug">{feature}</span>
+            </li>
+          ))}
+        </ul>
+        <button 
+          onClick={() => {
+            const element = document.getElementById('contact');
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}
+          className="w-full bg-white text-gray-900 py-3 rounded-full text-sm font-semibold hover:bg-gray-100 transition-all shadow-lg"
+        >
+          {t.pricing.cta}
+        </button>
+      </motion.div>
+
+      {/* Premium Plan */}
+      <motion.div
+        variants={fadeInUp}
+        className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl border-2 border-purple-200 hover:border-purple-400 transition-all flex flex-col hover:shadow-lg"
+      >
+        <div className="flex items-center space-x-2 mb-1.5">
+          <Rocket className="w-5 h-5 text-purple-600" />
+          <h3 className="text-xl font-bold text-gray-900">
+            {t.pricing.premium.name}
+          </h3>
+        </div>
+        <div className="text-3xl font-bold text-gray-900 mb-2.5">
+          {t.pricing.premium.price}
+        </div>
+        <p className="text-gray-700 text-sm mb-5 leading-snug min-h-[40px]">
+          {t.pricing.premium.description}
+        </p>
+        <ul className="space-y-2 mb-6 flex-grow">
+          {t.pricing.premium.features.map((feature, idx) => (
+            <li key={idx} className="flex items-start space-x-2.5">
+              <Check className="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" />
+              <span className="text-gray-700 text-sm leading-snug">{feature}</span>
+            </li>
+          ))}
+        </ul>
+        <button 
+          onClick={() => {
+            const element = document.getElementById('contact');
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}
+          className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-full text-sm font-semibold hover:from-purple-700 hover:to-pink-700 transition-all"
+        >
+          {t.pricing.contact}
+        </button>
+      </motion.div>
+    </motion.div>
+  </div>
+</section>
 
       {/* Work/Portfolio Section */}
       <section id="work" className="py-24 px-6 bg-gray-50">
@@ -1348,7 +1441,138 @@ const handleSubmit = async (e) => {
         </div>
       </section>
 
+{/* Contact Section */}
+      <section id="contact" className="py-24 px-6 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
+            variants={fadeInUp}
+            className="text-center mb-12"
+          >
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              {t.contact.title}
+            </h2>
+            <p className="text-xl text-gray-600">
+              {t.contact.subtitle}
+            </p>
+          </motion.div>
 
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
+            variants={fadeInUp}
+          >
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    {t.contact.name}
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    {t.contact.email}
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all"
+                  />
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                    {t.contact.phone}
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
+                    {t.contact.service}
+                  </label>
+                  <select
+                    id="service"
+                    value={formData.service}
+                    onChange={(e) => setFormData({...formData, service: e.target.value})}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all bg-white"
+                  >
+                    {Object.entries(t.contact.services).map(([key, value]) => (
+                      <option key={key} value={key}>{value}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                  {t.contact.message}
+                </label>
+                <textarea
+                  id="message"
+                  required
+                  rows={6}
+                  value={formData.message}
+                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                  placeholder={t.contact.messagePlaceholder}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all resize-none"
+                />
+              </div>
+
+              <div className="flex flex-col items-center space-y-4">
+                <button
+                  type="submit"
+                  className="bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-800 transition-all transform hover:scale-105 inline-flex items-center space-x-2"
+                >
+                  <span>{t.contact.send}</span>
+                  <Send className="w-5 h-5" />
+                </button>
+
+                {formStatus && (
+                  <motion.div
+                    initial={{opacity: 0, y: 10}}
+                    animate={{opacity: 1, y: 0}}
+                    className={`text-center p-4 rounded-lg ${formStatus.includes('Gracias') ? 'bg-green-50 text-green-800 border border-green-200' : 'bg-red-50 text-red-800 border border-red-200'}`}
+                  >
+                    {formStatus}
+                  </motion.div>
+                )}
+              </div>
+            </form>
+
+            <div className="mt-12 text-center">
+              <p className="text-gray-600 mb-4">{t.contact.calendar}</p>
+              <a href="https://wa.me/34637738054" target="_blank" rel="noopener noreferrer" className="inline-flex items-center space-x-2 text-gray-900 font-semibold hover:text-gray-700 transition-colors">
+                <Phone className="w-5 h-5" />
+                <span>{t.contact.schedule}</span>
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12 px-6">
