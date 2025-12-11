@@ -257,7 +257,7 @@ pricing: {
   
   premium: {
     name: "Premium",
-    price: "4.500€",
+    price: "4.900€",
     description: "Estrategia + branding + web + contenido profesional",
     features: [
       "Todo del Plan Professional",
