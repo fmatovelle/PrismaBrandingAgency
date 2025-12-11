@@ -812,6 +812,8 @@ const handleSubmit = async (e) => {
                   src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"
                   alt="Equipo de Prisma Branding trabajando en diseño de marca en Barcelona"
                   className="w-full h-full object-cover"
+                  loading="eager"
+                  fetchpriority="high"
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl">
@@ -1173,6 +1175,7 @@ const handleSubmit = async (e) => {
                     src={project.image}
                     alt={`Caso de éxito de branding: ${project.title} - ${project.category} realizado por Prisma Branding en Barcelona`}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
                   />
                 </div>
                 <div className={`absolute inset-0 bg-gradient-to-t ${project.color} opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex items-end p-8`}>
