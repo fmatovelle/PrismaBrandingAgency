@@ -1171,7 +1171,7 @@ const handleSubmit = async (e) => {
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
                     src={project.image}
-                    alt={`Proyecto de branding ${project.title} - ${project.category}`}
+                    alt={`Caso de éxito de branding: ${project.title} - ${project.category} realizado por Prisma Branding en Barcelona`}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
@@ -1420,7 +1420,7 @@ const handleSubmit = async (e) => {
                 <div className="aspect-video overflow-hidden">
                   <img
                     src={post.image}
-                    alt={post.title}
+                    alt={`Artículo sobre branding: ${post.title} - Prisma Branding Barcelona`}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
