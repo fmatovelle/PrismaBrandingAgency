@@ -4,46 +4,63 @@
 export function OrganizationSchema() {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": ["Organization", "ProfessionalService"],
     "@id": "https://brandprisma.com/#organization",
     "name": "Prisma Branding",
     "alternateName": "Prisma",
     "url": "https://brandprisma.com",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://brandprisma.com/logo.png", // ✅ Corregido: sin doble //
+      "url": "https://brandprisma.com/logo.png",
       "width": 250,
       "height": 60
     },
-    "image": "https://brandprisma.com/og-image.jpg", // ✅ Corregido: sin doble //
-    "description": "Estudio creativo en Barcelona especializado en branding, diseño gráfico, diseño web y estrategia digital. Transformamos ideas en marcas memorables.",
+    "image": "https://brandprisma.com/og-image.jpg",
+    "description": "Estudio creativo en Barcelona especializado en branding, diseño web profesional y estrategia digital. Full-stack development con React, Next.js y diseño gráfico 3D.",
     
-    // ⚠️ ACTUALIZAR: Dirección completa si tienes oficina física
+    // 🆕 FUNDADOR
+    "founder": {
+      "@type": "Person",
+      "name": "Federico Matovelle",
+      "jobTitle": "Creative Director & Full-Stack Developer",
+      "description": "Full-stack developer especializado en React, Next.js, TypeScript y diseño gráfico 3D. Fundador de Prisma Branding.",
+      "sameAs": [
+        "https://www.linkedin.com/in/fmatovelle" // Cambia a tu LinkedIn real
+      ]
+    },
+    
+    "foundingDate": "2023",
+    
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Gran de Gracia 134", // CAMBIAR si tienes oficina
       "addressLocality": "Barcelona",
-      "addressRegion": "Catalunya",
-      "postalCode": "08012", // CAMBIAR a tu código postal
+      "addressRegion": "Catalonia",
       "addressCountry": "ES"
     },
     
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "customer service",
-      "email": "contact@brandprisma.com", // ✅ Corregido: dominio correcto
-      "telephone": "+34637738054", // ⚠️ CAMBIAR a tu teléfono real
+      "email": "info@brandprisma.com",
       "availableLanguage": ["Spanish", "English"]
     },
     
-    // ⚠️ VERIFICAR: URLs de redes sociales
     "sameAs": [
-      "https://www.instagram.com/prismabranding/", // Ya tienes esta
-      "https://www.facebook.com/prismabranding/",  // Ya tienes esta
-      "https://www.linkedin.com/prismabranding" // Verificar si es correcta
+      "https://www.instagram.com/prismabranding/",
+      "https://www.facebook.com/prismabranding/",
+      "https://www.linkedin.com/company/prismabranding/"
     ],
     
     "areaServed": [
+      {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": "41.3851",
+          "longitude": "2.1734"
+        },
+        "geoRadius": "50000"
+      },
       {
         "@type": "Country",
         "name": "España"
@@ -51,27 +68,93 @@ export function OrganizationSchema() {
       {
         "@type": "Country",
         "name": "Ecuador"
-      },
-      {
-        "@type": "Continent",
-        "name": "Europa"
       }
     ],
     
     "knowsAbout": [
       "Branding",
+      "Web Design",
+      "Web Development",
+      "React",
+      "Next.js",
+      "TypeScript",
       "Diseño Gráfico",
       "Identidad Visual",
       "Estrategia Digital",
-      "Diseño Web",
-      "Marketing Digital",
-      "Identidad Corporativa",
-      "Naming",
-      "Branding Corporativo"
+      "Full-Stack Development",
+      "3D Design"
     ],
     
-    // ⚠️ AGREGAR: Año de fundación
-    "foundingDate": "2025" // CAMBIAR al año real
+    "serviceType": [
+      "Diseño Web",
+      "Desarrollo Web",
+      "Identidad de Marca",
+      "Diseño de Logo",
+      "Identidad Visual",
+      "Branding Digital",
+      "Full-Stack Development"
+    ],
+    
+    // 🆕 PRECIOS Y OFERTAS (CRÍTICO PARA IA)
+    "makesOffer": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Identidad de Marca - Starter",
+          "description": "Logo profesional + paleta de colores + tipografías + formatos para redes sociales"
+        },
+        "price": "899",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Identidad de Marca - Professional",
+          "description": "Branding completo: logo, papelería, manual de marca, aplicaciones digitales"
+        },
+        "price": "1499",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Sitio Web Profesional",
+          "description": "Diseño y desarrollo web personalizado con Next.js, React y diseño responsive"
+        },
+        "price": "1999",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Rebranding Completo",
+          "description": "Renovación total de identidad de marca + sitio web + estrategia digital"
+        },
+        "price": "3500",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Branding Premium + Web",
+          "description": "Paquete completo: identidad de marca + sitio web profesional + materiales digitales"
+        },
+        "price": "4500",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
+      }
+    ],
+    
+    "priceRange": "€€€"
   }
 
   return (
@@ -88,32 +171,24 @@ export function LocalBusinessSchema() {
     "@type": "ProfessionalService",
     "@id": "https://brandprisma.com/#localbusiness",
     "name": "Prisma Branding",
-    "image": "https://brandprisma.com/og-image.jpg", // ✅ Corregido
+    "image": "https://brandprisma.com/og-image.jpg",
     "url": "https://brandprisma.com",
-    "telephone": "+34637738054", // ⚠️ CAMBIAR a tu teléfono real
-    "email": "contact@brandprisma.com", // ✅ Corregido
-    "priceRange": "€€",
+    "email": "info@brandprisma.com",
+    "priceRange": "€€€",
     
-    // ⚠️ ACTUALIZAR: Dirección completa
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Gran de Gracia 134", // CAMBIAR si tienes oficina física
       "addressLocality": "Barcelona",
-      "addressRegion": "Catalunya",
-      "postalCode": "08012", // CAMBIAR
+      "addressRegion": "Catalonia",
       "addressCountry": "ES"
     },
     
-    // ⚠️ ACTUALIZAR: Coordenadas GPS de tu ubicación exacta
-    // Cómo obtenerlas: Google Maps → Busca tu dirección → Click derecho → Copiar coordenadas
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 41.40167665238958,  // CAMBIAR a tu ubicación exacta
-      "longitude": 2.153398526986166   // CAMBIAR a tu ubicación exacta
+      "latitude": 41.3851,
+      "longitude": 2.1734
     },
     
-    
-    // ⚠️ VERIFICAR: Horarios de atención
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": [
@@ -123,45 +198,44 @@ export function LocalBusinessSchema() {
         "Thursday",
         "Friday"
       ],
-      "opens": "09:00", // Ajusta si abres a otra hora
-      "closes": "18:00" // Ajusta si cierras a otra hora
+      "opens": "09:00",
+      "closes": "18:00"
     },
     
-    // Servicios ofrecidos
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "Servicios de Branding y Diseño",
+      "name": "Servicios de Branding y Diseño Web",
       "itemListElement": [
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Branding Corporativo",
-            "description": "Creación y desarrollo de identidad de marca completa"
+            "name": "Identidad de Marca",
+            "description": "Creación de identidad de marca completa desde €899"
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Diseño Web",
-            "description": "Diseño y desarrollo de sitios web profesionales"
+            "name": "Diseño Web Profesional",
+            "description": "Sitios web con Next.js y React desde €1,999"
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Estrategia Digital",
-            "description": "Consultoría y estrategia de marketing digital"
+            "name": "Rebranding Completo",
+            "description": "Renovación total de marca y presencia digital desde €3,500"
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Identidad Visual",
-            "description": "Diseño de logotipos y sistemas de identidad visual"
+            "name": "Full-Stack Development",
+            "description": "Desarrollo web personalizado con React, TypeScript y bases de datos"
           }
         }
       ]
@@ -185,14 +259,14 @@ export function WebsiteSchema() {
     "url": "https://brandprisma.com",
     "description": "Estudio creativo en Barcelona que transforma ideas en marcas memorables con diseño, estrategia y branding profesional",
     "publisher": {
-      "@id": "https://brandprisma.com/#organization" // Referencia al OrganizationSchema
+      "@id": "https://brandprisma.com/#organization"
     },
     "inLanguage": "es-ES",
     "potentialAction": {
       "@type": "SearchAction",
       "target": {
         "@type": "EntryPoint",
-        "urlTemplate": "https://brandprisma.com/search?q={search_term_string}" // ✅ Corregido
+        "urlTemplate": "https://brandprisma.com/search?q={search_term_string}"
       },
       "query-input": "required name=search_term_string"
     }
@@ -226,7 +300,6 @@ export function BreadcrumbSchema({ items }) {
   )
 }
 
-// ✨ NUEVO: FAQSchema para páginas con preguntas frecuentes
 export function FAQSchema({ faqs }) {
   const schema = {
     "@context": "https://schema.org",
@@ -249,7 +322,6 @@ export function FAQSchema({ faqs }) {
   )
 }
 
-// ✨ NUEVO: ServiceSchema para páginas individuales de servicios
 export function ServiceSchema({ service }) {
   const schema = {
     "@context": "https://schema.org",
