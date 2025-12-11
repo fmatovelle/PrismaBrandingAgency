@@ -127,6 +127,7 @@ const t = {
   services: {
     title: "Servicios de Branding y Diseño Digital en Barcelona",
     subtitle: "Soluciones integrales para construir, posicionar y hacer crecer tu marca",
+    cta: "Ver Paquetes y Precios",
     items: [
       {
         title: "Identidad de Marca Profesional",
@@ -199,95 +200,96 @@ const t = {
     ]
   },
   
-pricing: {
-  title: "Precios de Branding y Diseño Web",
-  subtitle: "Paquetes adaptados a cada fase de tu empresa",
-  
-  starter: {
-    name: "Starter",
-    price: "799€",
-    description: "Presencia profesional rápida y moderna",
-    features: [
-      "Landing Page (1 página)",
-      "Diseño responsive",
-      "Formulario de contacto",
-      "Google Maps integrado",
-      "Optimización ligera de velocidad",
-      "1 ronda de revisión",
-      "Entrega en 1-2 semanas"
-    ]
+  pricing: {
+    title: "Precios de Branding y Diseño Web",
+    subtitle: "Paquetes adaptados a cada fase de tu empresa",
+    
+    starter: {
+      name: "Starter",
+      price: "799€",
+      description: "Presencia profesional rápida y moderna",
+      features: [
+        "Landing Page (1 página)",
+        "Diseño responsive",
+        "Formulario de contacto",
+        "Google Maps integrado",
+        "Optimización ligera de velocidad",
+        "1 ronda de revisión",
+        "Entrega en 1-2 semanas"
+      ]
+    },
+    
+    growth: {
+      name: "Growth",
+      price: "1.500€",
+      description: "Web + identidad visual para negocios en expansión",
+      features: [
+        "Todo del Plan Starter",
+        "Logotipo (2 propuestas)",
+        "Paleta de colores y tipografías",
+        "Tarjetas digitales",
+        "Sitio web hasta 3 páginas",
+        "Redes sociales integradas",
+        "SEO On-Page básico",
+        "Google Analytics",
+        "Entrega en 2-3 semanas"
+      ],
+      popular: true
+    },
+    
+    professional: {
+      name: "Professional",
+      price: "3.500€",
+      description: "Branding completo + web avanzada",
+      features: [
+        "Todo del Plan Growth",
+        "3 propuestas de logotipo",
+        "Manual de marca (20-30 págs)",
+        "Papelería corporativa",
+        "Iconografía personalizada (6 íconos)",
+        "Web de 5 páginas + blog",
+        "Formularios avanzados",
+        "Email marketing conectado",
+        "3 rondas de revisión",
+        "30 días de soporte",
+        "Entrega en 4-5 semanas"
+      ]
+    },
+    
+    premium: {
+      name: "Premium",
+      price: "4.900€",
+      description: "Estrategia + branding + web + contenido profesional",
+      features: [
+        "Todo del Plan Professional",
+        "Estrategia de marca 360°",
+        "Manual avanzado (40-50 págs)",
+        "Kit visual completo + señalética",
+        "Web hasta 8 páginas",
+        "UX/UI avanzado con animaciones",
+        "SEO avanzado + panel personalizado",
+        "Fotografía profesional (4 horas)",
+        "Copywriting web completo",
+        "Revisiones ilimitadas",
+        "60 días de soporte",
+        "Entrega en 6-8 semanas"
+      ]
+    },
+    
+    cta: "Solicitar Presupuesto"
   },
-  
-  growth: {
-    name: "Growth",
-    price: "1.500€",
-    description: "Web + identidad visual para negocios en expansión",
-    features: [
-      "Todo del Plan Starter",
-      "Logotipo (2 propuestas)",
-      "Paleta de colores y tipografías",
-      "Tarjetas digitales",
-      "Sitio web hasta 3 páginas",
-      "Redes sociales integradas",
-      "SEO On-Page básico",
-      "Google Analytics",
-      "Entrega en 2-3 semanas"
-    ],
-    popular: true
-  },
-  
-  professional: {
-    name: "Professional",
-    price: "3.500€",
-    description: "Branding completo + web avanzada",
-    features: [
-      "Todo del Plan Growth",
-      "3 propuestas de logotipo",
-      "Manual de marca (20-30 págs)",
-      "Papelería corporativa",
-      "Iconografía personalizada (6 íconos)",
-      "Web de 5 páginas + blog",
-      "Formularios avanzados",
-      "Email marketing conectado",
-      "3 rondas de revisión",
-      "30 días de soporte",
-      "Entrega en 4-5 semanas"
-    ]
-  },
-  
-  premium: {
-    name: "Premium",
-    price: "4.900€",
-    description: "Estrategia + branding + web + contenido profesional",
-    features: [
-      "Todo del Plan Professional",
-      "Estrategia de marca 360°",
-      "Manual avanzado (40-50 págs)",
-      "Kit visual completo + señalética",
-      "Web hasta 8 páginas",
-      "UX/UI avanzado con animaciones",
-      "SEO avanzado + panel personalizado",
-      "Fotografía profesional (4 horas)",
-      "Copywriting web completo",
-      "Revisiones ilimitadas",
-      "60 días de soporte",
-      "Entrega en 6-8 semanas"
-    ]
-  },
-  
-  cta: "Solicitar Presupuesto",
-  contact: "Contactar con Ventas"
-},
   
   work: {
     title: "Portfolio: Proyectos de Branding en Barcelona",
     subtitle: "Casos de éxito de marcas que transformamos con diseño estratégico",
-    cta: "Ver Caso de Estudio Completo"
+    cta: "Ver Caso de Estudio Completo",
+    ctaMain: "Solicita tu Proyecto"
   },
   
   testimonials: {
     title: "Opiniones de Clientes Sobre Nuestro Servicio de Branding",
     subtitle: "Testimonios reales de empresas que confiaron en Prisma Branding",
+    cta: "Trabajemos Juntos",
     items: [
       {
         text: "Prisma Branding renovó completamente nuestra identidad visual. El equipo entendió perfectamente nuestra industria tech y creó una marca moderna que triplicó nuestras conversiones en web. Profesionalismo de 10.",
@@ -475,14 +477,14 @@ export default function PrismaBrandingPage() {
     }
   ];
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 10 },  // ← Reducido de 30 a 10
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.3, ease: "easeOut" }  // ← Reducido de 0.6 a 0.3
-  }
-};
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.3, ease: "easeOut" }
+    }
+  };
 
   const staggerChildren = {
     hidden: { opacity: 0 },
@@ -532,10 +534,9 @@ const fadeInUp = {
     }
   };
 
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Preparar datos para Web3Forms
     const formDataToSend = new FormData();
     formDataToSend.append('access_key', '02efd0d3-bcec-40f9-a6fc-63b6d42927fd');
     formDataToSend.append('subject', 'Nuevo contacto desde Prisma Branding');
@@ -581,7 +582,6 @@ const handleSubmit = async (e) => {
 
   return (
     <div className="font-sans antialiased">
-      {/* JSON-LD Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
@@ -603,7 +603,6 @@ const handleSubmit = async (e) => {
               Prisma Branding
             </motion.div>
 
-            {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
               {Object.entries(t.nav).map(([key, value]) => (
                 <button
@@ -624,7 +623,6 @@ const handleSubmit = async (e) => {
               </button>
             </div>
 
-            {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden p-2"
@@ -634,7 +632,6 @@ const handleSubmit = async (e) => {
             </button>
           </div>
 
-          {/* Mobile Menu */}
           <AnimatePresence>
             {isMenuOpen && (
               <motion.div
@@ -706,7 +703,6 @@ const handleSubmit = async (e) => {
           </motion.div>
         </motion.div>
 
-        {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
             animate={{
@@ -734,36 +730,6 @@ const handleSubmit = async (e) => {
           />
         </div>
       </section>
-
-    {/* Trusted Brands
-<section className="py-12 bg-gray-50">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6">
-    <p className="text-center text-sm text-gray-500 mb-8 uppercase tracking-wider">
-      {t.trusted}
-    </p>
-    <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
-      {[
-        { name: 'VOILÀ Concept Store', logo: '/logos/voila.svg' },
-        { name: 'Cliente 2', logo: '/logos/client2.svg' },
-        { name: 'Cliente 3', logo: '/logos/client3.svg' },
-        { name: 'Cliente 4', logo: '/logos/client4.svg' },
-        { name: 'Cliente 5', logo: '/logos/client5.svg' },
-        { name: 'Cliente 6', logo: '/logos/client6.svg' },
-      ].map((client, i) => (
-        <div 
-          key={i} 
-          className="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
-        >
-          <img
-            src={client.logo}
-            alt={`Logo ${client.name}`}
-            className="h-12 w-auto object-contain"
-          />
-        </div>
-      ))}
-    </div>
-  </div>
-</section> */}
 
       {/* About Section */}
       <section id="about" className="py-24 px-6">
@@ -873,6 +839,23 @@ const handleSubmit = async (e) => {
               </motion.div>
             ))}
           </motion.div>
+
+          {/* 🚀 NUEVO CTA después de Servicios */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
+            variants={fadeInUp}
+            className="text-center mt-16"
+          >
+            <button
+              onClick={() => scrollToSection('pricing')}
+              className="border-2 border-gray-900 text-gray-900 px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-900 hover:text-white transition-all transform hover:scale-105 inline-flex items-center space-x-2"
+            >
+              <span>{t.services.cta}</span>
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          </motion.div>
         </div>
       </section>
 
@@ -965,179 +948,159 @@ const handleSubmit = async (e) => {
         </div>
       </section>
 
-{/* Pricing Section */}
-<section className="py-24 px-6">
-  <div className="max-w-7xl mx-auto w-full">
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.05, margin: "0px" }}
-      variants={fadeInUp}
-      className="text-center mb-16"
-    >
-      <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-        {t.pricing.title}
-      </h2>
-      <p className="text-xl text-gray-600">
-        {t.pricing.subtitle}
-      </p>
-    </motion.div>
+      {/* Pricing Section */}
+      <section id="pricing" className="py-24 px-6">
+        <div className="max-w-7xl mx-auto w-full">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
+            variants={fadeInUp}
+            className="text-center mb-16"
+          >
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              {t.pricing.title}
+            </h2>
+            <p className="text-xl text-gray-600">
+              {t.pricing.subtitle}
+            </p>
+          </motion.div>
 
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.05, margin: "0px" }}
-      variants={staggerChildren}
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-[1400px] mx-auto"
-    >
-      {/* Starter Plan */}
-      <motion.div
-        variants={fadeInUp}
-        className="bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-gray-400 transition-all flex flex-col hover:shadow-lg"
-      >
-        <h3 className="text-xl font-bold text-gray-900 mb-1.5">
-          {t.pricing.starter.name}
-        </h3>
-        <div className="text-3xl font-bold text-gray-900 mb-2.5">
-          {t.pricing.starter.price}
-        </div>
-        <p className="text-gray-600 text-sm mb-5 leading-snug min-h-[40px]">
-          {t.pricing.starter.description}
-        </p>
-        <ul className="space-y-2 mb-6 flex-grow">
-          {t.pricing.starter.features.map((feature, idx) => (
-            <li key={idx} className="flex items-start space-x-2.5">
-              <Check className="w-4 h-4 text-gray-900 flex-shrink-0 mt-0.5" />
-              <span className="text-gray-700 text-sm leading-snug">{feature}</span>
-            </li>
-          ))}
-        </ul>
-        <button 
-          onClick={() => {
-            const element = document.getElementById('contact');
-            if (element) {
-              element.scrollIntoView({ behavior: 'smooth' });
-            }
-          }}
-          className="w-full bg-gray-900 text-white py-3 rounded-full text-sm font-semibold hover:bg-gray-800 transition-all"
-        >
-          {t.pricing.cta}
-        </button>
-      </motion.div>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
+            variants={staggerChildren}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-[1400px] mx-auto"
+          >
+            {/* Starter Plan */}
+            <motion.div
+              variants={fadeInUp}
+              className="bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-gray-400 transition-all flex flex-col hover:shadow-lg"
+            >
+              <h3 className="text-xl font-bold text-gray-900 mb-1.5">
+                {t.pricing.starter.name}
+              </h3>
+              <div className="text-3xl font-bold text-gray-900 mb-2.5">
+                {t.pricing.starter.price}
+              </div>
+              <p className="text-gray-600 text-sm mb-5 leading-snug min-h-[40px]">
+                {t.pricing.starter.description}
+              </p>
+              <ul className="space-y-2 mb-6 flex-grow">
+                {t.pricing.starter.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-start space-x-2.5">
+                    <Check className="w-4 h-4 text-gray-900 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700 text-sm leading-snug">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <button 
+                onClick={() => scrollToSection('contact')}
+                className="w-full bg-gray-900 text-white py-3 rounded-full text-sm font-semibold hover:bg-gray-800 transition-all"
+              >
+                {t.pricing.cta}
+              </button>
+            </motion.div>
 
-      {/* Growth Plan */}
-      <motion.div
-        variants={fadeInUp}
-        className="bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-gray-400 transition-all flex flex-col hover:shadow-lg"
-      >
-        <h3 className="text-xl font-bold text-gray-900 mb-1.5">
-          {t.pricing.growth.name}
-        </h3>
-        <div className="text-3xl font-bold text-gray-900 mb-2.5">
-          {t.pricing.growth.price}
-        </div>
-        <p className="text-gray-600 text-sm mb-5 leading-snug min-h-[40px]">
-          {t.pricing.growth.description}
-        </p>
-        <ul className="space-y-2 mb-6 flex-grow">
-          {t.pricing.growth.features.map((feature, idx) => (
-            <li key={idx} className="flex items-start space-x-2.5">
-              <Check className="w-4 h-4 text-gray-900 flex-shrink-0 mt-0.5" />
-              <span className="text-gray-700 text-sm leading-snug">{feature}</span>
-            </li>
-          ))}
-        </ul>
-        <button 
-          onClick={() => {
-            const element = document.getElementById('contact');
-            if (element) {
-              element.scrollIntoView({ behavior: 'smooth' });
-            }
-          }}
-          className="w-full bg-gray-900 text-white py-3 rounded-full text-sm font-semibold hover:bg-gray-800 transition-all"
-        >
-          {t.pricing.cta}
-        </button>
-      </motion.div>
+            {/* Growth Plan */}
+            <motion.div
+              variants={fadeInUp}
+              className="bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-gray-400 transition-all flex flex-col hover:shadow-lg"
+            >
+              <h3 className="text-xl font-bold text-gray-900 mb-1.5">
+                {t.pricing.growth.name}
+              </h3>
+              <div className="text-3xl font-bold text-gray-900 mb-2.5">
+                {t.pricing.growth.price}
+              </div>
+              <p className="text-gray-600 text-sm mb-5 leading-snug min-h-[40px]">
+                {t.pricing.growth.description}
+              </p>
+              <ul className="space-y-2 mb-6 flex-grow">
+                {t.pricing.growth.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-start space-x-2.5">
+                    <Check className="w-4 h-4 text-gray-900 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700 text-sm leading-snug">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <button 
+                onClick={() => scrollToSection('contact')}
+                className="w-full bg-gray-900 text-white py-3 rounded-full text-sm font-semibold hover:bg-gray-800 transition-all"
+              >
+                {t.pricing.cta}
+              </button>
+            </motion.div>
 
-      {/* Professional Plan (Most Popular) */}
-      <motion.div
-        variants={fadeInUp}
-        className="bg-gradient-to-br from-gray-900 to-gray-800 text-white p-6 rounded-xl relative shadow-2xl border-2 border-gray-900 flex flex-col transform lg:scale-105"
-      >
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-1 rounded-full text-xs font-bold whitespace-nowrap shadow-lg">
-          Más Popular
-        </div>
-        <h3 className="text-xl font-bold mb-1.5 mt-1">
-          {t.pricing.professional.name}
-        </h3>
-        <div className="text-3xl font-bold mb-2.5">
-          {t.pricing.professional.price}
-        </div>
-        <p className="text-gray-300 text-sm mb-5 leading-snug min-h-[40px]">
-          {t.pricing.professional.description}
-        </p>
-        <ul className="space-y-2 mb-6 flex-grow">
-          {t.pricing.professional.features.map((feature, idx) => (
-            <li key={idx} className="flex items-start space-x-2.5">
-              <Check className="w-4 h-4 text-white flex-shrink-0 mt-0.5" />
-              <span className="text-gray-200 text-sm leading-snug">{feature}</span>
-            </li>
-          ))}
-        </ul>
-        <button 
-          onClick={() => {
-            const element = document.getElementById('contact');
-            if (element) {
-              element.scrollIntoView({ behavior: 'smooth' });
-            }
-          }}
-          className="w-full bg-white text-gray-900 py-3 rounded-full text-sm font-semibold hover:bg-gray-100 transition-all shadow-lg"
-        >
-          {t.pricing.cta}
-        </button>
-      </motion.div>
+            {/* Professional Plan (Most Popular) */}
+            <motion.div
+              variants={fadeInUp}
+              className="bg-gradient-to-br from-gray-900 to-gray-800 text-white p-6 rounded-xl relative shadow-2xl border-2 border-gray-900 flex flex-col transform lg:scale-105"
+            >
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-1 rounded-full text-xs font-bold whitespace-nowrap shadow-lg">
+                Más Popular
+              </div>
+              <h3 className="text-xl font-bold mb-1.5 mt-1">
+                {t.pricing.professional.name}
+              </h3>
+              <div className="text-3xl font-bold mb-2.5">
+                {t.pricing.professional.price}
+              </div>
+              <p className="text-gray-300 text-sm mb-5 leading-snug min-h-[40px]">
+                {t.pricing.professional.description}
+              </p>
+              <ul className="space-y-2 mb-6 flex-grow">
+                {t.pricing.professional.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-start space-x-2.5">
+                    <Check className="w-4 h-4 text-white flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-200 text-sm leading-snug">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <button 
+                onClick={() => scrollToSection('contact')}
+                className="w-full bg-white text-gray-900 py-3 rounded-full text-sm font-semibold hover:bg-gray-100 transition-all shadow-lg"
+              >
+                {t.pricing.cta}
+              </button>
+            </motion.div>
 
-      {/* Premium Plan */}
-      <motion.div
-        variants={fadeInUp}
-        className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl border-2 border-purple-200 hover:border-purple-400 transition-all flex flex-col hover:shadow-lg"
-      >
-        <div className="flex items-center space-x-2 mb-1.5">
-          <Rocket className="w-5 h-5 text-purple-600" />
-          <h3 className="text-xl font-bold text-gray-900">
-            {t.pricing.premium.name}
-          </h3>
+            {/* Premium Plan - 🚀 CORREGIDO */}
+            <motion.div
+              variants={fadeInUp}
+              className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl border-2 border-purple-200 hover:border-purple-400 transition-all flex flex-col hover:shadow-lg"
+            >
+              <div className="flex items-center space-x-2 mb-1.5">
+                <Rocket className="w-5 h-5 text-purple-600" />
+                <h3 className="text-xl font-bold text-gray-900">
+                  {t.pricing.premium.name}
+                </h3>
+              </div>
+              <div className="text-3xl font-bold text-gray-900 mb-2.5">
+                {t.pricing.premium.price}
+              </div>
+              <p className="text-gray-700 text-sm mb-5 leading-snug min-h-[40px]">
+                {t.pricing.premium.description}
+              </p>
+              <ul className="space-y-2 mb-6 flex-grow">
+                {t.pricing.premium.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-start space-x-2.5">
+                    <Check className="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700 text-sm leading-snug">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <button 
+                onClick={() => scrollToSection('contact')}
+                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-full text-sm font-semibold hover:from-purple-700 hover:to-pink-700 transition-all"
+              >
+                {t.pricing.cta}
+              </button>
+            </motion.div>
+          </motion.div>
         </div>
-        <div className="text-3xl font-bold text-gray-900 mb-2.5">
-          {t.pricing.premium.price}
-        </div>
-        <p className="text-gray-700 text-sm mb-5 leading-snug min-h-[40px]">
-          {t.pricing.premium.description}
-        </p>
-        <ul className="space-y-2 mb-6 flex-grow">
-          {t.pricing.premium.features.map((feature, idx) => (
-            <li key={idx} className="flex items-start space-x-2.5">
-              <Check className="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" />
-              <span className="text-gray-700 text-sm leading-snug">{feature}</span>
-            </li>
-          ))}
-        </ul>
-        <button 
-          onClick={() => {
-            const element = document.getElementById('contact');
-            if (element) {
-              element.scrollIntoView({ behavior: 'smooth' });
-            }
-          }}
-          className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-full text-sm font-semibold hover:from-purple-700 hover:to-pink-700 transition-all"
-        >
-          {t.pricing.contact}
-        </button>
-      </motion.div>
-    </motion.div>
-  </div>
-</section>
+      </section>
 
       {/* Work/Portfolio Section */}
       <section id="work" className="py-24 px-6 bg-gray-50">
@@ -1190,6 +1153,23 @@ const handleSubmit = async (e) => {
               </motion.div>
             ))}
           </motion.div>
+
+          {/* 🚀 NUEVO CTA después de Portfolio */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
+            variants={fadeInUp}
+            className="text-center mt-16"
+          >
+            <button
+              onClick={() => scrollToSection('contact')}
+              className="bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-800 transition-all transform hover:scale-105 inline-flex items-center space-x-2"
+            >
+              <span>{t.work.ctaMain}</span>
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          </motion.div>
         </div>
       </section>
 
@@ -1240,18 +1220,18 @@ const handleSubmit = async (e) => {
               </motion.div>
             </AnimatePresence>
 
-              <div className="flex justify-center mt-8 space-x-2">
-                {t.testimonials.items.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentTestimonial(index)}
-                    className={`w-3 h-3 rounded-full transition-all p-3 ${
-                      currentTestimonial === index ? 'bg-gray-900 w-8' : 'bg-gray-300'
-                    }`}
-                    aria-label={`Ver testimonio ${index + 1}`}
-                  />
-                ))}
-              </div>
+            <div className="flex justify-center mt-8 space-x-2">
+              {t.testimonials.items.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentTestimonial(index)}
+                  className={`w-3 h-3 rounded-full transition-all p-3 ${
+                    currentTestimonial === index ? 'bg-gray-900 w-8' : 'bg-gray-300'
+                  }`}
+                  aria-label={`Ver testimonio ${index + 1}`}
+                />
+              ))}
+            </div>
 
             <button
               onClick={() => setCurrentTestimonial(currentTestimonial === 0 ? t.testimonials.items.length - 1 : currentTestimonial - 1)}
@@ -1269,6 +1249,23 @@ const handleSubmit = async (e) => {
               <ChevronRight className="w-6 h-6" />
             </button>
           </div>
+
+          {/* 🚀 NUEVO CTA después de Testimonials */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.05, margin: "0px" }}
+            variants={fadeInUp}
+            className="text-center mt-16"
+          >
+            <button
+              onClick={() => scrollToSection('contact')}
+              className="bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-800 transition-all transform hover:scale-105 inline-flex items-center space-x-2"
+            >
+              <span>{t.testimonials.cta}</span>
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          </motion.div>
         </div>
       </section>
 
@@ -1304,7 +1301,7 @@ const handleSubmit = async (e) => {
                 className="bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all group"
               >
                 <div className="aspect-square overflow-hidden">
-                 <img
+                  <img
                     src={member.image}
                     alt={`${member.name} - ${member.role} en Prisma Branding Barcelona`}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -1443,7 +1440,7 @@ const handleSubmit = async (e) => {
         </div>
       </section>
 
-{/* Contact Section */}
+      {/* Contact Section */}
       <section id="contact" className="py-24 px-6 bg-white">
         <div className="max-w-4xl mx-auto">
           <motion.div
@@ -1585,17 +1582,17 @@ const handleSubmit = async (e) => {
               <p className="text-gray-400 mb-4">
                 {t.footer.description}
               </p>
-                        <div className="flex items-center space-x-4">
-              <a href="https://instagram.com/prismabranding" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors" aria-label="Síguenos en Instagram">
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a href="https://www.linkedin.com/company/prismabranding" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors" aria-label="Síguenos en LinkedIn">
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="mailto:contact@brandprisma.com" className="hover:text-gray-300 transition-colors" aria-label="Envíanos un email">
-                <Mail className="w-5 h-5" />
-              </a>
-            </div>
+              <div className="flex items-center space-x-4">
+                <a href="https://instagram.com/prismabranding" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors" aria-label="Síguenos en Instagram">
+                  <Instagram className="w-5 h-5" />
+                </a>
+                <a href="https://www.linkedin.com/company/prismabranding" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors" aria-label="Síguenos en LinkedIn">
+                  <Linkedin className="w-5 h-5" />
+                </a>
+                <a href="mailto:contact@brandprisma.com" className="hover:text-gray-300 transition-colors" aria-label="Envíanos un email">
+                  <Mail className="w-5 h-5" />
+                </a>
+              </div>
             </div>
 
             <div>
