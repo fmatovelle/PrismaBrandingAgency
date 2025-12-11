@@ -1305,10 +1305,11 @@ const handleSubmit = async (e) => {
                 className="bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all group"
               >
                 <div className="aspect-square overflow-hidden">
-                  <img
+                 <img
                     src={member.image}
                     alt={`${member.name} - ${member.role} en Prisma Branding Barcelona`}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
                   />
                 </div>
                 <div className="p-6">

@@ -1,8 +1,16 @@
 import './globals.css'
 import Script from 'next/script'
+import { Inter } from 'next/font/google'
 import { OrganizationSchema, WebsiteSchema, LocalBusinessSchema } from '@/components/JsonLd'
 
 const GA_MEASUREMENT_ID = 'G-WM6R6V3B74'
+
+// 🚀 NUEVO: Configurar fuente Inter con display swap
+const inter = Inter({ 
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+})
 
 export const metadata = {
   metadataBase: new URL('https://brandprisma.com'),
@@ -26,13 +34,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es">
+    <html lang="es" className={inter.variable}>
       <head>
         <OrganizationSchema />
         <WebsiteSchema />
         <LocalBusinessSchema />
         
-        {/* 🚀 NUEVO: Preload de imagen hero crítica para mejorar LCP */}
+        {/* Preload de imagen hero crítica para mejorar LCP */}
         <link 
           rel="preload" 
           as="image" 
@@ -43,12 +51,10 @@ export default function RootLayout({ children }) {
         {/* Preconnect a Unsplash para cargar imágenes más rápido */}
         <link rel="preconnect" href="https://images.unsplash.com" />
         
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
         <Script id="google-analytics" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${GA_MEASUREMENT_ID}', { page_path: window.location.pathname });` }} />
       </head>
-      <body className="antialiased">
+      <body className={`${inter.className} antialiased`}>
         <main className="min-h-screen">{children}</main>
       </body>
     </html>

@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  poweredByHeader: false, // 👈 NUEVO: oculta "X-Powered-By: Next.js"
+  
   // Configuración de redirects para evitar contenido duplicado
   async redirects() {
     return [
@@ -13,7 +17,7 @@ const nextConfig = {
           },
         ],
         destination: 'https://brandprisma.com/:path*',
-        permanent: true, // Esto crea un redirect 301
+        permanent: true,
       },
     ]
   },
@@ -54,8 +58,32 @@ const nextConfig = {
             key: 'Referrer-Policy',
             value: 'origin-when-cross-origin'
           },
+          // 👇 NUEVOS headers que faltan:
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=()'
+          }
         ],
       },
+      // 👇 NUEVO: Cache agresivo para assets estáticos
+      {
+        source: '/:all*(svg|jpg|jpeg|png|webp|avif|gif)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          }
+        ]
+      },
+      {
+        source: '/:all*(js|css|woff|woff2)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          }
+        ]
+      }
     ]
   },
 }
