@@ -31,6 +31,18 @@ export default function RootLayout({ children }) {
         <OrganizationSchema />
         <WebsiteSchema />
         <LocalBusinessSchema />
+        
+        {/* 🚀 NUEVO: Preload de imagen hero crítica para mejorar LCP */}
+        <link 
+          rel="preload" 
+          as="image" 
+          href="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"
+          fetchPriority="high"
+        />
+        
+        {/* Preconnect a Unsplash para cargar imágenes más rápido */}
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />

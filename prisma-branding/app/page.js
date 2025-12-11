@@ -1238,18 +1238,18 @@ const handleSubmit = async (e) => {
               </motion.div>
             </AnimatePresence>
 
-            <div className="flex justify-center mt-8 space-x-2">
-              {t.testimonials.items.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    currentTestimonial === index ? 'bg-gray-900 w-8' : 'bg-gray-300'
-                  }`}
-                  aria-label={`Ver testimonio ${index + 1}`}
-                />
-              ))}
-            </div>
+              <div className="flex justify-center mt-8 space-x-2">
+                {t.testimonials.items.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentTestimonial(index)}
+                    className={`w-3 h-3 rounded-full transition-all p-3 ${
+                      currentTestimonial === index ? 'bg-gray-900 w-8' : 'bg-gray-300'
+                    }`}
+                    aria-label={`Ver testimonio ${index + 1}`}
+                  />
+                ))}
+              </div>
 
             <button
               onClick={() => setCurrentTestimonial(currentTestimonial === 0 ? t.testimonials.items.length - 1 : currentTestimonial - 1)}
@@ -1583,17 +1583,17 @@ const handleSubmit = async (e) => {
               <p className="text-gray-400 mb-4">
                 {t.footer.description}
               </p>
-              <div className="flex items-center space-x-4">
-                <a href="https://instagram.com/prismabranding" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">
-                  <Instagram className="w-5 h-5" />
-                </a>
-                <a href="https://www.linkedin.com/company/prismabranding" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">
-                  <Linkedin className="w-5 h-5" />
-                </a>
-                <a href="mailto:contact@brandprisma.com" className="hover:text-gray-300 transition-colors">
-                  <Mail className="w-5 h-5" />
-                </a>
-              </div>
+                        <div className="flex items-center space-x-4">
+              <a href="https://instagram.com/prismabranding" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors" aria-label="Síguenos en Instagram">
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a href="https://www.linkedin.com/company/prismabranding" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors" aria-label="Síguenos en LinkedIn">
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a href="mailto:contact@brandprisma.com" className="hover:text-gray-300 transition-colors" aria-label="Envíanos un email">
+                <Mail className="w-5 h-5" />
+              </a>
+            </div>
             </div>
 
             <div>
