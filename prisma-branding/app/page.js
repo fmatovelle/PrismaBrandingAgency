@@ -422,6 +422,8 @@ export default function PrismaBrandingPage() {
     message: ''
   });
   const [formStatus, setFormStatus] = useState('');
+const [isSubmitting, setIsSubmitting] = useState(false);
+const [fieldErrors, setFieldErrors] = useState({});
 
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
@@ -534,47 +536,89 @@ export default function PrismaBrandingPage() {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  
+  // Reset states
+  setFieldErrors({});
+  setFormStatus('');
+  
+  // Validación
+  const errors = {};
+  
+  if (formData.name.length < 2) {
+    errors.name = 'El nombre debe tener al menos 2 caracteres';
+  }
+  
+  if (formData.message.length < 20) {
+    errors.message = `Mensaje muy corto (${formData.message.length}/20 caracteres mínimos)`;
+  }
+  
+  // Email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(formData.email)) {
+    errors.email = 'Email inválido';
+  }
+  
+  // Phone validation (opcional pero si lo pone, validar)
+  if (formData.phone && formData.phone.length > 0) {
+    const phoneRegex = /^(\+34)?[6-9]\d{8}$/;
+    if (!phoneRegex.test(formData.phone.replace(/\s/g, ''))) {
+      errors.phone = 'Formato: +34 612345678 o 612345678';
+    }
+  }
+  
+  // Si hay errores, mostrarlos
+  if (Object.keys(errors).length > 0) {
+    setFieldErrors(errors);
+    // Focus en primer campo con error
+    const firstErrorField = Object.keys(errors)[0];
+    document.getElementById(firstErrorField)?.focus();
+    return;
+  }
+  
+  setIsSubmitting(true);
+  
+  const formDataToSend = new FormData();
+  formDataToSend.append('access_key', '02efd0d3-bcec-40f9-a6fc-63b6d42927fd');
+  formDataToSend.append('subject', 'Nuevo contacto desde Prisma Branding');
+  formDataToSend.append('from_name', 'Formulario Web - Prisma Branding');
+  formDataToSend.append('name', formData.name);
+  formDataToSend.append('email', formData.email);
+  formDataToSend.append('phone', formData.phone || 'No proporcionado');
+  formDataToSend.append('service', formData.service);
+  formDataToSend.append('message', formData.message);
+  
+  try {
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formDataToSend
+    });
     
-    const formDataToSend = new FormData();
-    formDataToSend.append('access_key', '02efd0d3-bcec-40f9-a6fc-63b6d42927fd');
-    formDataToSend.append('subject', 'Nuevo contacto desde Prisma Branding');
-    formDataToSend.append('from_name', 'Formulario Web - Prisma Branding');
-    formDataToSend.append('name', formData.name);
-    formDataToSend.append('email', formData.email);
-    formDataToSend.append('phone', formData.phone || 'No proporcionado');
-    formDataToSend.append('service', formData.service);
-    formDataToSend.append('message', formData.message);
+    const result = await response.json();
     
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formDataToSend
+    if (result.success) {
+      setFormStatus('success');
+      setFormData({ 
+        name: '', 
+        email: '', 
+        phone: '', 
+        service: 'branding', 
+        message: '' 
       });
-      
-      const result = await response.json();
-      
-      if (result.success) {
-        setFormStatus(t.contact.success);
-        setFormData({ 
-          name: '', 
-          email: '', 
-          phone: '', 
-          service: 'branding', 
-          message: '' 
-        });
-        setTimeout(() => setFormStatus(''), 5000);
-      } else {
-        setFormStatus('Error al enviar. Por favor intenta de nuevo.');
-        setTimeout(() => setFormStatus(''), 5000);
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      setFormStatus('Error al enviar. Por favor intenta de nuevo.');
+      setTimeout(() => setFormStatus(''), 8000);
+    } else {
+      setFormStatus('error');
       setTimeout(() => setFormStatus(''), 5000);
     }
-  };
+  } catch (error) {
+    console.error('Error:', error);
+    setFormStatus('error');
+    setTimeout(() => setFormStatus(''), 5000);
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   const toggleFaq = (index) => {
     setExpandedFaq(expandedFaq === index ? null : index);
@@ -1464,34 +1508,56 @@ export default function PrismaBrandingPage() {
             viewport={{ once: true, amount: 0.05, margin: "0px" }}
             variants={fadeInUp}
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+<form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                    {t.contact.name}
+                    {t.contact.name} *
                   </label>
                   <input
                     type="text"
                     id="name"
                     required
                     value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all"
+                    onChange={(e) => {
+                      setFormData({...formData, name: e.target.value});
+                      if (fieldErrors.name) {
+                        setFieldErrors({...fieldErrors, name: null});
+                      }
+                    }}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all ${
+                      fieldErrors.name ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                    disabled={isSubmitting}
                   />
+                  {fieldErrors.name && (
+                    <p className="mt-1 text-sm text-red-600">{fieldErrors.name}</p>
+                  )}
                 </div>
 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    {t.contact.email}
+                    {t.contact.email} *
                   </label>
                   <input
                     type="email"
                     id="email"
                     required
                     value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all"
+                    onChange={(e) => {
+                      setFormData({...formData, email: e.target.value});
+                      if (fieldErrors.email) {
+                        setFieldErrors({...fieldErrors, email: null});
+                      }
+                    }}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all ${
+                      fieldErrors.email ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                    disabled={isSubmitting}
                   />
+                  {fieldErrors.email && (
+                    <p className="mt-1 text-sm text-red-600">{fieldErrors.email}</p>
+                  )}
                 </div>
               </div>
 
@@ -1504,20 +1570,33 @@ export default function PrismaBrandingPage() {
                     type="tel"
                     id="phone"
                     value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all"
+                    onChange={(e) => {
+                      setFormData({...formData, phone: e.target.value});
+                      if (fieldErrors.phone) {
+                        setFieldErrors({...fieldErrors, phone: null});
+                      }
+                    }}
+                    placeholder="+34 612 345 678"
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all ${
+                      fieldErrors.phone ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                    disabled={isSubmitting}
                   />
+                  {fieldErrors.phone && (
+                    <p className="mt-1 text-sm text-red-600">{fieldErrors.phone}</p>
+                  )}
                 </div>
 
                 <div>
                   <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
-                    {t.contact.service}
+                    {t.contact.service} *
                   </label>
                   <select
                     id="service"
                     value={formData.service}
                     onChange={(e) => setFormData({...formData, service: e.target.value})}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all bg-white"
+                    disabled={isSubmitting}
                   >
                     {Object.entries(t.contact.services).map(([key, value]) => (
                       <option key={key} value={key}>{value}</option>
@@ -1527,36 +1606,86 @@ export default function PrismaBrandingPage() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.contact.message}
-                </label>
+                <div className="flex items-center justify-between mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+                    {t.contact.message} *
+                  </label>
+                  <span className={`text-sm ${
+                    formData.message.length < 20 ? 'text-red-600' : 'text-gray-500'
+                  }`}>
+                    {formData.message.length}/20 min
+                  </span>
+                </div>
                 <textarea
                   id="message"
                   required
                   rows={6}
                   value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                  onChange={(e) => {
+                    setFormData({...formData, message: e.target.value});
+                    if (fieldErrors.message) {
+                      setFieldErrors({...fieldErrors, message: null});
+                    }
+                  }}
                   placeholder={t.contact.messagePlaceholder}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all resize-none"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all resize-none ${
+                    fieldErrors.message ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                  disabled={isSubmitting}
                 />
+                {fieldErrors.message && (
+                  <p className="mt-1 text-sm text-red-600">{fieldErrors.message}</p>
+                )}
               </div>
 
               <div className="flex flex-col items-center space-y-4">
                 <button
                   type="submit"
-                  className="bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-800 transition-all transform hover:scale-105 inline-flex items-center space-x-2"
+                  disabled={isSubmitting}
+                  className="bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-800 transition-all transform hover:scale-105 inline-flex items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
-                  <span>{t.contact.send}</span>
-                  <Send className="w-5 h-5" />
+                  {isSubmitting ? (
+                    <>
+                      <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      <span>Enviando...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>{t.contact.send}</span>
+                      <Send className="w-5 h-5" />
+                    </>
+                  )}
                 </button>
 
-                {formStatus && (
+                {formStatus === 'success' && (
+  <motion.div
+    initial={{opacity: 0, y: 10, scale: 0.95}}
+    animate={{opacity: 1, y: 0, scale: 1}}
+    className="text-center p-6 rounded-xl bg-gray-50 text-gray-900 border-2 border-gray-900 w-full max-w-md"
+  >
+    <div className="flex items-center justify-center mb-3">
+      <div className="w-12 h-12 rounded-full bg-gray-900 flex items-center justify-center">
+        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+      </div>
+    </div>
+    <p className="font-bold text-xl mb-2">¡Mensaje enviado!</p>
+    <p className="text-gray-600">{t.contact.success}</p>
+  </motion.div>
+)}
+
+                {formStatus === 'error' && (
                   <motion.div
                     initial={{opacity: 0, y: 10}}
                     animate={{opacity: 1, y: 0}}
-                    className={`text-center p-4 rounded-lg ${formStatus.includes('Gracias') ? 'bg-green-50 text-green-800 border border-green-200' : 'bg-red-50 text-red-800 border border-red-200'}`}
+                    className="text-center p-4 rounded-lg bg-red-50 text-red-800 border border-red-200 w-full max-w-md"
                   >
-                    {formStatus}
+                    <p className="font-semibold">Error al enviar</p>
+                    <p className="text-sm">Por favor intenta de nuevo en unos momentos.</p>
                   </motion.div>
                 )}
               </div>
