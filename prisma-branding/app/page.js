@@ -667,7 +667,7 @@ export default function PrismaBrandingPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-3xl sm:text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight"
+            className="text-4xl sm:text-6xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight"
           >
             {t.hero.title}
           </motion.h1>
@@ -676,7 +676,7 @@ export default function PrismaBrandingPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-2xl text-gray-600 mb-12"
+            className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-12 leading-normal max-w-4xl mx-auto"
           >
             {t.hero.subtitle}
           </motion.p>
@@ -732,7 +732,7 @@ export default function PrismaBrandingPage() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-24 px-6">
+      <section id="about" className="py-16 sm:py-24 px-6">
         <div className="max-w-7xl mx-auto w-full">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -744,10 +744,10 @@ export default function PrismaBrandingPage() {
               <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 {t.about.title}
               </h2>
-              <p className="text-lg text-gray-600 mb-6">
+              <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6">
                 {t.about.text1}
               </p>
-              <p className="text-lg text-gray-600 mb-8">
+              <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-8">
                 {t.about.text2}
               </p>
               <div className="grid grid-cols-3 gap-6">
@@ -806,10 +806,10 @@ export default function PrismaBrandingPage() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
               {t.services.title}
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-600 leading-normal max-w-2xl mx-auto">
               {t.services.subtitle}
             </p>
           </motion.div>
@@ -830,7 +830,7 @@ export default function PrismaBrandingPage() {
                 <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-gray-900 transition-colors">
                   <Palette className="w-6 h-6 text-gray-900 group-hover:text-white transition-colors" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight">
                   {service.title}
                 </h3>
                 <p className="text-gray-600">
@@ -860,7 +860,7 @@ export default function PrismaBrandingPage() {
       </section>
 
       {/* Industries Section */}
-      <section className="py-24 px-6">
+      <section className="py-16 sm:py-24 px-6">
         <div className="max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -869,10 +869,10 @@ export default function PrismaBrandingPage() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
               {t.industries.title}
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg sm:text-xl text-gray-600 leading-normal">
               {t.industries.subtitle}
             </p>
           </motion.div>
@@ -949,7 +949,7 @@ export default function PrismaBrandingPage() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-24 px-6">
+      <section id="pricing" className="py-16 sm:py-24 px-6">
         <div className="max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -958,10 +958,10 @@ export default function PrismaBrandingPage() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
               {t.pricing.title}
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg sm:text-xl text-gray-600 leading-normal">
               {t.pricing.subtitle}
             </p>
           </motion.div>
@@ -1112,10 +1112,10 @@ export default function PrismaBrandingPage() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
               {t.work.title}
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg sm:text-xl text-gray-600 leading-normal">
               {t.work.subtitle}
             </p>
           </motion.div>
@@ -1174,7 +1174,7 @@ export default function PrismaBrandingPage() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-24 px-6">
+      <section className="py-16 sm:py-24 px-6">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial="hidden"
@@ -1183,10 +1183,10 @@ export default function PrismaBrandingPage() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
               {t.testimonials.title}
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg sm:text-xl text-gray-600 leading-normal">
               {t.testimonials.subtitle}
             </p>
           </motion.div>
@@ -1279,10 +1279,10 @@ export default function PrismaBrandingPage() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
               {t.team.title}
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg sm:text-xl text-gray-600 leading-normal">
               {t.team.subtitle}
             </p>
           </motion.div>
@@ -1321,7 +1321,7 @@ export default function PrismaBrandingPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24 px-6">
+      <section className="py-16 sm:py-24 px-6">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial="hidden"
@@ -1330,10 +1330,10 @@ export default function PrismaBrandingPage() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
               {t.faq.title}
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg sm:text-xl text-gray-600 leading-normal">
               {t.faq.subtitle}
             </p>
           </motion.div>
@@ -1395,10 +1395,10 @@ export default function PrismaBrandingPage() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
               {t.blog.title}
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg sm:text-xl text-gray-600 leading-normal">
               {t.blog.subtitle}
             </p>
           </motion.div>
@@ -1450,10 +1450,10 @@ export default function PrismaBrandingPage() {
             variants={fadeInUp}
             className="text-center mb-12"
           >
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
               {t.contact.title}
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg sm:text-xl text-gray-600 leading-normal">
               {t.contact.subtitle}
             </p>
           </motion.div>
