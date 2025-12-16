@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowRight, Palette, Globe, TrendingUp, Check, Mail, Instagram, Linkedin, ChevronLeft, ChevronRight, Target, Users, Lightbulb, Rocket, Camera, Package, Newspaper, FileText, MessageSquare, Phone, Calendar, ChevronDown, Plus, Minus, Send } from 'lucide-react';
 
 // Schema JSON-LD para SEO
@@ -422,12 +421,8 @@ export default function PrismaBrandingPage() {
     message: ''
   });
   const [formStatus, setFormStatus] = useState('');
-const [isSubmitting, setIsSubmitting] = useState(false);
-const [fieldErrors, setFieldErrors] = useState({});
-
-  const { scrollYProgress } = useScroll();
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState({});
 
   // Proyectos destacados con imágenes de Unsplash
   const projects = [
@@ -479,25 +474,6 @@ const [fieldErrors, setFieldErrors] = useState({});
     }
   ];
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 10 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.3, ease: "easeOut" }
-    }
-  };
-
-  const staggerChildren = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'about', 'services', 'process', 'work', 'team', 'contact'];
@@ -536,89 +512,83 @@ const [fieldErrors, setFieldErrors] = useState({});
     }
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  
-  // Reset states
-  setFieldErrors({});
-  setFormStatus('');
-  
-  // Validación
-  const errors = {};
-  
-  if (formData.name.length < 2) {
-    errors.name = 'El nombre debe tener al menos 2 caracteres';
-  }
-  
-  if (formData.message.length < 20) {
-    errors.message = `Mensaje muy corto (${formData.message.length}/20 caracteres mínimos)`;
-  }
-  
-  // Email validation
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(formData.email)) {
-    errors.email = 'Email inválido';
-  }
-  
-  // Phone validation (opcional pero si lo pone, validar)
-  if (formData.phone && formData.phone.length > 0) {
-    const phoneRegex = /^(\+34)?[6-9]\d{8}$/;
-    if (!phoneRegex.test(formData.phone.replace(/\s/g, ''))) {
-      errors.phone = 'Formato: +34 612345678 o 612345678';
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    setFieldErrors({});
+    setFormStatus('');
+    
+    const errors = {};
+    
+    if (formData.name.length < 2) {
+      errors.name = 'El nombre debe tener al menos 2 caracteres';
     }
-  }
-  
-  // Si hay errores, mostrarlos
-  if (Object.keys(errors).length > 0) {
-    setFieldErrors(errors);
-    // Focus en primer campo con error
-    const firstErrorField = Object.keys(errors)[0];
-    document.getElementById(firstErrorField)?.focus();
-    return;
-  }
-  
-  setIsSubmitting(true);
-  
-  const formDataToSend = new FormData();
-  formDataToSend.append('access_key', '02efd0d3-bcec-40f9-a6fc-63b6d42927fd');
-  formDataToSend.append('subject', 'Nuevo contacto desde Prisma Branding');
-  formDataToSend.append('from_name', 'Formulario Web - Prisma Branding');
-  formDataToSend.append('name', formData.name);
-  formDataToSend.append('email', formData.email);
-  formDataToSend.append('phone', formData.phone || 'No proporcionado');
-  formDataToSend.append('service', formData.service);
-  formDataToSend.append('message', formData.message);
-  
-  try {
-    const response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body: formDataToSend
-    });
     
-    const result = await response.json();
+    if (formData.message.length < 20) {
+      errors.message = `Mensaje muy corto (${formData.message.length}/20 caracteres mínimos)`;
+    }
     
-    if (result.success) {
-      setFormStatus('success');
-      setFormData({ 
-        name: '', 
-        email: '', 
-        phone: '', 
-        service: 'branding', 
-        message: '' 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      errors.email = 'Email inválido';
+    }
+    
+    if (formData.phone && formData.phone.length > 0) {
+      const phoneRegex = /^(\+34)?[6-9]\d{8}$/;
+      if (!phoneRegex.test(formData.phone.replace(/\s/g, ''))) {
+        errors.phone = 'Formato: +34 612345678 o 612345678';
+      }
+    }
+    
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      const firstErrorField = Object.keys(errors)[0];
+      document.getElementById(firstErrorField)?.focus();
+      return;
+    }
+    
+    setIsSubmitting(true);
+    
+    const formDataToSend = new FormData();
+    formDataToSend.append('access_key', '02efd0d3-bcec-40f9-a6fc-63b6d42927fd');
+    formDataToSend.append('subject', 'Nuevo contacto desde Prisma Branding');
+    formDataToSend.append('from_name', 'Formulario Web - Prisma Branding');
+    formDataToSend.append('name', formData.name);
+    formDataToSend.append('email', formData.email);
+    formDataToSend.append('phone', formData.phone || 'No proporcionado');
+    formDataToSend.append('service', formData.service);
+    formDataToSend.append('message', formData.message);
+    
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formDataToSend
       });
-      setTimeout(() => setFormStatus(''), 8000);
-    } else {
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        setFormStatus('success');
+        setFormData({ 
+          name: '', 
+          email: '', 
+          phone: '', 
+          service: 'branding', 
+          message: '' 
+        });
+        setTimeout(() => setFormStatus(''), 8000);
+      } else {
+        setFormStatus('error');
+        setTimeout(() => setFormStatus(''), 5000);
+      }
+    } catch (error) {
+      console.error('Error:', error);
       setFormStatus('error');
       setTimeout(() => setFormStatus(''), 5000);
+    } finally {
+      setIsSubmitting(false);
     }
-  } catch (error) {
-    console.error('Error:', error);
-    setFormStatus('error');
-    setTimeout(() => setFormStatus(''), 5000);
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+  };
 
   const toggleFaq = (index) => {
     setExpandedFaq(expandedFaq === index ? null : index);
@@ -639,13 +609,9 @@ const handleSubmit = async (e) => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="text-2xl font-bold text-gray-900"
-            >
+            <div className="text-2xl font-bold text-gray-900">
               Prisma Branding
-            </motion.div>
+            </div>
 
             <div className="hidden md:flex items-center space-x-8">
               {Object.entries(t.nav).map(([key, value]) => (
@@ -676,26 +642,19 @@ const handleSubmit = async (e) => {
             </button>
           </div>
 
-          <AnimatePresence>
-            {isMenuOpen && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                className="md:hidden mt-4 pb-4 space-y-4"
-              >
-                {Object.entries(t.nav).map(([key, value]) => (
-                  <button
-                    key={key}
-                    onClick={() => scrollToSection(key === 'home' ? 'home' : key)}
-                    className="block w-full text-left text-gray-700 hover:text-gray-900 py-2"
-                  >
-                    {value}
-                  </button>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {isMenuOpen && (
+            <div className="md:hidden mt-4 pb-4 space-y-4">
+              {Object.entries(t.nav).map(([key, value]) => (
+                <button
+                  key={key}
+                  onClick={() => scrollToSection(key === 'home' ? 'home' : key)}
+                  className="block w-full text-left text-gray-700 hover:text-gray-900 py-2"
+                >
+                  {value}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </nav>
 
@@ -703,34 +662,16 @@ const handleSubmit = async (e) => {
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100" />
         
-        <motion.div 
-          style={{ opacity, scale }}
-          className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto"
-        >
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl sm:text-6xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight"
-          >
+        <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
             {t.hero.title}
-          </motion.h1>
+          </h1>
           
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-12 leading-normal max-w-4xl mx-auto"
-          >
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-12 leading-normal max-w-4xl mx-auto">
             {t.hero.subtitle}
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               onClick={() => scrollToSection('contact')}
               className="bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-800 transition-all transform hover:scale-105 inline-flex items-center space-x-2"
@@ -744,34 +685,7 @@ const handleSubmit = async (e) => {
             >
               {t.hero.viewWork}
             </button>
-          </motion.div>
-        </motion.div>
-
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <motion.div
-            animate={{
-              scale: [1, 1.2, 1],
-              rotate: [0, 90, 0],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-10 blur-3xl"
-          />
-          <motion.div
-            animate={{
-              scale: [1, 1.3, 1],
-              rotate: [0, -90, 0],
-            }}
-            transition={{
-              duration: 25,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full opacity-10 blur-3xl"
-          />
+          </div>
         </div>
       </section>
 
@@ -779,12 +693,7 @@ const handleSubmit = async (e) => {
       <section id="about" className="py-16 sm:py-24 px-6">
         <div className="max-w-7xl mx-auto w-full">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.05, margin: "0px" }}
-              variants={fadeInUp}
-            >
+            <div>
               <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 {t.about.title}
               </h2>
@@ -808,15 +717,9 @@ const handleSubmit = async (e) => {
                   <div className="text-gray-600">{t.about.satisfaction}</div>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.05, margin: "0px" }}
-              variants={fadeInUp}
-              className="relative"
-            >
+            <div className="relative">
               <div className="aspect-square rounded-2xl overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"
@@ -835,7 +738,7 @@ const handleSubmit = async (e) => {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -843,32 +746,19 @@ const handleSubmit = async (e) => {
       {/* Services Section */}
       <section id="services" className="py-24 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto w-full">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={fadeInUp}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
               {t.services.title}
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 leading-normal max-w-2xl mx-auto">
               {t.services.subtitle}
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={staggerChildren}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-          >
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {t.services.items.map((service, index) => (
-              <motion.div
+              <div
                 key={index}
-                variants={fadeInUp}
                 className="bg-white p-8 rounded-xl hover:shadow-xl transition-all group cursor-pointer"
               >
                 <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-gray-900 transition-colors">
@@ -880,18 +770,11 @@ const handleSubmit = async (e) => {
                 <p className="text-gray-600">
                   {service.description}
                 </p>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
 
-          {/* 🚀 NUEVO CTA después de Servicios */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={fadeInUp}
-            className="text-center mt-16"
-          >
+          <div className="text-center mt-16">
             <button
               onClick={() => scrollToSection('pricing')}
               className="border-2 border-gray-900 text-gray-900 px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-900 hover:text-white transition-all transform hover:scale-105 inline-flex items-center space-x-2"
@@ -899,82 +782,53 @@ const handleSubmit = async (e) => {
               <span>{t.services.cta}</span>
               <ArrowRight className="w-5 h-5" />
             </button>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Industries Section */}
       <section className="py-16 sm:py-24 px-6">
         <div className="max-w-7xl mx-auto w-full">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={fadeInUp}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
               {t.industries.title}
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 leading-normal">
               {t.industries.subtitle}
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={staggerChildren}
-            className="grid md:grid-cols-3 gap-6"
-          >
+          <div className="grid md:grid-cols-3 gap-6">
             {t.industries.items.map((industry, index) => (
-              <motion.div
+              <div
                 key={index}
-                variants={fadeInUp}
                 className="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:border-gray-900 transition-all"
               >
                 <Globe className="w-8 h-8 text-gray-900 mb-3" />
                 <h3 className="text-lg font-semibold text-gray-900">
                   {industry}
                 </h3>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Process Section */}
       <section id="process" className="py-24 px-6 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto w-full">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={fadeInUp}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4">
               {t.process.title}
             </h2>
             <p className="text-xl text-gray-400">
               {t.process.subtitle}
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={staggerChildren}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
-          >
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {t.process.steps.map((step, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                className="relative"
-              >
+              <div key={index} className="relative">
                 <div className="absolute -left-4 top-0 text-8xl font-bold text-gray-800 opacity-30">
                   {index + 1}
                 </div>
@@ -986,42 +840,27 @@ const handleSubmit = async (e) => {
                     {step.description}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Pricing Section */}
       <section id="pricing" className="py-16 sm:py-24 px-6">
         <div className="max-w-7xl mx-auto w-full">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={fadeInUp}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
               {t.pricing.title}
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 leading-normal">
               {t.pricing.subtitle}
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={staggerChildren}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-[1400px] mx-auto"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-[1400px] mx-auto">
             {/* Starter Plan */}
-            <motion.div
-              variants={fadeInUp}
-              className="bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-gray-400 transition-all flex flex-col hover:shadow-lg"
-            >
+            <div className="bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-gray-400 transition-all flex flex-col hover:shadow-lg">
               <h3 className="text-xl font-bold text-gray-900 mb-1.5">
                 {t.pricing.starter.name}
               </h3>
@@ -1045,13 +884,10 @@ const handleSubmit = async (e) => {
               >
                 {t.pricing.cta}
               </button>
-            </motion.div>
+            </div>
 
             {/* Growth Plan */}
-            <motion.div
-              variants={fadeInUp}
-              className="bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-gray-400 transition-all flex flex-col hover:shadow-lg"
-            >
+            <div className="bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-gray-400 transition-all flex flex-col hover:shadow-lg">
               <h3 className="text-xl font-bold text-gray-900 mb-1.5">
                 {t.pricing.growth.name}
               </h3>
@@ -1075,13 +911,10 @@ const handleSubmit = async (e) => {
               >
                 {t.pricing.cta}
               </button>
-            </motion.div>
+            </div>
 
             {/* Professional Plan (Most Popular) */}
-            <motion.div
-              variants={fadeInUp}
-              className="bg-gradient-to-br from-gray-900 to-gray-800 text-white p-6 rounded-xl relative shadow-2xl border-2 border-gray-900 flex flex-col transform lg:scale-105"
-            >
+            <div className="bg-gradient-to-br from-gray-900 to-gray-800 text-white p-6 rounded-xl relative shadow-2xl border-2 border-gray-900 flex flex-col transform lg:scale-105">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-1 rounded-full text-xs font-bold whitespace-nowrap shadow-lg">
                 Más Popular
               </div>
@@ -1108,13 +941,10 @@ const handleSubmit = async (e) => {
               >
                 {t.pricing.cta}
               </button>
-            </motion.div>
+            </div>
 
-            {/* Premium Plan - 🚀 CORREGIDO */}
-            <motion.div
-              variants={fadeInUp}
-              className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl border-2 border-purple-200 hover:border-purple-400 transition-all flex flex-col hover:shadow-lg"
-            >
+            {/* Premium Plan */}
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl border-2 border-purple-200 hover:border-purple-400 transition-all flex flex-col hover:shadow-lg">
               <div className="flex items-center space-x-2 mb-1.5">
                 <Rocket className="w-5 h-5 text-purple-600" />
                 <h3 className="text-xl font-bold text-gray-900">
@@ -1141,40 +971,27 @@ const handleSubmit = async (e) => {
               >
                 {t.pricing.cta}
               </button>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Work/Portfolio Section */}
       <section id="work" className="py-24 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto w-full">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={fadeInUp}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
               {t.work.title}
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 leading-normal">
               {t.work.subtitle}
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={staggerChildren}
-            className="grid md:grid-cols-2 gap-8"
-          >
+          <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
-              <motion.div
+              <div
                 key={index}
-                variants={fadeInUp}
                 className="group relative overflow-hidden rounded-2xl cursor-pointer"
               >
                 <div className="aspect-[4/3] overflow-hidden">
@@ -1194,18 +1011,11 @@ const handleSubmit = async (e) => {
                     </button>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
 
-          {/* 🚀 NUEVO CTA después de Portfolio */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={fadeInUp}
-            className="text-center mt-16"
-          >
+          <div className="text-center mt-16">
             <button
               onClick={() => scrollToSection('contact')}
               className="bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-800 transition-all transform hover:scale-105 inline-flex items-center space-x-2"
@@ -1213,56 +1023,41 @@ const handleSubmit = async (e) => {
               <span>{t.work.ctaMain}</span>
               <ArrowRight className="w-5 h-5" />
             </button>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
       <section className="py-16 sm:py-24 px-6">
         <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={fadeInUp}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
               {t.testimonials.title}
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 leading-normal">
               {t.testimonials.subtitle}
             </p>
-          </motion.div>
+          </div>
 
           <div className="relative">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentTestimonial}
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.5 }}
-                className="bg-white p-12 rounded-2xl shadow-xl"
-              >
-                <div className="flex justify-center mb-6">
-                  {[...Array(t.testimonials.items[currentTestimonial].rating)].map((_, i) => (
-                    <TrendingUp key={i} className="w-6 h-6 text-yellow-400" />
-                  ))}
+            <div className="bg-white p-12 rounded-2xl shadow-xl transition-opacity duration-500">
+              <div className="flex justify-center mb-6">
+                {[...Array(t.testimonials.items[currentTestimonial].rating)].map((_, i) => (
+                  <TrendingUp key={i} className="w-6 h-6 text-yellow-400" />
+                ))}
+              </div>
+              <p className="text-2xl text-gray-700 mb-8 text-center italic">
+                "{t.testimonials.items[currentTestimonial].text}"
+              </p>
+              <div className="text-center">
+                <div className="font-bold text-gray-900 text-lg">
+                  {t.testimonials.items[currentTestimonial].author}
                 </div>
-                <p className="text-2xl text-gray-700 mb-8 text-center italic">
-                  "{t.testimonials.items[currentTestimonial].text}"
-                </p>
-                <div className="text-center">
-                  <div className="font-bold text-gray-900 text-lg">
-                    {t.testimonials.items[currentTestimonial].author}
-                  </div>
-                  <div className="text-gray-600">
-                    {t.testimonials.items[currentTestimonial].role}
-                  </div>
+                <div className="text-gray-600">
+                  {t.testimonials.items[currentTestimonial].role}
                 </div>
-              </motion.div>
-            </AnimatePresence>
+              </div>
+            </div>
 
             <div className="flex justify-center mt-8 space-x-2">
               {t.testimonials.items.map((_, index) => (
@@ -1294,14 +1089,7 @@ const handleSubmit = async (e) => {
             </button>
           </div>
 
-          {/* 🚀 NUEVO CTA después de Testimonials */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={fadeInUp}
-            className="text-center mt-16"
-          >
+          <div className="text-center mt-16">
             <button
               onClick={() => scrollToSection('contact')}
               className="bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-800 transition-all transform hover:scale-105 inline-flex items-center space-x-2"
@@ -1309,39 +1097,26 @@ const handleSubmit = async (e) => {
               <span>{t.testimonials.cta}</span>
               <ArrowRight className="w-5 h-5" />
             </button>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Team Section */}
       <section id="team" className="py-24 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto w-full">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={fadeInUp}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
               {t.team.title}
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 leading-normal">
               {t.team.subtitle}
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={staggerChildren}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {t.team.members.map((member, index) => (
-              <motion.div
+              <div
                 key={index}
-                variants={fadeInUp}
                 className="bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all group"
               >
                 <div className="aspect-square overflow-hidden">
@@ -1358,41 +1133,28 @@ const handleSubmit = async (e) => {
                   <div className="text-gray-600 mb-3">{member.role}</div>
                   <p className="text-sm text-gray-500">{member.bio}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* FAQ Section */}
       <section className="py-16 sm:py-24 px-6">
         <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={fadeInUp}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
               {t.faq.title}
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 leading-normal">
               {t.faq.subtitle}
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={staggerChildren}
-            className="space-y-4"
-          >
+          <div className="space-y-4">
             {t.faq.items.map((item, index) => (
-              <motion.div
+              <div
                 key={index}
-                variants={fadeInUp}
                 className="bg-white rounded-xl border border-gray-200 overflow-hidden"
               >
                 <button
@@ -1408,56 +1170,33 @@ const handleSubmit = async (e) => {
                     <Plus className="w-5 h-5 text-gray-900 flex-shrink-0" />
                   )}
                 </button>
-                <AnimatePresence>
-                  {expandedFaq === index && (
-                    <motion.div
-                      initial={{ height: 0 }}
-                      animate={{ height: 'auto' }}
-                      exit={{ height: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="p-6 pt-0 text-gray-600">
-                        {item.a}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
+                {expandedFaq === index && (
+                  <div className="px-6 pb-6 text-gray-600">
+                    {item.a}
+                  </div>
+                )}
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Blog Section */}
       <section className="py-24 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto w-full">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={fadeInUp}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
               {t.blog.title}
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 leading-normal">
               {t.blog.subtitle}
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={staggerChildren}
-            className="grid md:grid-cols-3 gap-8"
-          >
+          <div className="grid md:grid-cols-3 gap-8">
             {blogPosts.map((post, index) => (
-              <motion.article
+              <article
                 key={index}
-                variants={fadeInUp}
                 className="bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all group cursor-pointer"
               >
                 <div className="aspect-video overflow-hidden">
@@ -1478,37 +1217,26 @@ const handleSubmit = async (e) => {
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
-              </motion.article>
+              </article>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Contact Section */}
       <section id="contact" className="py-24 px-6 bg-white">
         <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={fadeInUp}
-            className="text-center mb-12"
-          >
+          <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
               {t.contact.title}
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 leading-normal">
               {t.contact.subtitle}
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05, margin: "0px" }}
-            variants={fadeInUp}
-          >
-<form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -1661,32 +1389,24 @@ const handleSubmit = async (e) => {
                 </button>
 
                 {formStatus === 'success' && (
-  <motion.div
-    initial={{opacity: 0, y: 10, scale: 0.95}}
-    animate={{opacity: 1, y: 0, scale: 1}}
-    className="text-center p-6 rounded-xl bg-gray-50 text-gray-900 border-2 border-gray-900 w-full max-w-md"
-  >
-    <div className="flex items-center justify-center mb-3">
-      <div className="w-12 h-12 rounded-full bg-gray-900 flex items-center justify-center">
-        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-        </svg>
-      </div>
-    </div>
-    <p className="font-bold text-xl mb-2">¡Mensaje enviado!</p>
-    <p className="text-gray-600">{t.contact.success}</p>
-  </motion.div>
-)}
+                  <div className="text-center p-6 rounded-xl bg-gray-50 text-gray-900 border-2 border-gray-900 w-full max-w-md">
+                    <div className="flex items-center justify-center mb-3">
+                      <div className="w-12 h-12 rounded-full bg-gray-900 flex items-center justify-center">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                      </div>
+                    </div>
+                    <p className="font-bold text-xl mb-2">¡Mensaje enviado!</p>
+                    <p className="text-gray-600">{t.contact.success}</p>
+                  </div>
+                )}
 
                 {formStatus === 'error' && (
-                  <motion.div
-                    initial={{opacity: 0, y: 10}}
-                    animate={{opacity: 1, y: 0}}
-                    className="text-center p-4 rounded-lg bg-red-50 text-red-800 border border-red-200 w-full max-w-md"
-                  >
+                  <div className="text-center p-4 rounded-lg bg-red-50 text-red-800 border border-red-200 w-full max-w-md">
                     <p className="font-semibold">Error al enviar</p>
                     <p className="text-sm">Por favor intenta de nuevo en unos momentos.</p>
-                  </motion.div>
+                  </div>
                 )}
               </div>
             </form>
@@ -1698,7 +1418,7 @@ const handleSubmit = async (e) => {
                 <span>{t.contact.schedule}</span>
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
