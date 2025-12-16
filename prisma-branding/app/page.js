@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowRight, Palette, Globe, TrendingUp, Check, Mail, Instagram, Linkedin, ChevronLeft, ChevronRight, Target, Users, Lightbulb, Rocket, Camera, Package, Newspaper, FileText, MessageSquare, Phone, Calendar, ChevronDown, Plus, Minus, Send } from 'lucide-react';
 
 // Schema JSON-LD para SEO
@@ -408,6 +409,109 @@ const t = {
   }
 };
 
+// Hook personalizado para animaciones al scroll (SIN flasheo, super ligero)
+function useScrollAnimation() {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.15,
+        rootMargin: '0px'
+      }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
+
+  return [ref, isVisible];
+}
+
+// Componente para contador animado
+function AnimatedCounter({ end, duration = 2 }) {
+  const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          
+          let startTime;
+          let animationFrame;
+
+          const animate = (currentTime) => {
+            if (!startTime) startTime = currentTime;
+            const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
+            
+            setCount(Math.floor(progress * end));
+            
+            if (progress < 1) {
+              animationFrame = requestAnimationFrame(animate);
+            }
+          };
+
+          animationFrame = requestAnimationFrame(animate);
+          
+          return () => {
+            if (animationFrame) {
+              cancelAnimationFrame(animationFrame);
+            }
+          };
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [end, duration, hasAnimated]);
+
+  return <span ref={ref}>{count}</span>;
+}
+
+// Componente ScrollReveal optimizado (solo opacity + scale, muy ligero)
+function ScrollReveal({ children, delay = 0, className = "" }) {
+  const [ref, isVisible] = useScrollAnimation();
+
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'scale(1)' : 'scale(0.97)',
+        transition: `opacity 0.5s ease-out ${delay}s, transform 0.5s ease-out ${delay}s`
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
 export default function PrismaBrandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -609,28 +713,39 @@ export default function PrismaBrandingPage() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="text-2xl font-bold text-gray-900">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-2xl font-bold text-gray-900"
+            >
               Prisma Branding
-            </div>
+            </motion.div>
 
             <div className="hidden md:flex items-center space-x-8">
-              {Object.entries(t.nav).map(([key, value]) => (
-                <button
+              {Object.entries(t.nav).map(([key, value], index) => (
+                <motion.button
                   key={key}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                   onClick={() => scrollToSection(key === 'home' ? 'home' : key)}
                   className={`text-sm font-medium transition-colors ${
                     activeSection === key ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
                   {value}
-                </button>
+                </motion.button>
               ))}
-              <button
+              <motion.button
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.7 }}
                 onClick={() => scrollToSection('contact')}
                 className="bg-gray-900 text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-gray-800 transition-all transform hover:scale-105"
               >
                 {t.hero.cta}
-              </button>
+              </motion.button>
             </div>
 
             <button
@@ -642,19 +757,27 @@ export default function PrismaBrandingPage() {
             </button>
           </div>
 
-          {isMenuOpen && (
-            <div className="md:hidden mt-4 pb-4 space-y-4">
-              {Object.entries(t.nav).map(([key, value]) => (
-                <button
-                  key={key}
-                  onClick={() => scrollToSection(key === 'home' ? 'home' : key)}
-                  className="block w-full text-left text-gray-700 hover:text-gray-900 py-2"
-                >
-                  {value}
-                </button>
-              ))}
-            </div>
-          )}
+          <AnimatePresence>
+            {isMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+                className="md:hidden mt-4 pb-4 space-y-4 overflow-hidden"
+              >
+                {Object.entries(t.nav).map(([key, value]) => (
+                  <button
+                    key={key}
+                    onClick={() => scrollToSection(key === 'home' ? 'home' : key)}
+                    className="block w-full text-left text-gray-700 hover:text-gray-900 py-2"
+                  >
+                    {value}
+                  </button>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </nav>
 
@@ -662,38 +785,71 @@ export default function PrismaBrandingPage() {
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100" />
         
+        {/* Gradient animado de fondo (simplificado - solo 1 capa) */}
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.1, 0.15, 0.1]
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute top-1/3 left-1/3 w-96 h-96 bg-gradient-to-r from-purple-300 to-pink-300 rounded-full blur-3xl"
+        />
+        
         <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+          <motion.h1
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-4xl sm:text-6xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight"
+          >
             {t.hero.title}
-          </h1>
+          </motion.h1>
           
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-12 leading-normal max-w-4xl mx-auto">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-12 leading-normal max-w-4xl mx-auto"
+          >
             {t.hero.subtitle}
-          </p>
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => scrollToSection('contact')}
-              className="bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-800 transition-all transform hover:scale-105 inline-flex items-center space-x-2"
+              className="bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-800 transition-all inline-flex items-center space-x-2"
             >
               <span>{t.hero.cta}</span>
               <ArrowRight className="w-5 h-5" />
-            </button>
-            <button
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => scrollToSection('work')}
-              className="border-2 border-gray-900 text-gray-900 px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-900 hover:text-white transition-all transform hover:scale-105"
+              className="border-2 border-gray-900 text-gray-900 px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-900 hover:text-white transition-all"
             >
               {t.hero.viewWork}
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
         </div>
       </section>
 
-      {/* About Section */}
+      {/* About Section con ScrollReveal */}
       <section id="about" className="py-16 sm:py-24 px-6">
         <div className="max-w-7xl mx-auto w-full">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
+            <ScrollReveal>
               <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 {t.about.title}
               </h2>
@@ -705,40 +861,50 @@ export default function PrismaBrandingPage() {
               </p>
               <div className="grid grid-cols-3 gap-6">
                 <div>
-                  <div className="text-4xl font-bold text-gray-900 mb-2">200+</div>
+                  <div className="text-4xl font-bold text-gray-900 mb-2">
+                    <AnimatedCounter end={200} />+
+                  </div>
                   <div className="text-gray-600">{t.about.projects}</div>
                 </div>
                 <div>
-                  <div className="text-4xl font-bold text-gray-900 mb-2">10+</div>
+                  <div className="text-4xl font-bold text-gray-900 mb-2">
+                    <AnimatedCounter end={10} />+
+                  </div>
                   <div className="text-gray-600">{t.about.years}</div>
                 </div>
                 <div>
-                  <div className="text-4xl font-bold text-gray-900 mb-2">98%</div>
+                  <div className="text-4xl font-bold text-gray-900 mb-2">
+                    <AnimatedCounter end={98} />%
+                  </div>
                   <div className="text-gray-600">{t.about.satisfaction}</div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
 
-            <div className="relative">
-              <div className="aspect-square rounded-2xl overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"
-                  alt="Equipo de Prisma Branding trabajando en diseño de marca en Barcelona"
-                  className="w-full h-full object-cover"
-                  loading="eager"
-                  fetchpriority="high"
-                />
-              </div>
-              <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl">
-                <div className="flex items-center space-x-3">
-                  <Target className="w-8 h-8 text-gray-900" />
-                  <div>
-                    <div className="font-bold text-gray-900">Enfoque 360°</div>
-                    <div className="text-sm text-gray-600">Branding completo</div>
+            <ScrollReveal delay={0.2}>
+              <div className="relative">
+                <div className="aspect-square rounded-2xl overflow-hidden">
+                  <motion.img
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.4 }}
+                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"
+                    alt="Equipo de Prisma Branding trabajando en diseño de marca en Barcelona"
+                    className="w-full h-full object-cover"
+                    loading="eager"
+                    fetchpriority="high"
+                  />
+                </div>
+                <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl">
+                  <div className="flex items-center space-x-3">
+                    <Target className="w-8 h-8 text-gray-900" />
+                    <div>
+                      <div className="font-bold text-gray-900">Enfoque 360°</div>
+                      <div className="text-sm text-gray-600">Branding completo</div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -746,69 +912,86 @@ export default function PrismaBrandingPage() {
       {/* Services Section */}
       <section id="services" className="py-24 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto w-full">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-              {t.services.title}
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 leading-normal max-w-2xl mx-auto">
-              {t.services.subtitle}
-            </p>
-          </div>
+          <ScrollReveal>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+                {t.services.title}
+              </h2>
+              <p className="text-lg sm:text-xl text-gray-600 leading-normal max-w-2xl mx-auto">
+                {t.services.subtitle}
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {t.services.items.map((service, index) => (
-              <div
-                key={index}
-                className="bg-white p-8 rounded-xl hover:shadow-xl transition-all group cursor-pointer"
-              >
-                <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-gray-900 transition-colors">
-                  <Palette className="w-6 h-6 text-gray-900 group-hover:text-white transition-colors" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600">
-                  {service.description}
-                </p>
-              </div>
+              <ScrollReveal key={index} delay={index * 0.1}>
+                <motion.div
+                  whileHover={{ y: -5, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)" }}
+                  transition={{ duration: 0.3 }}
+                  className="bg-white p-8 rounded-xl hover:shadow-xl transition-all group cursor-pointer"
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-gray-900 transition-colors"
+                  >
+                    <Palette className="w-6 h-6 text-gray-900 group-hover:text-white transition-colors" />
+                  </motion.div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600">
+                    {service.description}
+                  </p>
+                </motion.div>
+              </ScrollReveal>
             ))}
           </div>
 
-          <div className="text-center mt-16">
-            <button
-              onClick={() => scrollToSection('pricing')}
-              className="border-2 border-gray-900 text-gray-900 px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-900 hover:text-white transition-all transform hover:scale-105 inline-flex items-center space-x-2"
-            >
-              <span>{t.services.cta}</span>
-              <ArrowRight className="w-5 h-5" />
-            </button>
-          </div>
+          <ScrollReveal delay={0.4}>
+            <div className="text-center mt-16">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => scrollToSection('pricing')}
+                className="border-2 border-gray-900 text-gray-900 px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-900 hover:text-white transition-all inline-flex items-center space-x-2"
+              >
+                <span>{t.services.cta}</span>
+                <ArrowRight className="w-5 h-5" />
+              </motion.button>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Industries Section */}
       <section className="py-16 sm:py-24 px-6">
         <div className="max-w-7xl mx-auto w-full">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-              {t.industries.title}
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 leading-normal">
-              {t.industries.subtitle}
-            </p>
-          </div>
+          <ScrollReveal>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+                {t.industries.title}
+              </h2>
+              <p className="text-lg sm:text-xl text-gray-600 leading-normal">
+                {t.industries.subtitle}
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="grid md:grid-cols-3 gap-6">
             {t.industries.items.map((industry, index) => (
-              <div
-                key={index}
-                className="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:border-gray-900 transition-all"
-              >
-                <Globe className="w-8 h-8 text-gray-900 mb-3" />
-                <h3 className="text-lg font-semibold text-gray-900">
-                  {industry}
-                </h3>
-              </div>
+              <ScrollReveal key={index} delay={index * 0.1}>
+                <motion.div
+                  whileHover={{ scale: 1.03, borderColor: "#111827" }}
+                  transition={{ duration: 0.3 }}
+                  className="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:border-gray-900 transition-all cursor-pointer"
+                >
+                  <Globe className="w-8 h-8 text-gray-900 mb-3" />
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    {industry}
+                  </h3>
+                </motion.div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -817,30 +1000,38 @@ export default function PrismaBrandingPage() {
       {/* Process Section */}
       <section id="process" className="py-24 px-6 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto w-full">
-          <div className="text-center mb-16">
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4">
-              {t.process.title}
-            </h2>
-            <p className="text-xl text-gray-400">
-              {t.process.subtitle}
-            </p>
-          </div>
+          <ScrollReveal>
+            <div className="text-center mb-16">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4">
+                {t.process.title}
+              </h2>
+              <p className="text-xl text-gray-400">
+                {t.process.subtitle}
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {t.process.steps.map((step, index) => (
-              <div key={index} className="relative">
-                <div className="absolute -left-4 top-0 text-8xl font-bold text-gray-800 opacity-30">
-                  {index + 1}
-                </div>
-                <div className="relative z-10 pt-12">
-                  <h3 className="text-xl font-bold mb-4">
-                    {step.title}
-                  </h3>
-                  <p className="text-gray-400">
-                    {step.description}
-                  </p>
-                </div>
-              </div>
+              <ScrollReveal key={index} delay={index * 0.1}>
+                <motion.div
+                  whileHover={{ y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className="relative"
+                >
+                  <div className="absolute -left-4 top-0 text-8xl font-bold text-gray-800 opacity-30">
+                    {index + 1}
+                  </div>
+                  <div className="relative z-10 pt-12">
+                    <h3 className="text-xl font-bold mb-4">
+                      {step.title}
+                    </h3>
+                    <p className="text-gray-400">
+                      {step.description}
+                    </p>
+                  </div>
+                </motion.div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -849,129 +1040,163 @@ export default function PrismaBrandingPage() {
       {/* Pricing Section */}
       <section id="pricing" className="py-16 sm:py-24 px-6">
         <div className="max-w-7xl mx-auto w-full">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-              {t.pricing.title}
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 leading-normal">
-              {t.pricing.subtitle}
-            </p>
-          </div>
+          <ScrollReveal>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+                {t.pricing.title}
+              </h2>
+              <p className="text-lg sm:text-xl text-gray-600 leading-normal">
+                {t.pricing.subtitle}
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-[1400px] mx-auto">
             {/* Starter Plan */}
-            <div className="bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-gray-400 transition-all flex flex-col hover:shadow-lg">
-              <h3 className="text-xl font-bold text-gray-900 mb-1.5">
-                {t.pricing.starter.name}
-              </h3>
-              <div className="text-3xl font-bold text-gray-900 mb-2.5">
-                {t.pricing.starter.price}
-              </div>
-              <p className="text-gray-600 text-sm mb-5 leading-snug min-h-[40px]">
-                {t.pricing.starter.description}
-              </p>
-              <ul className="space-y-2 mb-6 flex-grow">
-                {t.pricing.starter.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start space-x-2.5">
-                    <Check className="w-4 h-4 text-gray-900 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700 text-sm leading-snug">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <button 
-                onClick={() => scrollToSection('contact')}
-                className="w-full bg-gray-900 text-white py-3 rounded-full text-sm font-semibold hover:bg-gray-800 transition-all"
+            <ScrollReveal delay={0}>
+              <motion.div
+                whileHover={{ y: -5, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)" }}
+                transition={{ duration: 0.3 }}
+                className="bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-gray-400 transition-all flex flex-col"
               >
-                {t.pricing.cta}
-              </button>
-            </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-1.5">
+                  {t.pricing.starter.name}
+                </h3>
+                <div className="text-3xl font-bold text-gray-900 mb-2.5">
+                  {t.pricing.starter.price}
+                </div>
+                <p className="text-gray-600 text-sm mb-5 leading-snug min-h-[40px]">
+                  {t.pricing.starter.description}
+                </p>
+                <ul className="space-y-2 mb-6 flex-grow">
+                  {t.pricing.starter.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start space-x-2.5">
+                      <Check className="w-4 h-4 text-gray-900 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-700 text-sm leading-snug">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => scrollToSection('contact')}
+                  className="w-full bg-gray-900 text-white py-3 rounded-full text-sm font-semibold hover:bg-gray-800 transition-all"
+                >
+                  {t.pricing.cta}
+                </motion.button>
+              </motion.div>
+            </ScrollReveal>
 
             {/* Growth Plan */}
-            <div className="bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-gray-400 transition-all flex flex-col hover:shadow-lg">
-              <h3 className="text-xl font-bold text-gray-900 mb-1.5">
-                {t.pricing.growth.name}
-              </h3>
-              <div className="text-3xl font-bold text-gray-900 mb-2.5">
-                {t.pricing.growth.price}
-              </div>
-              <p className="text-gray-600 text-sm mb-5 leading-snug min-h-[40px]">
-                {t.pricing.growth.description}
-              </p>
-              <ul className="space-y-2 mb-6 flex-grow">
-                {t.pricing.growth.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start space-x-2.5">
-                    <Check className="w-4 h-4 text-gray-900 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700 text-sm leading-snug">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <button 
-                onClick={() => scrollToSection('contact')}
-                className="w-full bg-gray-900 text-white py-3 rounded-full text-sm font-semibold hover:bg-gray-800 transition-all"
+            <ScrollReveal delay={0.1}>
+              <motion.div
+                whileHover={{ y: -5, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)" }}
+                transition={{ duration: 0.3 }}
+                className="bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-gray-400 transition-all flex flex-col"
               >
-                {t.pricing.cta}
-              </button>
-            </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-1.5">
+                  {t.pricing.growth.name}
+                </h3>
+                <div className="text-3xl font-bold text-gray-900 mb-2.5">
+                  {t.pricing.growth.price}
+                </div>
+                <p className="text-gray-600 text-sm mb-5 leading-snug min-h-[40px]">
+                  {t.pricing.growth.description}
+                </p>
+                <ul className="space-y-2 mb-6 flex-grow">
+                  {t.pricing.growth.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start space-x-2.5">
+                      <Check className="w-4 h-4 text-gray-900 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-700 text-sm leading-snug">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => scrollToSection('contact')}
+                  className="w-full bg-gray-900 text-white py-3 rounded-full text-sm font-semibold hover:bg-gray-800 transition-all"
+                >
+                  {t.pricing.cta}
+                </motion.button>
+              </motion.div>
+            </ScrollReveal>
 
             {/* Professional Plan (Most Popular) */}
-            <div className="bg-gradient-to-br from-gray-900 to-gray-800 text-white p-6 rounded-xl relative shadow-2xl border-2 border-gray-900 flex flex-col transform lg:scale-105">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-1 rounded-full text-xs font-bold whitespace-nowrap shadow-lg">
-                Más Popular
-              </div>
-              <h3 className="text-xl font-bold mb-1.5 mt-1">
-                {t.pricing.professional.name}
-              </h3>
-              <div className="text-3xl font-bold mb-2.5">
-                {t.pricing.professional.price}
-              </div>
-              <p className="text-gray-300 text-sm mb-5 leading-snug min-h-[40px]">
-                {t.pricing.professional.description}
-              </p>
-              <ul className="space-y-2 mb-6 flex-grow">
-                {t.pricing.professional.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start space-x-2.5">
-                    <Check className="w-4 h-4 text-white flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-200 text-sm leading-snug">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <button 
-                onClick={() => scrollToSection('contact')}
-                className="w-full bg-white text-gray-900 py-3 rounded-full text-sm font-semibold hover:bg-gray-100 transition-all shadow-lg"
+            <ScrollReveal delay={0.2}>
+              <motion.div
+                whileHover={{ y: -8, boxShadow: "0 25px 30px -5px rgba(0, 0, 0, 0.2)" }}
+                transition={{ duration: 0.3 }}
+                className="bg-gradient-to-br from-gray-900 to-gray-800 text-white p-6 rounded-xl relative shadow-2xl border-2 border-gray-900 flex flex-col transform lg:scale-105"
               >
-                {t.pricing.cta}
-              </button>
-            </div>
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-1 rounded-full text-xs font-bold whitespace-nowrap shadow-lg">
+                  Más Popular
+                </div>
+                <h3 className="text-xl font-bold mb-1.5 mt-1">
+                  {t.pricing.professional.name}
+                </h3>
+                <div className="text-3xl font-bold mb-2.5">
+                  {t.pricing.professional.price}
+                </div>
+                <p className="text-gray-300 text-sm mb-5 leading-snug min-h-[40px]">
+                  {t.pricing.professional.description}
+                </p>
+                <ul className="space-y-2 mb-6 flex-grow">
+                  {t.pricing.professional.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start space-x-2.5">
+                      <Check className="w-4 h-4 text-white flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-200 text-sm leading-snug">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => scrollToSection('contact')}
+                  className="w-full bg-white text-gray-900 py-3 rounded-full text-sm font-semibold hover:bg-gray-100 transition-all shadow-lg"
+                >
+                  {t.pricing.cta}
+                </motion.button>
+              </motion.div>
+            </ScrollReveal>
 
             {/* Premium Plan */}
-            <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl border-2 border-purple-200 hover:border-purple-400 transition-all flex flex-col hover:shadow-lg">
-              <div className="flex items-center space-x-2 mb-1.5">
-                <Rocket className="w-5 h-5 text-purple-600" />
-                <h3 className="text-xl font-bold text-gray-900">
-                  {t.pricing.premium.name}
-                </h3>
-              </div>
-              <div className="text-3xl font-bold text-gray-900 mb-2.5">
-                {t.pricing.premium.price}
-              </div>
-              <p className="text-gray-700 text-sm mb-5 leading-snug min-h-[40px]">
-                {t.pricing.premium.description}
-              </p>
-              <ul className="space-y-2 mb-6 flex-grow">
-                {t.pricing.premium.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start space-x-2.5">
-                    <Check className="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700 text-sm leading-snug">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <button 
-                onClick={() => scrollToSection('contact')}
-                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-full text-sm font-semibold hover:from-purple-700 hover:to-pink-700 transition-all"
+            <ScrollReveal delay={0.3}>
+              <motion.div
+                whileHover={{ y: -5, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)" }}
+                transition={{ duration: 0.3 }}
+                className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl border-2 border-purple-200 hover:border-purple-400 transition-all flex flex-col"
               >
-                {t.pricing.cta}
-              </button>
-            </div>
+                <div className="flex items-center space-x-2 mb-1.5">
+                  <Rocket className="w-5 h-5 text-purple-600" />
+                  <h3 className="text-xl font-bold text-gray-900">
+                    {t.pricing.premium.name}
+                  </h3>
+                </div>
+                <div className="text-3xl font-bold text-gray-900 mb-2.5">
+                  {t.pricing.premium.price}
+                </div>
+                <p className="text-gray-700 text-sm mb-5 leading-snug min-h-[40px]">
+                  {t.pricing.premium.description}
+                </p>
+                <ul className="space-y-2 mb-6 flex-grow">
+                  {t.pricing.premium.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start space-x-2.5">
+                      <Check className="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-700 text-sm leading-snug">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => scrollToSection('contact')}
+                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-full text-sm font-semibold hover:from-purple-700 hover:to-pink-700 transition-all"
+                >
+                  {t.pricing.cta}
+                </motion.button>
+              </motion.div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -979,92 +1204,119 @@ export default function PrismaBrandingPage() {
       {/* Work/Portfolio Section */}
       <section id="work" className="py-24 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto w-full">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-              {t.work.title}
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 leading-normal">
-              {t.work.subtitle}
-            </p>
-          </div>
+          <ScrollReveal>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+                {t.work.title}
+              </h2>
+              <p className="text-lg sm:text-xl text-gray-600 leading-normal">
+                {t.work.subtitle}
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
-              <div
-                key={index}
-                className="group relative overflow-hidden rounded-2xl cursor-pointer"
-              >
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={`Caso de éxito de branding: ${project.title} - ${project.category} realizado por Prisma Branding en Barcelona`}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                </div>
-                <div className={`absolute inset-0 bg-gradient-to-t ${project.color} opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex items-end p-8`}>
-                  <div className="text-white">
-                    <h3 className="text-3xl font-bold mb-2">{project.title}</h3>
-                    <p className="text-lg mb-4">{project.category}</p>
-                    <button className="inline-flex items-center space-x-2 text-white font-medium">
-                      <span>{t.work.cta}</span>
-                      <ArrowRight className="w-5 h-5" />
-                    </button>
+              <ScrollReveal key={index} delay={index * 0.1}>
+                <motion.div
+                  whileHover={{ y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className="group relative overflow-hidden rounded-2xl cursor-pointer"
+                >
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <motion.img
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.6 }}
+                      src={project.image}
+                      alt={`Caso de éxito de branding: ${project.title} - ${project.category} realizado por Prisma Branding en Barcelona`}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                </div>
-              </div>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 0.9 }}
+                    transition={{ duration: 0.3 }}
+                    className={`absolute inset-0 bg-gradient-to-t ${project.color} flex items-end p-8`}
+                  >
+                    <div className="text-white">
+                      <h3 className="text-3xl font-bold mb-2">{project.title}</h3>
+                      <p className="text-lg mb-4">{project.category}</p>
+                      <button className="inline-flex items-center space-x-2 text-white font-medium">
+                        <span>{t.work.cta}</span>
+                        <ArrowRight className="w-5 h-5" />
+                      </button>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              </ScrollReveal>
             ))}
           </div>
 
-          <div className="text-center mt-16">
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-800 transition-all transform hover:scale-105 inline-flex items-center space-x-2"
-            >
-              <span>{t.work.ctaMain}</span>
-              <ArrowRight className="w-5 h-5" />
-            </button>
-          </div>
+          <ScrollReveal delay={0.3}>
+            <div className="text-center mt-16">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => scrollToSection('contact')}
+                className="bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-800 transition-all inline-flex items-center space-x-2"
+              >
+                <span>{t.work.ctaMain}</span>
+                <ArrowRight className="w-5 h-5" />
+              </motion.button>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Testimonials Section */}
       <section className="py-16 sm:py-24 px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-              {t.testimonials.title}
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 leading-normal">
-              {t.testimonials.subtitle}
-            </p>
-          </div>
+          <ScrollReveal>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+                {t.testimonials.title}
+              </h2>
+              <p className="text-lg sm:text-xl text-gray-600 leading-normal">
+                {t.testimonials.subtitle}
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="relative">
-            <div className="bg-white p-12 rounded-2xl shadow-xl transition-opacity duration-500">
-              <div className="flex justify-center mb-6">
-                {[...Array(t.testimonials.items[currentTestimonial].rating)].map((_, i) => (
-                  <TrendingUp key={i} className="w-6 h-6 text-yellow-400" />
-                ))}
-              </div>
-              <p className="text-2xl text-gray-700 mb-8 text-center italic">
-                "{t.testimonials.items[currentTestimonial].text}"
-              </p>
-              <div className="text-center">
-                <div className="font-bold text-gray-900 text-lg">
-                  {t.testimonials.items[currentTestimonial].author}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentTestimonial}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.5 }}
+                className="bg-white p-12 rounded-2xl shadow-xl"
+              >
+                <div className="flex justify-center mb-6">
+                  {[...Array(t.testimonials.items[currentTestimonial].rating)].map((_, i) => (
+                    <TrendingUp key={i} className="w-6 h-6 text-yellow-400" />
+                  ))}
                 </div>
-                <div className="text-gray-600">
-                  {t.testimonials.items[currentTestimonial].role}
+                <p className="text-2xl text-gray-700 mb-8 text-center italic">
+                  "{t.testimonials.items[currentTestimonial].text}"
+                </p>
+                <div className="text-center">
+                  <div className="font-bold text-gray-900 text-lg">
+                    {t.testimonials.items[currentTestimonial].author}
+                  </div>
+                  <div className="text-gray-600">
+                    {t.testimonials.items[currentTestimonial].role}
+                  </div>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </AnimatePresence>
 
             <div className="flex justify-center mt-8 space-x-2">
               {t.testimonials.items.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-all p-3 ${
+                  className={`w-3 h-3 rounded-full transition-all ${
                     currentTestimonial === index ? 'bg-gray-900 w-8' : 'bg-gray-300'
                   }`}
                   aria-label={`Ver testimonio ${index + 1}`}
@@ -1072,68 +1324,83 @@ export default function PrismaBrandingPage() {
               ))}
             </div>
 
-            <button
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               onClick={() => setCurrentTestimonial(currentTestimonial === 0 ? t.testimonials.items.length - 1 : currentTestimonial - 1)}
               className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all"
               aria-label="Testimonio anterior"
             >
               <ChevronLeft className="w-6 h-6" />
-            </button>
+            </motion.button>
 
-            <button
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               onClick={() => setCurrentTestimonial(currentTestimonial === t.testimonials.items.length - 1 ? 0 : currentTestimonial + 1)}
               className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all"
               aria-label="Siguiente testimonio"
             >
               <ChevronRight className="w-6 h-6" />
-            </button>
+            </motion.button>
           </div>
 
-          <div className="text-center mt-16">
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-800 transition-all transform hover:scale-105 inline-flex items-center space-x-2"
-            >
-              <span>{t.testimonials.cta}</span>
-              <ArrowRight className="w-5 h-5" />
-            </button>
-          </div>
+          <ScrollReveal delay={0.3}>
+            <div className="text-center mt-16">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => scrollToSection('contact')}
+                className="bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-800 transition-all inline-flex items-center space-x-2"
+              >
+                <span>{t.testimonials.cta}</span>
+                <ArrowRight className="w-5 h-5" />
+              </motion.button>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Team Section */}
       <section id="team" className="py-24 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto w-full">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-              {t.team.title}
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 leading-normal">
-              {t.team.subtitle}
-            </p>
-          </div>
+          <ScrollReveal>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+                {t.team.title}
+              </h2>
+              <p className="text-lg sm:text-xl text-gray-600 leading-normal">
+                {t.team.subtitle}
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {t.team.members.map((member, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all group"
-              >
-                <div className="aspect-square overflow-hidden">
-                  <img
-                    src={member.image}
-                    alt={`${member.name} - ${member.role} en Prisma Branding Barcelona`}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">
-                    {member.name}
-                  </h3>
-                  <div className="text-gray-600 mb-3">{member.role}</div>
-                  <p className="text-sm text-gray-500">{member.bio}</p>
-                </div>
-              </div>
+              <ScrollReveal key={index} delay={index * 0.1}>
+                <motion.div
+                  whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)" }}
+                  transition={{ duration: 0.3 }}
+                  className="bg-white rounded-2xl overflow-hidden transition-all group"
+                >
+                  <div className="aspect-square overflow-hidden">
+                    <motion.img
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.4 }}
+                      src={member.image}
+                      alt={`${member.name} - ${member.role} en Prisma Branding Barcelona`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-1">
+                      {member.name}
+                    </h3>
+                    <div className="text-gray-600 mb-3">{member.role}</div>
+                    <p className="text-sm text-gray-500">{member.bio}</p>
+                  </div>
+                </motion.div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -1142,40 +1409,60 @@ export default function PrismaBrandingPage() {
       {/* FAQ Section */}
       <section className="py-16 sm:py-24 px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-              {t.faq.title}
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 leading-normal">
-              {t.faq.subtitle}
-            </p>
-          </div>
+          <ScrollReveal>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+                {t.faq.title}
+              </h2>
+              <p className="text-lg sm:text-xl text-gray-600 leading-normal">
+                {t.faq.subtitle}
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="space-y-4">
             {t.faq.items.map((item, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl border border-gray-200 overflow-hidden"
-              >
-                <button
-                  onClick={() => toggleFaq(index)}
-                  className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
+              <ScrollReveal key={index} delay={index * 0.05}>
+                <motion.div
+                  whileHover={{ boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)" }}
+                  transition={{ duration: 0.3 }}
+                  className="bg-white rounded-xl border border-gray-200 overflow-hidden"
                 >
-                  <h3 className="text-lg font-semibold text-gray-900 pr-8">
-                    {item.q}
-                  </h3>
-                  {expandedFaq === index ? (
-                    <Minus className="w-5 h-5 text-gray-900 flex-shrink-0" />
-                  ) : (
-                    <Plus className="w-5 h-5 text-gray-900 flex-shrink-0" />
-                  )}
-                </button>
-                {expandedFaq === index && (
-                  <div className="px-6 pb-6 text-gray-600">
-                    {item.a}
-                  </div>
-                )}
-              </div>
+                  <button
+                    onClick={() => toggleFaq(index)}
+                    className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
+                  >
+                    <h3 className="text-lg font-semibold text-gray-900 pr-8">
+                      {item.q}
+                    </h3>
+                    <motion.div
+                      animate={{ rotate: expandedFaq === index ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {expandedFaq === index ? (
+                        <Minus className="w-5 h-5 text-gray-900 flex-shrink-0" />
+                      ) : (
+                        <Plus className="w-5 h-5 text-gray-900 flex-shrink-0" />
+                      )}
+                    </motion.div>
+                  </button>
+                  <AnimatePresence>
+                    {expandedFaq === index && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="p-6 pt-0 text-gray-600">
+                          {item.a}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -1184,40 +1471,47 @@ export default function PrismaBrandingPage() {
       {/* Blog Section */}
       <section className="py-24 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto w-full">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-              {t.blog.title}
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 leading-normal">
-              {t.blog.subtitle}
-            </p>
-          </div>
+          <ScrollReveal>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+                {t.blog.title}
+              </h2>
+              <p className="text-lg sm:text-xl text-gray-600 leading-normal">
+                {t.blog.subtitle}
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="grid md:grid-cols-3 gap-8">
             {blogPosts.map((post, index) => (
-              <article
-                key={index}
-                className="bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all group cursor-pointer"
-              >
-                <div className="aspect-video overflow-hidden">
-                  <img
-                    src={post.image}
-                    alt={`Artículo sobre branding: ${post.title} - Prisma Branding Barcelona`}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                </div>
-                <div className="p-6">
-                  <div className="text-sm text-gray-500 mb-3">{post.date}</div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-gray-700 transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4">{post.excerpt}</p>
-                  <button className="inline-flex items-center space-x-2 text-gray-900 font-medium group-hover:space-x-3 transition-all">
-                    <span>{t.blog.cta}</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </article>
+              <ScrollReveal key={index} delay={index * 0.1}>
+                <motion.article
+                  whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)" }}
+                  transition={{ duration: 0.3 }}
+                  className="bg-white rounded-2xl overflow-hidden transition-all group cursor-pointer"
+                >
+                  <div className="aspect-video overflow-hidden">
+                    <motion.img
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.4 }}
+                      src={post.image}
+                      alt={`Artículo sobre branding: ${post.title} - Prisma Branding Barcelona`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <div className="text-sm text-gray-500 mb-3">{post.date}</div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-gray-700 transition-colors">
+                      {post.title}
+                    </h3>
+                    <p className="text-gray-600 mb-4">{post.excerpt}</p>
+                    <button className="inline-flex items-center space-x-2 text-gray-900 font-medium group-hover:space-x-3 transition-all">
+                      <span>{t.blog.cta}</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </motion.article>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -1226,16 +1520,18 @@ export default function PrismaBrandingPage() {
       {/* Contact Section */}
       <section id="contact" className="py-24 px-6 bg-white">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-              {t.contact.title}
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-600 leading-normal">
-              {t.contact.subtitle}
-            </p>
-          </div>
+          <ScrollReveal>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+                {t.contact.title}
+              </h2>
+              <p className="text-lg sm:text-xl text-gray-600 leading-normal">
+                {t.contact.subtitle}
+              </p>
+            </div>
+          </ScrollReveal>
 
-          <div>
+          <ScrollReveal delay={0.2}>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
@@ -1259,7 +1555,13 @@ export default function PrismaBrandingPage() {
                     disabled={isSubmitting}
                   />
                   {fieldErrors.name && (
-                    <p className="mt-1 text-sm text-red-600">{fieldErrors.name}</p>
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="mt-1 text-sm text-red-600"
+                    >
+                      {fieldErrors.name}
+                    </motion.p>
                   )}
                 </div>
 
@@ -1284,7 +1586,13 @@ export default function PrismaBrandingPage() {
                     disabled={isSubmitting}
                   />
                   {fieldErrors.email && (
-                    <p className="mt-1 text-sm text-red-600">{fieldErrors.email}</p>
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="mt-1 text-sm text-red-600"
+                    >
+                      {fieldErrors.email}
+                    </motion.p>
                   )}
                 </div>
               </div>
@@ -1311,7 +1619,13 @@ export default function PrismaBrandingPage() {
                     disabled={isSubmitting}
                   />
                   {fieldErrors.phone && (
-                    <p className="mt-1 text-sm text-red-600">{fieldErrors.phone}</p>
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="mt-1 text-sm text-red-600"
+                    >
+                      {fieldErrors.phone}
+                    </motion.p>
                   )}
                 </div>
 
@@ -1338,7 +1652,7 @@ export default function PrismaBrandingPage() {
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700">
                     {t.contact.message} *
                   </label>
-                  <span className={`text-sm ${
+                  <span className={`text-sm transition-colors ${
                     formData.message.length < 20 ? 'text-red-600' : 'text-gray-500'
                   }`}>
                     {formData.message.length}/20 min
@@ -1362,15 +1676,23 @@ export default function PrismaBrandingPage() {
                   disabled={isSubmitting}
                 />
                 {fieldErrors.message && (
-                  <p className="mt-1 text-sm text-red-600">{fieldErrors.message}</p>
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="mt-1 text-sm text-red-600"
+                  >
+                    {fieldErrors.message}
+                  </motion.p>
                 )}
               </div>
 
               <div className="flex flex-col items-center space-y-4">
-                <button
+                <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-800 transition-all transform hover:scale-105 inline-flex items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  whileHover={{ scale: isSubmitting ? 1 : 1.05 }}
+                  whileTap={{ scale: isSubmitting ? 1 : 0.95 }}
+                  className="bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-800 transition-all inline-flex items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <>
@@ -1386,39 +1708,67 @@ export default function PrismaBrandingPage() {
                       <Send className="w-5 h-5" />
                     </>
                   )}
-                </button>
+                </motion.button>
 
                 {formStatus === 'success' && (
-                  <div className="text-center p-6 rounded-xl bg-gray-50 text-gray-900 border-2 border-gray-900 w-full max-w-md">
-                    <div className="flex items-center justify-center mb-3">
+                  <motion.div
+                    initial={{opacity: 0, scale: 0.95}}
+                    animate={{opacity: 1, scale: 1}}
+                    transition={{ type: "spring", bounce: 0.4 }}
+                    className="text-center p-6 rounded-xl bg-gray-50 text-gray-900 border-2 border-gray-900 w-full max-w-md"
+                  >
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: "spring", delay: 0.2 }}
+                      className="flex items-center justify-center mb-3"
+                    >
                       <div className="w-12 h-12 rounded-full bg-gray-900 flex items-center justify-center">
-                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <motion.svg
+                          initial={{ pathLength: 0 }}
+                          animate={{ pathLength: 1 }}
+                          transition={{ duration: 0.5, delay: 0.3 }}
+                          className="w-6 h-6 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
+                        </motion.svg>
                       </div>
-                    </div>
+                    </motion.div>
                     <p className="font-bold text-xl mb-2">¡Mensaje enviado!</p>
                     <p className="text-gray-600">{t.contact.success}</p>
-                  </div>
+                  </motion.div>
                 )}
 
                 {formStatus === 'error' && (
-                  <div className="text-center p-4 rounded-lg bg-red-50 text-red-800 border border-red-200 w-full max-w-md">
+                  <motion.div
+                    initial={{opacity: 0}}
+                    animate={{opacity: 1}}
+                    className="text-center p-4 rounded-lg bg-red-50 text-red-800 border border-red-200 w-full max-w-md"
+                  >
                     <p className="font-semibold">Error al enviar</p>
                     <p className="text-sm">Por favor intenta de nuevo en unos momentos.</p>
-                  </div>
+                  </motion.div>
                 )}
               </div>
             </form>
 
             <div className="mt-12 text-center">
               <p className="text-gray-600 mb-4">{t.contact.calendar}</p>
-              <a href="https://wa.me/34637738054" target="_blank" rel="noopener noreferrer" className="inline-flex items-center space-x-2 text-gray-900 font-semibold hover:text-gray-700 transition-colors">
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                href="https://wa.me/34637738054"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center space-x-2 text-gray-900 font-semibold hover:text-gray-700 transition-colors"
+              >
                 <Phone className="w-5 h-5" />
                 <span>{t.contact.schedule}</span>
-              </a>
+              </motion.a>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -1432,15 +1782,34 @@ export default function PrismaBrandingPage() {
                 {t.footer.description}
               </p>
               <div className="flex items-center space-x-4">
-                <a href="https://instagram.com/prismabranding" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors" aria-label="Síguenos en Instagram">
+                <motion.a
+                  whileHover={{ scale: 1.2, y: -2 }}
+                  href="https://instagram.com/prismabranding"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-gray-300 transition-colors"
+                  aria-label="Síguenos en Instagram"
+                >
                   <Instagram className="w-5 h-5" />
-                </a>
-                <a href="https://www.linkedin.com/company/prismabranding" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors" aria-label="Síguenos en LinkedIn">
+                </motion.a>
+                <motion.a
+                  whileHover={{ scale: 1.2, y: -2 }}
+                  href="https://www.linkedin.com/company/prismabranding"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-gray-300 transition-colors"
+                  aria-label="Síguenos en LinkedIn"
+                >
                   <Linkedin className="w-5 h-5" />
-                </a>
-                <a href="mailto:contact@brandprisma.com" className="hover:text-gray-300 transition-colors" aria-label="Envíanos un email">
+                </motion.a>
+                <motion.a
+                  whileHover={{ scale: 1.2, y: -2 }}
+                  href="mailto:contact@brandprisma.com"
+                  className="hover:text-gray-300 transition-colors"
+                  aria-label="Envíanos un email"
+                >
                   <Mail className="w-5 h-5" />
-                </a>
+                </motion.a>
               </div>
             </div>
 
@@ -1487,15 +1856,19 @@ export default function PrismaBrandingPage() {
       </footer>
 
       {/* WhatsApp Floating Button */}
-      <a
+      <motion.a
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
         href="https://wa.me/34637738054"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all transform hover:scale-110 z-40"
+        className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all z-40"
         aria-label="Contactar por WhatsApp con Prisma Branding"
       >
         <MessageSquare className="w-6 h-6" />
-      </a>
+      </motion.a>
     </div>
   );
 }
