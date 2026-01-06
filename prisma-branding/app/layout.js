@@ -30,6 +30,11 @@ export const metadata = {
   verification: { google: 'tu-codigo-google-search-console' },
   category: 'business',
   classification: 'Business',
+  other: {
+    'geo.region': 'ES-CT',
+    'geo.placename': 'Barcelona',
+    'geo.position': '41.3874;2.1686',
+  }
 }
 
 export default function RootLayout({ children }) {

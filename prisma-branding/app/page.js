@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowRight, Palette, Globe, TrendingUp, Check, Mail, Instagram, Linkedin, ChevronLeft, ChevronRight, Target, Users, Lightbulb, Rocket, Camera, Package, Newspaper, FileText, MessageSquare, Phone, Calendar, ChevronDown, Plus, Minus, Send } from 'lucide-react';
+import { Menu, X, ArrowRight, Palette, Globe, Check, Mail, Instagram, Linkedin, Target, Users, Lightbulb, Rocket, Camera, Package, Newspaper, FileText, MessageSquare, Phone, Calendar, ChevronDown, Plus, Minus, Send, ExternalLink } from 'lucide-react';
 
 // Schema JSON-LD para SEO
 const organizationSchema = {
@@ -101,138 +101,145 @@ const t = {
     about: "Agencia",
     services: "Servicios",
     process: "Metodología",
-    work: "Portfolio",
     team: "Equipo",
+    blog: "Blog",
     contact: "Contacto"
   },
   
   hero: {
-    title: "Agencia de Branding y Diseño Web en Barcelona",
-    subtitle: "Estudio creativo especializado en identidad de marca, diseño web profesional y estrategia digital. Transformamos tu negocio con branding que conecta y convierte.",
+    title: "Agencia de Branding y Desarrollo Web en Barcelona",
+    subtitle: "Estudio creativo especializado en identidad de marca y desarrollo web profesional. Trabajamos con emprendedores y pequeños negocios para crear marcas memorables y páginas web que convierten.",
     cta: "Solicitar Presupuesto",
-    viewWork: "Ver Portfolio"
+    viewWork: "Ver Servicios"
   },
   
   trusted: "Empresas que confían en nuestro branding",
   
   about: {
-    title: "Agencia de Branding en Barcelona con +10 Años de Experiencia",
-    text1: "Prisma Branding es un estudio creativo y agencia digital especializada en Barcelona. Ayudamos a empresas y startups a crecer mediante diseño de marca profesional, desarrollo web y estrategia de marketing digital que genera resultados medibles.",
-    text2: "Nuestra misión es crear identidades de marca auténticas y memorables que conectan emocionalmente con tu audiencia objetivo. Desde el diseño de logotipo hasta la estrategia digital completa, te acompañamos en cada fase para posicionar tu marca en el mercado español y europeo.",
-    projects: "Proyectos Completados",
-    years: "Años de Experiencia",
-    satisfaction: "Clientes Satisfechos"
+    title: "Estudio Creativo en Barcelona con Atención Personalizada",
+    text1: "Prisma Branding es un estudio creativo boutique especializado en branding y desarrollo web. Trabajamos directamente con emprendedores y pequeños negocios para crear identidades de marca profesionales y páginas web que funcionan.",
+    text2: "Como equipo boutique, ofrecemos algo que las agencias grandes no pueden: comunicación directa, decisiones rápidas y precios justos. Cada proyecto recibe atención personalizada desde la estrategia hasta el lanzamiento.",
+    stat1: "2025",
+    stat1Label: "Fundado en Barcelona",
+    stat2: "100%",
+    stat2Label: "Atención Directa",
+    stat3: "<24h",
+    stat3Label: "Tiempo de Respuesta"
   },
   
   services: {
-    title: "Servicios de Branding y Diseño Digital en Barcelona",
-    subtitle: "Soluciones integrales para construir, posicionar y hacer crecer tu marca",
-    cta: "Ver Paquetes y Precios",
+    title: "Servicios de Branding y Desarrollo Web",
+    subtitle: "Soluciones integrales para construir y hacer crecer tu marca",
+    cta: "Ver Paquetes",
     items: [
       {
-        title: "Identidad de Marca Profesional",
-        description: "Diseño completo de identidad visual corporativa: logotipo único, manual de marca, paleta de colores estratégica y sistema tipográfico. Branding que refleja los valores de tu empresa."
+        title: "Identidad de Marca y Branding Corporativo",
+        description: "Diseño completo de identidad visual: logotipo profesional, manual de marca, sistema de colores y tipografías. Creamos marcas memorables que comunican los valores de tu empresa."
       },
       {
         title: "Estrategia de Marca y Posicionamiento",
-        description: "Definición estratégica de tu marca: análisis competitivo, posicionamiento en el mercado, propuesta de valor, naming y mensajería de marca que diferencia tu negocio."
+        description: "Definimos la estrategia completa de tu marca: análisis competitivo, propuesta de valor única, tono de comunicación y posicionamiento en el mercado."
       },
       {
-        title: "Diseño Web y Desarrollo Profesional",
-        description: "Páginas web modernas, responsive y optimizadas para conversión. Diseño UX/UI profesional, desarrollo en WordPress, Shopify o Next.js con SEO técnico incluido."
+        title: "Desarrollo Web Profesional con Next.js",
+        description: "Desarrollo de páginas web modernas y rápidas con Next.js y React. Diseño responsive, optimización de rendimiento y SEO técnico incluido."
       },
       {
-        title: "Marketing Digital y Redes Sociales",
-        description: "Estrategia digital 360°: gestión de redes sociales, creación de contenido visual, campañas publicitarias en Meta Ads y Google Ads. Aumentamos tu visibilidad online."
+        title: "Tiendas Online y E-commerce con Shopify",
+        description: "Creación de tiendas online profesionales con Shopify. Diseño personalizado, integración de pagos y envíos, optimización para conversión."
       },
       {
-        title: "Fotografía de Producto y Video Marketing",
-        description: "Producción audiovisual profesional para e-commerce, redes sociales y campañas publicitarias. Fotografía de producto, sesiones corporativas y videos promocionales en Barcelona."
+        title: "Diseño UX/UI y Optimización Web",
+        description: "Diseño de experiencia de usuario enfocado en conversión. Interfaces intuitivas, arquitectura de información estratégica y diseño responsive profesional."
       },
       {
-        title: "Diseño de Packaging y Etiquetas",
-        description: "Packaging atractivo y funcional que destaca en el punto de venta. Diseño de etiquetas, cajas y envases personalizados para productos retail, alimentación y cosmética."
+        title: "SEO Técnico y Marketing Digital",
+        description: "Optimización SEO completa: auditoría técnica, estructura de sitio, velocidad de carga y contenido optimizado para aumentar visibilidad orgánica."
       },
       {
         title: "Diseño Gráfico y Material Corporativo",
-        description: "Papelería corporativa completa: tarjetas de visita, catálogos de producto, folletos comerciales, presentaciones corporativas y todo el material gráfico para tu empresa."
+        description: "Papelería corporativa, presentaciones empresariales, catálogos de productos y material gráfico profesional consistente con tu identidad de marca."
       },
       {
-        title: "Consultoría de Branding y Rebranding",
-        description: "Asesoramiento estratégico para evolucionar tu marca: rebranding, auditoría de marca, estrategias de crecimiento y expansión a nuevos mercados. Consultores expertos en Barcelona."
+        title: "Consultoría y Mantenimiento Web",
+        description: "Asesoramiento estratégico para proyectos digitales y mantenimiento mensual de páginas web. Actualizaciones, backups y soporte técnico."
       }
     ]
   },
   
   industries: {
-    title: "Sectores y Empresas con las que Trabajamos",
-    subtitle: "Experiencia en branding para múltiples industrias en España y Latinoamérica",
+    title: "Sectores con los que Trabajamos",
+    subtitle: "Experiencia desarrollando marcas y webs para diversos negocios",
     items: [
-      "Restaurantes y Hostelería en Barcelona",
-      "E-commerce y Tiendas Online",
-      "Startups Tecnológicas y SaaS",
-      "Clínicas de Salud y Bienestar",
-      "Marcas de Moda y Cosmética",
-      "Sector Inmobiliario y Construcción"
+      "Startups y Emprendedores en Fase de Lanzamiento",
+      "Profesionales Independientes y Consultores",
+      "Negocios Locales y Comercios en Barcelona",
+      "E-commerce y Marcas Online Emergentes",
+      "Empresas de Servicios Profesionales",
+      "Consultorios y Profesionales de la Salud"
     ]
   },
   
   process: {
-    title: "Nuestra Metodología de Trabajo en Branding",
-    subtitle: "Proceso probado en más de 200 proyectos de branding exitosos",
+    title: "Nuestra Metodología de Trabajo",
+    subtitle: "Proceso probado para proyectos de branding y desarrollo web exitosos",
     steps: [
       {
-        title: "Discovery: Investigación y Análisis de Marca",
-        description: "Analizamos en profundidad tu negocio, competencia, mercado objetivo y audiencia. Identificamos oportunidades de diferenciación y establecemos los objetivos estratégicos del proyecto de branding."
+        title: "Consulta Inicial y Análisis",
+        description: "Iniciamos con una reunión para entender tu negocio, objetivos y audiencia. Analizamos tu mercado y competencia para crear una estrategia efectiva."
       },
       {
-        title: "Estrategia: Posicionamiento y Concepto Creativo",
-        description: "Desarrollamos la estrategia de marca completa: propuesta de valor única, posicionamiento competitivo, tono de comunicación, personalidad de marca y dirección creativa visual."
+        title: "Estrategia: Propuesta y Planificación",
+        description: "Desarrollamos una propuesta detallada que incluye alcance del proyecto, estrategia creativa, entregables específicos, cronograma realista y presupuesto fijo."
       },
       {
-        title: "Diseño: Creación de Identidad Visual",
-        description: "Nuestro equipo creativo diseña todos los elementos visuales: logotipo, paleta cromática, tipografías, aplicaciones de marca y guidelines. Diseño profesional con múltiples revisiones incluidas."
+        title: "Diseño y Desarrollo: Ejecución",
+        description: "Nuestro equipo trabaja en tu proyecto con actualizaciones constantes y comunicación fluida. Incluye rondas de revisión en cada fase."
       },
       {
-        title: "Lanzamiento: Implementación y Soporte",
-        description: "Lanzamos tu nueva marca al mercado con un plan de comunicación estratégico. Proporcionamos soporte continuo, formación al equipo y acompañamiento en las primeras campañas de marketing."
+        title: "Lanzamiento: Entrega y Soporte",
+        description: "Lanzamos tu marca o web con un plan de implementación completo. Incluye capacitación personalizada, documentación técnica y 30-60 días de soporte."
       }
     ]
   },
   
   pricing: {
-    title: "Precios de Branding y Diseño Web",
-    subtitle: "Paquetes adaptados a cada fase de tu empresa",
+    title: "Paquetes de Branding y Desarrollo Web",
+    subtitle: "Soluciones profesionales adaptadas a cada fase de tu negocio",
     
     starter: {
       name: "Starter",
       price: "799€",
-      description: "Presencia profesional rápida y moderna",
+      description: "Landing page profesional para validar tu negocio",
       features: [
-        "Landing Page (1 página)",
-        "Diseño responsive",
-        "Formulario de contacto",
-        "Google Maps integrado",
-        "Optimización ligera de velocidad",
-        "1 ronda de revisión",
-        "Entrega en 1-2 semanas"
+        "1 página responsive diseñada a medida",
+        "Diseño moderno y profesional",
+        "Formulario de contacto integrado",
+        "Optimización SEO básica",
+        "Google Analytics configurado",
+        "Hosting incluido primer año",
+        "1 ronda de revisiones",
+        "Soporte 30 días",
+        "Entrega en 7-10 días"
       ]
     },
     
     growth: {
       name: "Growth",
-      price: "1.500€",
-      description: "Web + identidad visual para negocios en expansión",
+      price: "1.800€",
+      description: "Web completa + identidad visual para negocios en crecimiento",
       features: [
-        "Todo del Plan Starter",
-        "Logotipo (2 propuestas)",
+        "Todo del plan anterior",
+        "Hasta 5 páginas estratégicas",
+        "Diseño de logotipo profesional",
         "Paleta de colores y tipografías",
-        "Tarjetas digitales",
-        "Sitio web hasta 3 páginas",
-        "Redes sociales integradas",
-        "SEO On-Page básico",
-        "Google Analytics",
-        "Entrega en 2-3 semanas"
+        "Tarjetas digitales de presentación",
+        "Blog opcional integrado",
+        "SEO on-page completo",
+        "Formularios avanzados",
+        "2 rondas de revisiones",
+        "Capacitación de uso",
+        "Entrega en 3-4 semanas"
       ],
       popular: true
     },
@@ -240,38 +247,40 @@ const t = {
     professional: {
       name: "Professional",
       price: "3.500€",
-      description: "Branding completo + web avanzada",
+      description: "Branding completo + desarrollo web avanzado",
       features: [
-        "Todo del Plan Growth",
+        "Todo del plan anterior",
+        "Manual de marca (15-20 páginas)",
         "3 propuestas de logotipo",
-        "Manual de marca (20-30 págs)",
-        "Papelería corporativa",
-        "Iconografía personalizada (6 íconos)",
-        "Web de 5 páginas + blog",
-        "Formularios avanzados",
-        "Email marketing conectado",
-        "3 rondas de revisión",
-        "30 días de soporte",
-        "Entrega en 4-5 semanas"
+        "Papelería digital completa",
+        "Iconografía personalizada",
+        "Web hasta 8 páginas",
+        "Animaciones y microinteracciones",
+        "Optimización Core Web Vitals",
+        "Integración email marketing",
+        "SEO técnico avanzado",
+        "3 rondas de revisiones",
+        "Soporte 30 días",
+        "Entrega en 5-6 semanas"
       ]
     },
     
     premium: {
       name: "Premium",
-      price: "4.900€",
-      description: "Estrategia + branding + web + contenido profesional",
+      price: "4.500€",
+      description: "Tienda online Shopify completa lista para vender",
       features: [
-        "Todo del Plan Professional",
-        "Estrategia de marca 360°",
-        "Manual avanzado (40-50 págs)",
-        "Kit visual completo + señalética",
-        "Web hasta 8 páginas",
-        "UX/UI avanzado con animaciones",
-        "SEO avanzado + panel personalizado",
-        "Fotografía profesional (4 horas)",
-        "Copywriting web completo",
-        "Revisiones ilimitadas",
-        "60 días de soporte",
+        "Identidad de marca incluida",
+        "Tienda Shopify personalizada",
+        "Diseño responsive profesional",
+        "Configuración hasta 50 productos",
+        "Integración pasarelas de pago",
+        "Sistema de envíos configurado",
+        "SEO para e-commerce",
+        "Email marketing automatizado",
+        "Capacitación Shopify completa",
+        "Revisiones durante desarrollo",
+        "Soporte 60 días",
         "Entrega en 6-8 semanas"
       ]
     },
@@ -279,133 +288,123 @@ const t = {
     cta: "Solicitar Presupuesto"
   },
   
-  work: {
-    title: "Portfolio: Proyectos de Branding en Barcelona",
-    subtitle: "Casos de éxito de marcas que transformamos con diseño estratégico",
-    cta: "Ver Caso de Estudio Completo",
-    ctaMain: "Solicita tu Proyecto"
+  portfolio: {
+    badge: "Estudio Emergente",
+    title: "Sé Parte de Nuestro Portfolio",
+    description: "Estamos construyendo nuestro portfolio con primeros clientes en Barcelona. Como estudio emergente, ofrecemos precios especiales para emprendedores y negocios que quieran crecer con nosotros desde el inicio.",
+    stat1: "-30%",
+    stat1Label: "Descuento para primeros clientes",
+    stat2: "100%",
+    stat2Label: "Atención personalizada directa",
+    stat3: "+Fotos",
+    stat3Label: "Caso de estudio profesional",
+    ctaPrimary: "Solicitar Precio Especial",
+    ctaSecondary: "Ver Servicios",
+    disclaimer: "Plazas limitadas • Solo para proyectos iniciados antes de marzo 2025"
   },
   
-  testimonials: {
-    title: "Opiniones de Clientes Sobre Nuestro Servicio de Branding",
-    subtitle: "Testimonios reales de empresas que confiaron en Prisma Branding",
-    cta: "Trabajemos Juntos",
-    items: [
-      {
-        text: "Prisma Branding renovó completamente nuestra identidad visual. El equipo entendió perfectamente nuestra industria tech y creó una marca moderna que triplicó nuestras conversiones en web. Profesionalismo de 10.",
-        author: "María González",
-        role: "CEO, TechStart Barcelona",
-        rating: 5
-      },
-      {
-        text: "Necesitábamos un diseño web que convirtiera visitas en ventas. Prisma no solo diseñó una web espectacular, sino que optimizaron todo para SEO. Ahora estamos en primera página de Google para 'productos ecológicos Barcelona'.",
-        author: "Carlos Rodríguez",
-        role: "Fundador, EcoLife Shop",
-        rating: 5
-      },
-      {
-        text: "Trabajar con Prisma fue una experiencia increíble. Desde el branding hasta la gestión de redes sociales, todo mejoró. Nuestras ventas online aumentaron un 250% en 6 meses. Mejor inversión que hemos hecho.",
-        author: "Ana Martínez",
-        role: "Directora de Marketing, StyleHub",
-        rating: 5
-      }
-    ]
-  },
   
   team: {
-    title: "Equipo de Diseñadores y Estrategas en Barcelona",
-    subtitle: "Profesionales creativos especializados en branding y marketing digital",
+    title: "Nuestro Equipo",
+    subtitle: "Equipo core con red de colaboradores especializados",
     members: [
       {
         name: "Federico Matovelle",
-        role: "Senior Web Developer & Fundador",
-        bio: "Full-stack developer especializado en Next.js, Shopify y WordPress",
-        image: "/federicomatovellepf.jpg"
+        role: "Fundador & Lead Developer",
+        bio: "Full-stack developer especializado en Next.js, React y Shopify. Lidera el desarrollo técnico y la estrategia digital de cada proyecto.",
+        image: "/federicomatovellepf.jpg",
+        type: "core"
       },
       {
-        name: "David Torres",
-        role: "Lead Designer & Brand Strategist",
-        bio: "Especialista en identidad visual corporativa y diseño de logotipos",
-        image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&q=80"
-      },
-      {
-        name: "Sara López",
-        role: "Digital Marketing Manager",
-        bio: "Experta en estrategia digital, SEO y campañas de performance marketing",
-        image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&q=80"
+        title: "Red de Colaboradores",
+        role: "Talento On-Demand",
+        bio: "Red curada de profesionales especializados. Cada proyecto se forma un equipo personalizado según las necesidades específicas del cliente.",
+        icon: "network",
+        type: "network",
+        skills: [
+          "Diseño Gráfico",
+          "Fotografía", 
+          "Copywriting",
+          "Social Media"
+        ]
       }
     ]
   },
   
   faq: {
-    title: "Preguntas Frecuentes sobre Branding y Diseño Web",
-    subtitle: "Resolvemos tus dudas sobre nuestros servicios de branding en Barcelona",
+    title: "Preguntas Frecuentes sobre Desarrollo Web y Branding",
+    subtitle: "Dudas comunes sobre crear una página web o tienda online",
     items: [
       {
-        q: "¿Cuánto tiempo tarda un proyecto completo de branding?",
-        a: "Un proyecto de branding completo (identidad visual + manual de marca) suele tomar entre 4 y 8 semanas. Proyectos más complejos que incluyen diseño web, estrategia digital y material corporativo pueden extenderse hasta 12 semanas. El plazo exacto depende del alcance y las revisiones necesarias."
+        q: "¿Cuánto cuesta hacer una página web en Barcelona?",
+        a: "El precio de una página web depende de la complejidad. Una landing page profesional cuesta desde 799€. Una web completa de 5 páginas con diseño de marca 1.800€. Un proyecto con branding completo y desarrollo web avanzado 3.500€. Una tienda online Shopify 4.500€."
       },
       {
-        q: "¿Incluyen soporte y mantenimiento después del lanzamiento?",
-        a: "Sí, todos nuestros proyectos incluyen 30 días de soporte post-lanzamiento sin coste adicional. Además, ofrecemos paquetes de mantenimiento mensual que incluyen actualizaciones de web, gestión de redes sociales y soporte técnico continuo."
+        q: "¿Cuánto tiempo tarda en desarrollarse una web profesional?",
+        a: "Una landing page se entrega en 7-10 días. Una página web de 5 páginas con branding tarda 3-4 semanas. Proyectos más complejos con branding completo toman 5-6 semanas. Tiendas online pueden requerir 6-8 semanas."
       },
       {
-        q: "¿Trabajan con clientes fuera de Barcelona o España?",
-        a: "Absolutamente. Trabajamos con clientes en toda España, Latinoamérica (especialmente Ecuador, México y Colombia) y Europa. Nuestra metodología de trabajo remoto está optimizada para proyectos internacionales, con comunicación fluida por videollamada y herramientas colaborativas."
+        q: "¿Qué incluye el desarrollo de una página web con vosotros?",
+        a: "Nuestro servicio incluye diseño responsive, desarrollo con código limpio, formularios de contacto, Google Analytics, optimización SEO on-page, hosting primer año y capacitación completa. Entregas el código fuente completo y todos los accesos."
       },
       {
-        q: "¿Qué incluye exactamente un proyecto de diseño web profesional?",
-        a: "Nuestro servicio de diseño web incluye: diseño UX/UI responsive, desarrollo frontend y backend, optimización SEO técnica (on-page), integración de CMS (WordPress, Shopify o custom), formularios de contacto, Google Analytics, velocidad de carga optimizada y capacitación para gestionar contenidos."
+        q: "¿Sois freelance o agencia? ¿Cuántas personas trabajáis?",
+        a: "Somos un estudio creativo boutique. Actualmente el equipo core trabaja directamente en cada proyecto. Esto significa comunicación directa, decisiones rápidas y precios más eficientes que agencias grandes."
       },
       {
-        q: "¿Puedo ver casos de estudio o portfolio de proyectos anteriores?",
-        a: "Por supuesto. En nuestra sección de Portfolio puedes ver proyectos destacados con casos de estudio completos. Si necesitas ver ejemplos específicos de tu industria (hostelería, tech, moda, etc.), contáctanos y te mostraremos casos relevantes y resultados medibles de clientes similares."
+        q: "¿Hacéis tiendas online con Shopify?",
+        a: "Sí, nos especializamos en tiendas online con Shopify. Nuestro paquete e-commerce incluye diseño personalizado, configuración completa de productos, integración de pagos, sistema de envíos y capacitación completa. Precio desde 4.500€."
+      },
+      {
+        q: "¿La web incluye posicionamiento SEO en Google?",
+        a: "Sí, todas nuestras webs incluyen optimización SEO técnica: estructura correcta del sitio, velocidad optimizada, meta tags configurados, URLs amigables y schema markup. Para posicionamiento avanzado con keywords específicas, ofrecemos servicio SEO estratégico adicional."
       }
     ]
   },
   
   blog: {
-    title: "Blog de Branding y Marketing Digital",
-    subtitle: "Artículos, guías y recursos sobre diseño de marca y estrategia digital",
-    cta: "Leer Artículo Completo"
+    title: "Blog de Branding y Desarrollo Web",
+    subtitle: "Artículos sobre diseño, desarrollo y estrategia digital",
+    cta: "Leer en Medium",
+    link: "https://medium.com/@prismabranding"
   },
   
   contact: {
-    title: "Solicita tu Presupuesto de Branding Gratis",
-    subtitle: "¿Listo para transformar tu marca? Agencia de branding en Barcelona con atención personalizada. Respuesta en menos de 24h.",
+    title: "Solicita tu Presupuesto de Branding o Desarrollo Web",
+    subtitle: "¿Listo para crear tu marca o lanzar tu web? Hablemos. Respondemos en menos de 24 horas.",
     name: "Nombre completo",
     email: "Email corporativo",
     phone: "Teléfono (WhatsApp)",
     service: "¿Qué servicio necesitas?",
     message: "Cuéntanos sobre tu proyecto",
-    messagePlaceholder: "Ej: Necesito rediseñar la identidad de mi restaurante en Barcelona. Busco un logotipo moderno, menú digital y presencia en redes sociales...",
-    send: "Solicitar Presupuesto Gratis",
+    messagePlaceholder: "Ej: Necesitamos una identidad de marca completa y página web para nuestra nueva clínica dental en Barcelona. Buscamos un diseño moderno que transmita confianza...",
+    send: "Enviar Solicitud",
     services: {
       branding: "Identidad de Marca Completa",
-      web: "Diseño y Desarrollo Web",
-      strategy: "Estrategia Digital y Marketing",
-      photography: "Fotografía y Video Profesional",
+      web: "Desarrollo Web Profesional",
+      ecommerce: "Tienda Online (Shopify)",
+      strategy: "Estrategia Digital y SEO",
       consulting: "Consultoría de Branding",
       notSure: "No estoy seguro / Asesoramiento"
     },
-    success: "¡Gracias! Tu solicitud ha sido recibida. Nuestro equipo te contactará en menos de 24 horas laborables.",
+    success: "¡Gracias! Hemos recibido tu solicitud. Nuestro equipo te contactará en menos de 24 horas laborables.",
     schedule: "Agendar Videollamada",
-    calendar: "¿Prefieres una reunión por videollamada? Reserva tu slot aquí"
+    calendar: "¿Prefieres hablar directamente? Contáctanos por WhatsApp"
   },
   
   footer: {
-    description: "Agencia de branding y diseño web en Barcelona. Especializados en transformar empresas mediante identidad de marca profesional y estrategia digital.",
+    description: "Estudio creativo en Barcelona especializado en branding y desarrollo web para emprendedores y pequeños negocios. Creamos marcas memorables y páginas web que convierten.",
     services: "Servicios de Branding",
-    company: "La Agencia",
+    company: "El Estudio",
     aboutUs: "Sobre Nosotros",
-    ourWork: "Portfolio de Proyectos",
-    team: "Equipo Creativo",
-    blog: "Blog y Recursos",
+    ourWork: "Nuestro Trabajo",
+    team: "Equipo",
+    blog: "Blog",
     contact: "Contacto",
     location: "Barcelona, Cataluña, España",
     rights: "Todos los derechos reservados.",
-    privacy: "Política de Privacidad",
-    terms: "Términos y Condiciones"
+    privacy: "Aviso Legal",
+    terms: "Política de Privacidad"
   }
 };
 
@@ -441,57 +440,6 @@ function useScrollAnimation() {
   return [ref, isVisible];
 }
 
-// Componente para contador animado
-function AnimatedCounter({ end, duration = 2 }) {
-  const [count, setCount] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
-          
-          let startTime;
-          let animationFrame;
-
-          const animate = (currentTime) => {
-            if (!startTime) startTime = currentTime;
-            const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
-            
-            setCount(Math.floor(progress * end));
-            
-            if (progress < 1) {
-              animationFrame = requestAnimationFrame(animate);
-            }
-          };
-
-          animationFrame = requestAnimationFrame(animate);
-          
-          return () => {
-            if (animationFrame) {
-              cancelAnimationFrame(animationFrame);
-            }
-          };
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
-  }, [end, duration, hasAnimated]);
-
-  return <span ref={ref}>{count}</span>;
-}
 
 // Componente ScrollReveal optimizado (solo opacity + scale, muy ligero)
 function ScrollReveal({ children, delay = 0, className = "" }) {
@@ -515,7 +463,6 @@ function ScrollReveal({ children, delay = 0, className = "" }) {
 export default function PrismaBrandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [expandedFaq, setExpandedFaq] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
@@ -528,59 +475,34 @@ export default function PrismaBrandingPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [fieldErrors, setFieldErrors] = useState({});
 
-  // Proyectos destacados con imágenes de Unsplash
-  const projects = [
-    {
-      title: "Café Artisan",
-      category: "Branding & Packaging",
-      image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80",
-      color: "from-amber-500 to-orange-600"
-    },
-    {
-      title: "TechFlow",
-      category: "Web Design & Development",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-      color: "from-blue-500 to-purple-600"
-    },
-    {
-      title: "EcoStyle",
-      category: "Brand Strategy & Identity",
-      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
-      color: "from-green-500 to-teal-600"
-    },
-    {
-      title: "Urban Eats",
-      category: "Digital Strategy",
-      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
-      color: "from-red-500 to-pink-600"
-    }
-  ];
-
-  // Blog posts con imágenes de Unsplash
+  // Blog posts con slugs para Medium
   const blogPosts = [
     {
       title: "10 Tendencias de Branding para 2025",
       date: "15 Ene 2025",
       image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80",
-      excerpt: "Descubre las tendencias que definirán el diseño de marcas este año."
+      excerpt: "Descubre las tendencias que definirán el diseño de marcas este año.",
+      slug: "10-tendencias-branding-2025"
     },
     {
       title: "Cómo Crear una Identidad Visual Memorable",
       date: "8 Ene 2025",
       image: "https://images.unsplash.com/photo-1558655146-364adaf1fcc9?w=600&q=80",
-      excerpt: "Guía completa para desarrollar una identidad que destaque."
+      excerpt: "Guía completa para desarrollar una identidad que destaque.",
+      slug: "crear-identidad-visual-memorable"
     },
     {
       title: "El Poder del Storytelling en el Branding",
       date: "2 Ene 2025",
       image: "https://images.unsplash.com/photo-1542435503-956c469947f6?w=600&q=80",
-      excerpt: "Por qué contar historias auténticas impulsa la conexión con tu audiencia."
+      excerpt: "Por qué contar historias auténticas impulsa la conexión con tu audiencia.",
+      slug: "storytelling-branding"
     }
   ];
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'services', 'process', 'work', 'team', 'contact'];
+      const sections = ['home', 'about', 'services', 'process', 'work', 'team', 'blog', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -597,15 +519,6 @@ export default function PrismaBrandingPage() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => 
-        prev === t.testimonials.items.length - 1 ? 0 : prev + 1
-      );
-    }, 5000);
-    return () => clearInterval(interval);
   }, []);
 
   const scrollToSection = (sectionId) => {
@@ -836,7 +749,7 @@ export default function PrismaBrandingPage() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => scrollToSection('work')}
+              onClick={() => scrollToSection('services')}
               className="border-2 border-gray-900 text-gray-900 px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-900 hover:text-white transition-all"
             >
               {t.hero.viewWork}
@@ -862,21 +775,21 @@ export default function PrismaBrandingPage() {
               <div className="grid grid-cols-3 gap-6">
                 <div>
                   <div className="text-4xl font-bold text-gray-900 mb-2">
-                    <AnimatedCounter end={200} />+
+                    {t.about.stat1}
                   </div>
-                  <div className="text-gray-600">{t.about.projects}</div>
+                  <div className="text-gray-600">{t.about.stat1Label}</div>
                 </div>
                 <div>
                   <div className="text-4xl font-bold text-gray-900 mb-2">
-                    <AnimatedCounter end={10} />+
+                    {t.about.stat2}
                   </div>
-                  <div className="text-gray-600">{t.about.years}</div>
+                  <div className="text-gray-600">{t.about.stat2Label}</div>
                 </div>
                 <div>
                   <div className="text-4xl font-bold text-gray-900 mb-2">
-                    <AnimatedCounter end={98} />%
+                    {t.about.stat3}
                   </div>
-                  <div className="text-gray-600">{t.about.satisfaction}</div>
+                  <div className="text-gray-600">{t.about.stat3Label}</div>
                 </div>
               </div>
             </ScrollReveal>
@@ -1051,13 +964,13 @@ export default function PrismaBrandingPage() {
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-[1400px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-[1400px] mx-auto items-stretch">
             {/* Starter Plan */}
             <ScrollReveal delay={0}>
               <motion.div
                 whileHover={{ y: -5, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)" }}
                 transition={{ duration: 0.3 }}
-                className="bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-gray-400 transition-all flex flex-col"
+                className="bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-gray-400 transition-all flex flex-col h-full"
               >
                 <h3 className="text-xl font-bold text-gray-900 mb-1.5">
                   {t.pricing.starter.name}
@@ -1092,7 +1005,7 @@ export default function PrismaBrandingPage() {
               <motion.div
                 whileHover={{ y: -5, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)" }}
                 transition={{ duration: 0.3 }}
-                className="bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-gray-400 transition-all flex flex-col"
+                className="bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-gray-400 transition-all flex flex-col h-full"
               >
                 <h3 className="text-xl font-bold text-gray-900 mb-1.5">
                   {t.pricing.growth.name}
@@ -1127,7 +1040,7 @@ export default function PrismaBrandingPage() {
               <motion.div
                 whileHover={{ y: -8, boxShadow: "0 25px 30px -5px rgba(0, 0, 0, 0.2)" }}
                 transition={{ duration: 0.3 }}
-                className="bg-gradient-to-br from-gray-900 to-gray-800 text-white p-6 rounded-xl relative shadow-2xl border-2 border-gray-900 flex flex-col transform lg:scale-105"
+                className="bg-gradient-to-br from-gray-900 to-gray-800 text-white p-6 rounded-xl relative shadow-2xl border-2 border-gray-900 flex flex-col h-full"
               >
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-1 rounded-full text-xs font-bold whitespace-nowrap shadow-lg">
                   Más Popular
@@ -1165,10 +1078,10 @@ export default function PrismaBrandingPage() {
               <motion.div
                 whileHover={{ y: -5, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)" }}
                 transition={{ duration: 0.3 }}
-                className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl border-2 border-purple-200 hover:border-purple-400 transition-all flex flex-col"
+                className="bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-xl border-2 border-gray-300 hover:border-gray-500 transition-all flex flex-col h-full"
               >
                 <div className="flex items-center space-x-2 mb-1.5">
-                  <Rocket className="w-5 h-5 text-purple-600" />
+                  <Rocket className="w-5 h-5 text-gray-900" />
                   <h3 className="text-xl font-bold text-gray-900">
                     {t.pricing.premium.name}
                   </h3>
@@ -1182,7 +1095,7 @@ export default function PrismaBrandingPage() {
                 <ul className="space-y-2 mb-6 flex-grow">
                   {t.pricing.premium.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start space-x-2.5">
-                      <Check className="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" />
+                      <Check className="w-4 h-4 text-gray-900 flex-shrink-0 mt-0.5" />
                       <span className="text-gray-700 text-sm leading-snug">{feature}</span>
                     </li>
                   ))}
@@ -1191,7 +1104,7 @@ export default function PrismaBrandingPage() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => scrollToSection('contact')}
-                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-full text-sm font-semibold hover:from-purple-700 hover:to-pink-700 transition-all"
+                  className="w-full bg-gray-900 text-white py-3 rounded-full text-sm font-semibold hover:bg-gray-800 transition-all"
                 >
                   {t.pricing.cta}
                 </motion.button>
@@ -1202,167 +1115,63 @@ export default function PrismaBrandingPage() {
       </section>
 
       {/* Work/Portfolio Section */}
+      {/* Portfolio en Construcción Section */}
       <section id="work" className="py-24 px-6 bg-gray-50">
-        <div className="max-w-7xl mx-auto w-full">
-          <ScrollReveal>
-            <div className="text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-                {t.work.title}
-              </h2>
-              <p className="text-lg sm:text-xl text-gray-600 leading-normal">
-                {t.work.subtitle}
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
-              <ScrollReveal key={index} delay={index * 0.1}>
-                <motion.div
-                  whileHover={{ y: -10 }}
-                  transition={{ duration: 0.3 }}
-                  className="group relative overflow-hidden rounded-2xl cursor-pointer"
-                >
-                  <div className="aspect-[4/3] overflow-hidden">
-                    <motion.img
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.6 }}
-                      src={project.image}
-                      alt={`Caso de éxito de branding: ${project.title} - ${project.category} realizado por Prisma Branding en Barcelona`}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 0.9 }}
-                    transition={{ duration: 0.3 }}
-                    className={`absolute inset-0 bg-gradient-to-t ${project.color} flex items-end p-8`}
-                  >
-                    <div className="text-white">
-                      <h3 className="text-3xl font-bold mb-2">{project.title}</h3>
-                      <p className="text-lg mb-4">{project.category}</p>
-                      <button className="inline-flex items-center space-x-2 text-white font-medium">
-                        <span>{t.work.cta}</span>
-                        <ArrowRight className="w-5 h-5" />
-                      </button>
-                    </div>
-                  </motion.div>
-                </motion.div>
-              </ScrollReveal>
-            ))}
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="inline-block px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium mb-6">
+            {t.portfolio.badge}
           </div>
-
-          <ScrollReveal delay={0.3}>
-            <div className="text-center mt-16">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => scrollToSection('contact')}
-                className="bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-800 transition-all inline-flex items-center space-x-2"
-              >
-                <span>{t.work.ctaMain}</span>
-                <ArrowRight className="w-5 h-5" />
-              </motion.button>
+          
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+            {t.portfolio.title}
+          </h2>
+          
+          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+            {t.portfolio.description}
+          </p>
+          
+          <div className="grid md:grid-cols-3 gap-6 mb-10 max-w-3xl mx-auto">
+            <div className="bg-white p-6 rounded-xl shadow-sm">
+              <div className="text-3xl font-bold text-gray-900 mb-2">{t.portfolio.stat1}</div>
+              <div className="text-sm text-gray-600">{t.portfolio.stat1Label}</div>
             </div>
-          </ScrollReveal>
+            
+            <div className="bg-white p-6 rounded-xl shadow-sm">
+              <div className="text-3xl font-bold text-gray-900 mb-2">{t.portfolio.stat2}</div>
+              <div className="text-sm text-gray-600">{t.portfolio.stat2Label}</div>
+            </div>
+            
+            <div className="bg-white p-6 rounded-xl shadow-sm">
+              <div className="text-3xl font-bold text-gray-900 mb-2">{t.portfolio.stat3}</div>
+              <div className="text-sm text-gray-600">{t.portfolio.stat3Label}</div>
+            </div>
+          </div>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="#contact"
+              className="inline-block px-8 py-4 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 transition-colors shadow-lg hover:shadow-xl"
+            >
+              {t.portfolio.ctaPrimary}
+            </a>
+            
+            <a
+              href="#services"
+              className="inline-block px-8 py-4 bg-white text-gray-900 border-2 border-gray-900 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+            >
+              {t.portfolio.ctaSecondary}
+            </a>
+          </div>
+          
+          <p className="text-sm text-gray-500 mt-8">
+            {t.portfolio.disclaimer}
+          </p>
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-16 sm:py-24 px-6">
-        <div className="max-w-4xl mx-auto">
-          <ScrollReveal>
-            <div className="text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-                {t.testimonials.title}
-              </h2>
-              <p className="text-lg sm:text-xl text-gray-600 leading-normal">
-                {t.testimonials.subtitle}
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="relative">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentTestimonial}
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.5 }}
-                className="bg-white p-12 rounded-2xl shadow-xl"
-              >
-                <div className="flex justify-center mb-6">
-                  {[...Array(t.testimonials.items[currentTestimonial].rating)].map((_, i) => (
-                    <TrendingUp key={i} className="w-6 h-6 text-yellow-400" />
-                  ))}
-                </div>
-                <p className="text-2xl text-gray-700 mb-8 text-center italic">
-                  "{t.testimonials.items[currentTestimonial].text}"
-                </p>
-                <div className="text-center">
-                  <div className="font-bold text-gray-900 text-lg">
-                    {t.testimonials.items[currentTestimonial].author}
-                  </div>
-                  <div className="text-gray-600">
-                    {t.testimonials.items[currentTestimonial].role}
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            <div className="flex justify-center mt-8 space-x-2">
-              {t.testimonials.items.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    currentTestimonial === index ? 'bg-gray-900 w-8' : 'bg-gray-300'
-                  }`}
-                  aria-label={`Ver testimonio ${index + 1}`}
-                />
-              ))}
-            </div>
-
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setCurrentTestimonial(currentTestimonial === 0 ? t.testimonials.items.length - 1 : currentTestimonial - 1)}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all"
-              aria-label="Testimonio anterior"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </motion.button>
-
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setCurrentTestimonial(currentTestimonial === t.testimonials.items.length - 1 ? 0 : currentTestimonial + 1)}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all"
-              aria-label="Siguiente testimonio"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </motion.button>
-          </div>
-
-          <ScrollReveal delay={0.3}>
-            <div className="text-center mt-16">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => scrollToSection('contact')}
-                className="bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-800 transition-all inline-flex items-center space-x-2"
-              >
-                <span>{t.testimonials.cta}</span>
-                <ArrowRight className="w-5 h-5" />
-              </motion.button>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
 
       {/* Team Section */}
-      <section id="team" className="py-24 px-6 bg-gray-50">
+      <section id="team" className="py-24 px-6 bg-white">
         <div className="max-w-7xl mx-auto w-full">
           <ScrollReveal>
             <div className="text-center mb-16">
@@ -1375,31 +1184,65 @@ export default function PrismaBrandingPage() {
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {t.team.members.map((member, index) => (
               <ScrollReveal key={index} delay={index * 0.1}>
-                <motion.div
-                  whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)" }}
-                  transition={{ duration: 0.3 }}
-                  className="bg-white rounded-2xl overflow-hidden transition-all group"
-                >
-                  <div className="aspect-square overflow-hidden">
-                    <motion.img
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.4 }}
-                      src={member.image}
-                      alt={`${member.name} - ${member.role} en Prisma Branding Barcelona`}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-1">
-                      {member.name}
-                    </h3>
-                    <div className="text-gray-600 mb-3">{member.role}</div>
-                    <p className="text-sm text-gray-500">{member.bio}</p>
-                  </div>
-                </motion.div>
+                {member.type === 'core' ? (
+                  // Card de miembro core (con foto)
+                  <motion.div
+                    whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)" }}
+                    transition={{ duration: 0.3 }}
+                    className="bg-white rounded-2xl overflow-hidden transition-all group"
+                  >
+                    <div className="aspect-square overflow-hidden">
+                      <motion.img
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.4 }}
+                        src={member.image}
+                        alt={`${member.name} - ${member.role} en Prisma Branding Barcelona`}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-gray-900 mb-1">
+                        {member.name}
+                      </h3>
+                      <div className="text-gray-600 mb-3">{member.role}</div>
+                      <p className="text-sm text-gray-500">{member.bio}</p>
+                    </div>
+                  </motion.div>
+                ) : (
+                  // Card de red de colaboradores (con imagen de equipo)
+                  <motion.div
+                    whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)" }}
+                    transition={{ duration: 0.3 }}
+                    className="bg-white rounded-2xl overflow-hidden transition-all group"
+                  >
+                    <div className="aspect-square overflow-hidden">
+                      <motion.img
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.4 }}
+                        src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80"
+                        alt="Red de colaboradores especializados - Prisma Branding"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-gray-900 mb-1">
+                        {member.title}
+                      </h3>
+                      <div className="text-gray-600 mb-3">{member.role}</div>
+                      <p className="text-sm text-gray-500 mb-4">{member.bio}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {member.skills.map((skill, idx) => (
+                          <span key={idx} className="text-xs bg-gray-100 px-3 py-1 rounded-full text-gray-700">
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
               </ScrollReveal>
             ))}
           </div>
@@ -1407,7 +1250,7 @@ export default function PrismaBrandingPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 sm:py-24 px-6">
+      <section id="faq" className="py-16 sm:py-24 px-6 bg-gray-50">
         <div className="max-w-4xl mx-auto">
           <ScrollReveal>
             <div className="text-center mb-16">
@@ -1468,8 +1311,8 @@ export default function PrismaBrandingPage() {
         </div>
       </section>
 
-      {/* Blog Section */}
-      <section className="py-24 px-6 bg-gray-50">
+      {/* Blog Section - CON LINKS A MEDIUM */}
+      <section id="blog" className="py-24 px-6 bg-white">
         <div className="max-w-7xl mx-auto w-full">
           <ScrollReveal>
             <div className="text-center mb-16">
@@ -1485,10 +1328,13 @@ export default function PrismaBrandingPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {blogPosts.map((post, index) => (
               <ScrollReveal key={index} delay={index * 0.1}>
-                <motion.article
+                <motion.a
+                  href={`${t.blog.link}/${post.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)" }}
                   transition={{ duration: 0.3 }}
-                  className="bg-white rounded-2xl overflow-hidden transition-all group cursor-pointer"
+                  className="bg-white rounded-2xl overflow-hidden transition-all group cursor-pointer block"
                 >
                   <div className="aspect-video overflow-hidden">
                     <motion.img
@@ -1505,12 +1351,12 @@ export default function PrismaBrandingPage() {
                       {post.title}
                     </h3>
                     <p className="text-gray-600 mb-4">{post.excerpt}</p>
-                    <button className="inline-flex items-center space-x-2 text-gray-900 font-medium group-hover:space-x-3 transition-all">
+                    <span className="inline-flex items-center space-x-2 text-gray-900 font-medium group-hover:space-x-3 transition-all">
                       <span>{t.blog.cta}</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
+                      <ExternalLink className="w-4 h-4" />
+                    </span>
                   </div>
-                </motion.article>
+                </motion.a>
               </ScrollReveal>
             ))}
           </div>
@@ -1829,7 +1675,7 @@ export default function PrismaBrandingPage() {
                 <li><button onClick={() => scrollToSection('about')} className="hover:text-white transition-colors">{t.footer.aboutUs}</button></li>
                 <li><button onClick={() => scrollToSection('work')} className="hover:text-white transition-colors">{t.footer.ourWork}</button></li>
                 <li><button onClick={() => scrollToSection('team')} className="hover:text-white transition-colors">{t.footer.team}</button></li>
-                <li><a href="#" className="hover:text-white transition-colors">{t.footer.blog}</a></li>
+                <li><a href={t.blog.mediumUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">{t.footer.blog}</a></li>
               </ul>
             </div>
 
