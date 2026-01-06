@@ -217,7 +217,7 @@ const t = {
         "Formulario de contacto integrado",
         "Optimización SEO básica",
         "Google Analytics configurado",
-        "Hosting incluido primer año",
+        "Performance optimizada basica Core Web Vitals",
         "1 ronda de revisiones",
         "Soporte 30 días",
         "Entrega en 7-10 días"
@@ -236,9 +236,9 @@ const t = {
         "Tarjetas digitales de presentación",
         "Blog opcional integrado",
         "SEO on-page completo",
+        "Performance optimizada Core Web Vitals",
         "Formularios avanzados",
         "2 rondas de revisiones",
-        "Capacitación de uso",
         "Entrega en 3-4 semanas"
       ],
       popular: true
@@ -255,8 +255,7 @@ const t = {
         "Papelería digital completa",
         "Iconografía personalizada",
         "Web hasta 8 páginas",
-        "Animaciones y microinteracciones",
-        "Optimización Core Web Vitals",
+        "Performance avanzada Core Web Vitals",
         "Integración email marketing",
         "SEO técnico avanzado",
         "3 rondas de revisiones",
@@ -279,7 +278,7 @@ const t = {
         "SEO para e-commerce",
         "Email marketing automatizado",
         "Capacitación Shopify completa",
-        "Revisiones durante desarrollo",
+        "1 ronda de revisiones por fase",
         "Soporte 60 días",
         "Entrega en 6-8 semanas"
       ]
