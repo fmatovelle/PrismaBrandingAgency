@@ -300,7 +300,7 @@ const t = {
     stat3Label: "Caso de estudio profesional",
     ctaPrimary: "Solicitar Precio Especial",
     ctaSecondary: "Ver Servicios",
-    disclaimer: "Plazas limitadas • Solo para proyectos iniciados antes de marzo 2025"
+    disclaimer: "Cupos mensuales limitados • Aceptamos un número reducido de proyectos por mes"
   },
   
   
