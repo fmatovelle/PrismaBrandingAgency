@@ -217,7 +217,7 @@ const t = {
         "Formulario de contacto integrado",
         "Optimización SEO básica",
         "Google Analytics configurado",
-        "Performance optimizada basica Core Web Vitals",
+        "Hosting incluido primer año",
         "1 ronda de revisiones",
         "Soporte 30 días",
         "Entrega en 7-10 días"
@@ -236,9 +236,9 @@ const t = {
         "Tarjetas digitales de presentación",
         "Blog opcional integrado",
         "SEO on-page completo",
-        "Performance optimizada Core Web Vitals",
         "Formularios avanzados",
         "2 rondas de revisiones",
+        "Capacitación de uso",
         "Entrega en 3-4 semanas"
       ],
       popular: true
@@ -255,7 +255,8 @@ const t = {
         "Papelería digital completa",
         "Iconografía personalizada",
         "Web hasta 8 páginas",
-        "Performance avanzada Core Web Vitals",
+        "Animaciones y microinteracciones",
+        "Optimización Core Web Vitals",
         "Integración email marketing",
         "SEO técnico avanzado",
         "3 rondas de revisiones",
@@ -278,7 +279,7 @@ const t = {
         "SEO para e-commerce",
         "Email marketing automatizado",
         "Capacitación Shopify completa",
-        "1 ronda de revisiones por fase",
+        "Revisiones durante desarrollo",
         "Soporte 60 días",
         "Entrega en 6-8 semanas"
       ]
@@ -402,8 +403,8 @@ const t = {
     contact: "Contacto",
     location: "Barcelona, Cataluña, España",
     rights: "Todos los derechos reservados.",
-    privacy: "Aviso Legal",
-    terms: "Política de Privacidad"
+    terms: "Aviso Legal",
+    privacy: "Política de Privacidad"
   }
 };
 
@@ -1647,14 +1648,17 @@ export default function PrismaBrandingPage() {
                 >
                   <Linkedin className="w-5 h-5" />
                 </motion.a>
-                <motion.a
-                  whileHover={{ scale: 1.2, y: -2 }}
+                <a
                   href="mailto:contact@brandprisma.com"
-                  className="hover:text-gray-300 transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.open('mailto:contact@brandprisma.com', '_self');
+                  }}
+                  className="hover:text-gray-300 transition-all inline-block hover:scale-110 hover:-translate-y-0.5"
                   aria-label="Envíanos un email"
                 >
                   <Mail className="w-5 h-5" />
-                </motion.a>
+                </a>
               </div>
             </div>
 
@@ -1682,7 +1686,18 @@ export default function PrismaBrandingPage() {
               <h3 className="font-semibold mb-4">{t.footer.contact}</h3>
               <ul className="space-y-2 text-gray-400">
                 <li>{t.footer.location}</li>
-                <li>contact@brandprisma.com</li>
+                <li>
+                  <a 
+                    href="mailto:contact@brandprisma.com"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.open('mailto:contact@brandprisma.com', '_self');
+                    }}
+                    className="hover:text-white transition-colors cursor-pointer"
+                  >
+                    contact@brandprisma.com
+                  </a>
+                </li>
                 <li>+34 637 73 80 54</li>
               </ul>
             </div>
@@ -1693,8 +1708,8 @@ export default function PrismaBrandingPage() {
               © 2025 Prisma Branding — Barcelona. {t.footer.rights}
             </p>
             <div className="flex items-center space-x-6 text-sm text-gray-400">
-              <a href="#" className="hover:text-white transition-colors">{t.footer.privacy}</a>
               <a href="#" className="hover:text-white transition-colors">{t.footer.terms}</a>
+              <a href="#" className="hover:text-white transition-colors">{t.footer.privacy}</a>
             </div>
           </div>
         </div>
