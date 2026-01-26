@@ -404,7 +404,8 @@ const t = {
     location: "Barcelona, Cataluña, España",
     rights: "Todos los derechos reservados.",
     terms: "Aviso Legal",
-    privacy: "Política de Privacidad"
+    privacy: "Política de Privacidad",
+    cookies: "Política de Cookies"
   }
 };
 
@@ -462,6 +463,7 @@ function ScrollReveal({ children, delay = 0, className = "" }) {
 
 export default function PrismaBrandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [legalModal, setLegalModal] = useState(null); // 'aviso' | 'privacidad' | 'cookies' | null
   const [activeSection, setActiveSection] = useState('home');
   const [expandedFaq, setExpandedFaq] = useState(null);
   const [formData, setFormData] = useState({
@@ -1708,8 +1710,9 @@ export default function PrismaBrandingPage() {
               © 2025 Prisma Branding — Barcelona. {t.footer.rights}
             </p>
             <div className="flex items-center space-x-6 text-sm text-gray-400">
-              <a href="#" className="hover:text-white transition-colors">{t.footer.terms}</a>
-              <a href="#" className="hover:text-white transition-colors">{t.footer.privacy}</a>
+              <button onClick={() => setLegalModal('aviso')} className="hover:text-white transition-colors">{t.footer.terms}</button>
+              <button onClick={() => setLegalModal('privacidad')} className="hover:text-white transition-colors">{t.footer.privacy}</button>
+              <button onClick={() => setLegalModal('cookies')} className="hover:text-white transition-colors">{t.footer.cookies}</button>
             </div>
           </div>
         </div>
@@ -1729,6 +1732,192 @@ export default function PrismaBrandingPage() {
       >
         <MessageSquare className="w-6 h-6" />
       </motion.a>
+
+      {/* Modal Legal */}
+      {legalModal && (
+        <div 
+          className="fixed inset-0 z-50 overflow-y-auto"
+          onClick={() => setLegalModal(null)}
+        >
+          <div className="fixed inset-0 bg-black bg-opacity-50"></div>
+          <div className="relative min-h-screen flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto z-10"
+            >
+              <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+                <h2 className="text-2xl font-bold text-gray-900">
+                  {legalModal === 'aviso' && 'Aviso Legal'}
+                  {legalModal === 'privacidad' && 'Política de Privacidad'}
+                  {legalModal === 'cookies' && 'Política de Cookies'}
+                </h2>
+                <button
+                  onClick={() => setLegalModal(null)}
+                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              <div className="px-6 py-8">
+                {legalModal === 'aviso' && (
+                  <div className="prose prose-lg max-w-none">
+                    <p className="text-gray-600 mb-6">Última actualización: Enero 2026</p>
+
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">1. Identificación del Responsable</h3>
+                    <p className="text-gray-700 mb-4">
+                      <strong>Responsable:</strong> Federico Matovelle<br />
+                      <strong>Actividad:</strong> Servicios de branding y desarrollo web (actividad en fase de lanzamiento)<br />
+                      <strong>País de residencia:</strong> España<br />
+                      <strong>Contacto:</strong> contact@brandprisma.com<br />
+                      <strong>Teléfono:</strong> +34 637 73 80 54
+                    </p>
+                    <p className="text-gray-700 mb-6">
+                      Este sitio web es operado por una persona física que actualmente desarrolla su actividad profesional 
+                      de forma independiente. No se trata de una empresa constituida formalmente.
+                    </p>
+
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">2. Objeto</h3>
+                    <p className="text-gray-700 mb-6">
+                      Este sitio web tiene como finalidad la presentación de servicios profesionales de diseño de identidad 
+                      de marca y desarrollo web. La información aquí publicada tiene carácter informativo y no vinculante, 
+                      salvo acuerdo expreso entre las partes.
+                    </p>
+
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">3. Condiciones de Uso</h3>
+                    <p className="text-gray-700 mb-6">
+                      El acceso y uso de este sitio web implica la aceptación de estas condiciones de uso. 
+                      El usuario se compromete a utilizar el sitio y sus contenidos de forma lícita y conforme a la legislación vigente.
+                    </p>
+
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">4. Propiedad Intelectual</h3>
+                    <p className="text-gray-700 mb-6">
+                      Todos los contenidos de este sitio web (textos, diseños, imágenes, código) son propiedad 
+                      de Prisma Branding o se utilizan con la licencia correspondiente. Queda prohibida su reproducción, 
+                      distribución o modificación sin autorización expresa.
+                    </p>
+
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">5. Limitación de Responsabilidad</h3>
+                    <p className="text-gray-700 mb-6">
+                      El responsable no se hace responsable de posibles errores u omisiones en la información publicada, 
+                      ni de los daños que pudieran derivarse del uso de la información contenida en este sitio web.
+                    </p>
+
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">6. Legislación Aplicable</h3>
+                    <p className="text-gray-700 mb-6">
+                      Las presentes condiciones se rigen por la legislación española. Para cualquier controversia, 
+                      las partes se someterán a los Juzgados y Tribunales de Barcelona, España.
+                    </p>
+
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">7. Contacto</h3>
+                    <p className="text-gray-700">
+                      Para cualquier duda: <a href="mailto:contact@brandprisma.com" className="text-gray-900 hover:underline">contact@brandprisma.com</a>
+                    </p>
+                  </div>
+                )}
+
+                {legalModal === 'privacidad' && (
+                  <div className="prose prose-lg max-w-none">
+                    <p className="text-gray-600 mb-6">Última actualización: Enero 2026</p>
+                    <p className="text-gray-700 mb-6">
+                      En cumplimiento del RGPD (UE 2016/679) y LOPDGDD, informamos sobre el tratamiento de datos personales.
+                    </p>
+
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">1. Responsable</h3>
+                    <p className="text-gray-700 mb-6">
+                      <strong>Responsable:</strong> Federico Matovelle<br />
+                      <strong>Email:</strong> contact@brandprisma.com
+                    </p>
+
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">2. Datos que Recopilamos</h3>
+                    <p className="text-gray-700 mb-3"><strong>Formulario de contacto:</strong></p>
+                    <ul className="list-disc pl-6 text-gray-700 mb-4">
+                      <li>Nombre completo</li>
+                      <li>Email</li>
+                      <li>Teléfono (opcional)</li>
+                      <li>Información del proyecto</li>
+                    </ul>
+                    <p className="text-gray-700 mb-6"><strong>Google Analytics:</strong> Información anónima sobre tu visita.</p>
+
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">3. Finalidad</h3>
+                    <ul className="list-disc pl-6 text-gray-700 mb-6">
+                      <li>Responder solicitudes de información</li>
+                      <li>Gestionar relación comercial</li>
+                      <li>Análisis estadístico</li>
+                      <li>Cumplir obligaciones legales</li>
+                    </ul>
+
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">4. Base Legal</h3>
+                    <ul className="list-disc pl-6 text-gray-700 mb-6">
+                      <li><strong>Consentimiento:</strong> Al enviar el formulario</li>
+                      <li><strong>Interés legítimo:</strong> Análisis con Analytics</li>
+                      <li><strong>Ejecución de contrato:</strong> Si contratas servicios</li>
+                    </ul>
+
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">5. Tus Derechos</h3>
+                    <p className="text-gray-700 mb-3">Tienes derecho a:</p>
+                    <ul className="list-disc pl-6 text-gray-700 mb-4">
+                      <li>Acceso, rectificación y supresión</li>
+                      <li>Oposición y limitación</li>
+                      <li>Portabilidad de datos</li>
+                      <li>Revocación del consentimiento</li>
+                    </ul>
+                    <p className="text-gray-700 mb-6">
+                      Contacto: <a href="mailto:contact@brandprisma.com" className="text-gray-900 hover:underline">contact@brandprisma.com</a><br />
+                      Reclamaciones: <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer" className="text-gray-900 hover:underline">www.aepd.es</a>
+                    </p>
+                  </div>
+                )}
+
+                {legalModal === 'cookies' && (
+                  <div className="prose prose-lg max-w-none">
+                    <p className="text-gray-600 mb-6">Última actualización: Enero 2026</p>
+
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">1. ¿Qué son las Cookies?</h3>
+                    <p className="text-gray-700 mb-6">
+                      Las cookies son pequeños archivos de texto que los sitios web almacenan en tu dispositivo.
+                    </p>
+
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">2. Cookies que Utilizamos</h3>
+                    <p className="text-gray-700 mb-3"><strong>Técnicas (Necesarias):</strong></p>
+                    <div className="bg-gray-50 p-4 rounded-lg mb-4">
+                      <p className="text-gray-700"><strong>Nombre:</strong> prisma_session</p>
+                      <p className="text-gray-700"><strong>Finalidad:</strong> Mantener sesión</p>
+                      <p className="text-gray-700"><strong>Duración:</strong> Sesión</p>
+                    </div>
+
+                    <p className="text-gray-700 mb-3"><strong>Analíticas:</strong></p>
+                    <div className="bg-gray-50 p-4 rounded-lg mb-6">
+                      <p className="text-gray-700"><strong>Proveedor:</strong> Google Analytics</p>
+                      <p className="text-gray-700"><strong>Cookies:</strong> _ga, _gid, _gat</p>
+                      <p className="text-gray-700"><strong>Finalidad:</strong> Análisis estadístico</p>
+                      <p className="text-gray-700"><strong>Duración:</strong> Hasta 2 años</p>
+                    </div>
+
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">3. Cómo Gestionarlas</h3>
+                    <p className="text-gray-700 mb-3">Puedes configurar cookies en tu navegador:</p>
+                    <ul className="list-disc pl-6 text-gray-700 mb-6">
+                      <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer" className="text-gray-900 hover:underline">Chrome</a></li>
+                      <li><a href="https://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies-sitios-web-rastrear-preferencias" target="_blank" rel="noopener noreferrer" className="text-gray-900 hover:underline">Firefox</a></li>
+                      <li><a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer" className="text-gray-900 hover:underline">Safari</a></li>
+                    </ul>
+
+                    <p className="text-gray-700">
+                      Contacto: <a href="mailto:contact@brandprisma.com" className="text-gray-900 hover:underline">contact@brandprisma.com</a>
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              <div className="border-t border-gray-200 px-6 py-4 bg-gray-50">
+                <p className="text-sm text-gray-500 text-center">© 2025 Prisma Branding — Barcelona</p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
