@@ -194,7 +194,7 @@ const t = {
       },
       {
         title: "Diseño y Desarrollo: Ejecución",
-        description: "Nuestro equipo trabaja en tu proyecto con actualizaciones constantes y comunicación fluida. Incluye rondas de revisión en cada fase."
+        description: "Nuestro equipo trabaja en tu proyecto con actualizaciones constantes y comunicación fluida. Trabajamos en rondas de revisión estructuradas para asegurar que el resultado final supere tus expectativas."
       },
       {
         title: "Lanzamiento: Entrega y Soporte",
@@ -208,7 +208,7 @@ const t = {
     subtitle: "Soluciones profesionales adaptadas a cada fase de tu negocio",
     
     starter: {
-      name: "Starter",
+      name: "Essential",
       price: "799€",
       description: "Landing page profesional para validar tu negocio",
       features: [
@@ -279,13 +279,14 @@ const t = {
         "SEO para e-commerce",
         "Email marketing automatizado",
         "Capacitación Shopify completa",
-        "Revisiones durante desarrollo",
+        "4 rondas de revisiones",
         "Soporte 60 días",
         "Entrega en 6-8 semanas"
       ]
     },
     
-    cta: "Solicitar Presupuesto"
+    cta: "Solicitar Presupuesto",
+    note: "Cada ronda de revisión incluye ajustes completos en diseño, funcionalidad y contenido."
   },
   
   portfolio: {
@@ -967,7 +968,7 @@ export default function PrismaBrandingPage() {
           </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-[1400px] mx-auto items-stretch">
-            {/* Starter Plan */}
+            {/* Essential Plan */}
             <ScrollReveal delay={0}>
               <motion.div
                 whileHover={{ y: -5, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)" }}
@@ -1113,6 +1114,13 @@ export default function PrismaBrandingPage() {
               </motion.div>
             </ScrollReveal>
           </div>
+
+          {/* Nota aclaratoria sobre revisiones */}
+          {t.pricing.note && (
+            <p className="text-center text-sm text-gray-500 mt-8 max-w-2xl mx-auto">
+              * {t.pricing.note}
+            </p>
+          )}
         </div>
       </section>
 
