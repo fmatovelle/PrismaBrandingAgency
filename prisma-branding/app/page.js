@@ -285,7 +285,7 @@ const t = {
       ]
     },
     
-    cta: "Solicitar Presupuesto",
+    cta: "Cuéntanos tu Proyecto",
     note: "Cada ronda de revisión incluye ajustes completos en diseño, funcionalidad y contenido."
   },
   
@@ -371,26 +371,16 @@ const t = {
   },
   
   contact: {
-    title: "Solicita tu Presupuesto de Branding o Desarrollo Web",
-    subtitle: "¿Listo para crear tu marca o lanzar tu web? Hablemos. Respondemos en menos de 24 horas.",
+    title: "Cuéntanos tu Proyecto",
+    subtitle: "Trabajamos con emprendedores y negocios en Barcelona. Déjanos tus datos y hablemos de cómo podemos ayudarte.",
     name: "Nombre completo",
-    email: "Email corporativo",
-    phone: "Teléfono (WhatsApp)",
-    service: "¿Qué servicio necesitas?",
+    email: "Email",
     message: "Cuéntanos sobre tu proyecto",
-    messagePlaceholder: "Ej: Necesitamos una identidad de marca completa y página web para nuestra nueva clínica dental en Barcelona. Buscamos un diseño moderno que transmita confianza...",
-    send: "Enviar Solicitud",
-    services: {
-      branding: "Identidad de Marca Completa",
-      web: "Desarrollo Web Profesional",
-      ecommerce: "Tienda Online (Shopify)",
-      strategy: "Estrategia Digital y SEO",
-      consulting: "Consultoría de Branding",
-      notSure: "No estoy seguro / Asesoramiento"
-    },
-    success: "¡Gracias! Hemos recibido tu solicitud. Nuestro equipo te contactará en menos de 24 horas laborables.",
-    schedule: "Agendar Videollamada",
-    calendar: "¿Prefieres hablar directamente? Contáctanos por WhatsApp"
+    messagePlaceholder: "Ej: Necesito una identidad de marca y web para mi nueva clínica dental en Barcelona...",
+    send: "Enviar Mensaje",
+    success: "¡Gracias! Hemos recibido tu mensaje. Te responderemos en menos de 24 horas.",
+    note: "Revisamos todos los mensajes en menos de 24h • También puedes escribirnos a contact@brandprisma.com",
+    whatsappLabel: "¿Consulta rápida? Escríbenos por WhatsApp"
   },
   
   footer: {
@@ -470,8 +460,6 @@ export default function PrismaBrandingPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
-    service: 'branding',
     message: ''
   });
   const [formStatus, setFormStatus] = useState('');
@@ -553,13 +541,6 @@ export default function PrismaBrandingPage() {
       errors.email = 'Email inválido';
     }
     
-    if (formData.phone && formData.phone.length > 0) {
-      const phoneRegex = /^(\+34)?[6-9]\d{8}$/;
-      if (!phoneRegex.test(formData.phone.replace(/\s/g, ''))) {
-        errors.phone = 'Formato: +34 612345678 o 612345678';
-      }
-    }
-    
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors);
       const firstErrorField = Object.keys(errors)[0];
@@ -571,12 +552,10 @@ export default function PrismaBrandingPage() {
     
     const formDataToSend = new FormData();
     formDataToSend.append('access_key', '02efd0d3-bcec-40f9-a6fc-63b6d42927fd');
-    formDataToSend.append('subject', 'Nuevo contacto desde Prisma Branding');
+    formDataToSend.append('subject', 'Nuevo proyecto desde Prisma Branding');
     formDataToSend.append('from_name', 'Formulario Web - Prisma Branding');
     formDataToSend.append('name', formData.name);
     formDataToSend.append('email', formData.email);
-    formDataToSend.append('phone', formData.phone || 'No proporcionado');
-    formDataToSend.append('service', formData.service);
     formDataToSend.append('message', formData.message);
     
     try {
@@ -592,8 +571,6 @@ export default function PrismaBrandingPage() {
         setFormData({ 
           name: '', 
           email: '', 
-          phone: '', 
-          service: 'branding', 
           message: '' 
         });
         setTimeout(() => setFormStatus(''), 8000);
@@ -1453,56 +1430,6 @@ export default function PrismaBrandingPage() {
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                    {t.contact.phone}
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    value={formData.phone}
-                    onChange={(e) => {
-                      setFormData({...formData, phone: e.target.value});
-                      if (fieldErrors.phone) {
-                        setFieldErrors({...fieldErrors, phone: null});
-                      }
-                    }}
-                    placeholder="+34 612 345 678"
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all ${
-                      fieldErrors.phone ? 'border-red-500' : 'border-gray-300'
-                    }`}
-                    disabled={isSubmitting}
-                  />
-                  {fieldErrors.phone && (
-                    <motion.p
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      className="mt-1 text-sm text-red-600"
-                    >
-                      {fieldErrors.phone}
-                    </motion.p>
-                  )}
-                </div>
-
-                <div>
-                  <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
-                    {t.contact.service} *
-                  </label>
-                  <select
-                    id="service"
-                    value={formData.service}
-                    onChange={(e) => setFormData({...formData, service: e.target.value})}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all bg-white"
-                    disabled={isSubmitting}
-                  >
-                    {Object.entries(t.contact.services).map(([key, value]) => (
-                      <option key={key} value={key}>{value}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700">
@@ -1609,19 +1536,23 @@ export default function PrismaBrandingPage() {
                   </motion.div>
                 )}
               </div>
+
+              {/* Nota de respuesta rápida */}
+              <p className="text-center text-sm text-gray-500 mt-6">
+                {t.contact.note}
+              </p>
             </form>
 
-            <div className="mt-12 text-center">
-              <p className="text-gray-600 mb-4">{t.contact.calendar}</p>
+            <div className="mt-8 text-center">
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 href="https://wa.me/34637738054"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center space-x-2 text-gray-900 font-semibold hover:text-gray-700 transition-colors"
+                className="inline-flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors text-sm"
               >
-                <Phone className="w-5 h-5" />
-                <span>{t.contact.schedule}</span>
+                <MessageSquare className="w-4 h-4" />
+                <span>{t.contact.whatsappLabel}</span>
               </motion.a>
             </div>
           </ScrollReveal>
@@ -1736,7 +1667,7 @@ export default function PrismaBrandingPage() {
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all z-40"
-        aria-label="Contactar por WhatsApp con Prisma Branding"
+        aria-label="¿Consulta rápida? Escríbenos por WhatsApp"
       >
         <MessageSquare className="w-6 h-6" />
       </motion.a>
