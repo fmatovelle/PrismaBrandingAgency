@@ -289,21 +289,6 @@ const t = {
     note: "Cada ronda de revisión incluye ajustes completos en diseño, funcionalidad y contenido."
   },
   
-  portfolio: {
-    badge: "Estudio Emergente",
-    title: "Sé Parte de Nuestro Portfolio",
-    description: "Estamos construyendo nuestro portfolio con primeros clientes en Barcelona. Como estudio emergente, ofrecemos precios especiales para emprendedores y negocios que quieran crecer con nosotros desde el inicio.",
-    stat1: "-30%",
-    stat1Label: "Descuento para primeros clientes",
-    stat2: "100%",
-    stat2Label: "Atención personalizada directa",
-    stat3: "+Fotos",
-    stat3Label: "Caso de estudio profesional",
-    ctaPrimary: "Solicitar Precio Especial",
-    ctaSecondary: "Ver Servicios",
-    disclaimer: "Cupos mensuales limitados • Aceptamos un número reducido de proyectos por mes"
-  },
-  
   
   team: {
     title: "Nuestro Equipo",
@@ -1101,60 +1086,7 @@ export default function PrismaBrandingPage() {
         </div>
       </section>
 
-      {/* Work/Portfolio Section */}
-      {/* Portfolio en Construcción Section */}
-      <section id="work" className="py-24 px-6 bg-gray-50">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-block px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium mb-6">
-            {t.portfolio.badge}
-          </div>
-          
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
-            {t.portfolio.title}
-          </h2>
-          
-          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            {t.portfolio.description}
-          </p>
-          
-          <div className="grid md:grid-cols-3 gap-6 mb-10 max-w-3xl mx-auto">
-            <div className="bg-white p-6 rounded-xl shadow-sm">
-              <div className="text-3xl font-bold text-gray-900 mb-2">{t.portfolio.stat1}</div>
-              <div className="text-sm text-gray-600">{t.portfolio.stat1Label}</div>
-            </div>
-            
-            <div className="bg-white p-6 rounded-xl shadow-sm">
-              <div className="text-3xl font-bold text-gray-900 mb-2">{t.portfolio.stat2}</div>
-              <div className="text-sm text-gray-600">{t.portfolio.stat2Label}</div>
-            </div>
-            
-            <div className="bg-white p-6 rounded-xl shadow-sm">
-              <div className="text-3xl font-bold text-gray-900 mb-2">{t.portfolio.stat3}</div>
-              <div className="text-sm text-gray-600">{t.portfolio.stat3Label}</div>
-            </div>
-          </div>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#contact"
-              className="inline-block px-8 py-4 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 transition-colors shadow-lg hover:shadow-xl"
-            >
-              {t.portfolio.ctaPrimary}
-            </a>
-            
-            <a
-              href="#services"
-              className="inline-block px-8 py-4 bg-white text-gray-900 border-2 border-gray-900 rounded-lg font-medium hover:bg-gray-50 transition-colors"
-            >
-              {t.portfolio.ctaSecondary}
-            </a>
-          </div>
-          
-          <p className="text-sm text-gray-500 mt-8">
-            {t.portfolio.disclaimer}
-          </p>
-        </div>
-      </section>
+
 
 
       {/* Team Section */}
