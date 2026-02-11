@@ -108,7 +108,7 @@ const t = {
   
   hero: {
     title: "Agencia de Branding y Desarrollo Web en Barcelona",
-    subtitle: "Estudio creativo especializado en identidad de marca y desarrollo web profesional. Trabajamos con emprendedores y pequeños negocios para crear marcas memorables y páginas web que convierten.",
+    subtitle: "Combinamos diseño estratégico con tecnología Next.js para crear marcas duraderas y páginas web de alto rendimiento. Soluciones profesionales que escalan con tu crecimiento.",
     cta: "Solicitar Presupuesto",
     viewWork: "Ver Servicios"
   },
@@ -719,6 +719,27 @@ export default function PrismaBrandingPage() {
             >
               {t.hero.viewWork}
             </motion.button>
+          </motion.div>
+
+          {/* Micro-proof / Trust badges */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+            className="flex flex-wrap items-center justify-center gap-6 mt-8 text-sm text-gray-600"
+          >
+            <span className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-gray-900" />
+              <span>Next.js 15</span>
+            </span>
+            <span className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-gray-900" />
+              <span>Barcelona</span>
+            </span>
+            <span className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-gray-900" />
+              <span>Soporte 30 días</span>
+            </span>
           </motion.div>
         </div>
       </section>
