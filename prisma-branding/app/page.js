@@ -17,10 +17,8 @@ const organizationSchema = {
   "email": "contact@brandprisma.com",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Calle Ejemplo 123",
     "addressLocality": "Barcelona",
     "addressRegion": "Cataluña",
-    "postalCode": "08001",
     "addressCountry": "ES"
   },
   "geo": {
@@ -1656,7 +1654,7 @@ export default function PrismaBrandingPage() {
               <div className="px-6 py-8">
                 {legalModal === 'aviso' && (
                   <div className="prose prose-lg max-w-none">
-                    <p className="text-gray-600 mb-6">Última actualización: Enero 2026</p>
+                    <p className="text-gray-600 mb-6">Última actualización: 10 de febrero de 2026</p>
 
                     <h3 className="text-xl font-bold text-gray-900 mb-3">1. Identificación del Responsable</h3>
                     <p className="text-gray-700 mb-4">
@@ -1712,7 +1710,7 @@ export default function PrismaBrandingPage() {
 
                 {legalModal === 'privacidad' && (
                   <div className="prose prose-lg max-w-none">
-                    <p className="text-gray-600 mb-6">Última actualización: Enero 2026</p>
+                    <p className="text-gray-600 mb-6">Última actualización: 10 de febrero de 2026</p>
                     <p className="text-gray-700 mb-6">
                       En cumplimiento del RGPD (UE 2016/679) y LOPDGDD, informamos sobre el tratamiento de datos personales.
                     </p>
@@ -1765,7 +1763,7 @@ export default function PrismaBrandingPage() {
 
                 {legalModal === 'cookies' && (
                   <div className="prose prose-lg max-w-none">
-                    <p className="text-gray-600 mb-6">Última actualización: Enero 2026</p>
+                    <p className="text-gray-600 mb-6">Última actualización: 10 de febrero de 2026</p>
 
                     <h3 className="text-xl font-bold text-gray-900 mb-3">1. ¿Qué son las Cookies?</h3>
                     <p className="text-gray-700 mb-6">

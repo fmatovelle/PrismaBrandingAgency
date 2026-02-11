@@ -27,7 +27,9 @@ export const metadata = {
   robots: { index: true, follow: true, nocache: false, googleBot: { index: true, follow: true, noimageindex: false, 'max-video-preview': -1, 'max-image-preview': 'large', 'max-snippet': -1 } },
   icons: { icon: [{ url: '/favicon.ico' }, { url: '/icon.png', type: 'image/png', sizes: '32x32' }, { url: '/icon-192.png', type: 'image/png', sizes: '192x192' }], shortcut: '/favicon-16x16.png', apple: [{ url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }] },
   manifest: '/manifest.json',
-  verification: { google: 'tu-codigo-google-search-console' },
+  verification: {
+  // Verificado por DNS en Cloudflare
+},
   category: 'business',
   classification: 'Business',
   other: {
