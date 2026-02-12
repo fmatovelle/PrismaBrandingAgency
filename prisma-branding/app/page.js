@@ -201,91 +201,89 @@ const t = {
     ]
   },
   
-  pricing: {
-    title: "Paquetes de Branding y Desarrollo Web",
-    subtitle: "Soluciones profesionales adaptadas a cada fase de tu negocio",
-    
-    starter: {
-      name: "Essential",
-      price: "799€",
-      description: "Landing page profesional para validar tu negocio",
-      features: [
-        "1 página responsive diseñada a medida",
-        "Diseño moderno y profesional",
-        "Formulario de contacto integrado",
-        "Optimización SEO básica",
-        "Google Analytics configurado",
-        "Hosting incluido primer año",
-        "1 ronda de revisiones",
-        "Soporte 30 días",
-        "Entrega en 7-10 días"
-      ]
-    },
-    
-    growth: {
-      name: "Growth",
-      price: "1.800€",
-      description: "Web completa + identidad visual para negocios en crecimiento",
-      features: [
-        "Todo del plan anterior",
-        "Hasta 5 páginas estratégicas",
-        "Diseño de logotipo profesional",
-        "Paleta de colores y tipografías",
-        "Tarjetas digitales de presentación",
-        "Blog opcional integrado",
-        "SEO on-page completo",
-        "Formularios avanzados",
-        "2 rondas de revisiones",
-        "Capacitación de uso",
-        "Entrega en 3-4 semanas"
-      ],
-      popular: true
-    },
-    
-    professional: {
-      name: "Professional",
-      price: "3.500€",
-      description: "Branding completo + desarrollo web avanzado",
-      features: [
-        "Todo del plan anterior",
-        "Manual de marca (15-20 páginas)",
-        "3 propuestas de logotipo",
-        "Papelería digital completa",
-        "Iconografía personalizada",
-        "Web hasta 8 páginas",
-        "Animaciones y microinteracciones",
-        "Optimización Core Web Vitals",
-        "Integración email marketing",
-        "SEO técnico avanzado",
-        "3 rondas de revisiones",
-        "Soporte 30 días",
-        "Entrega en 5-6 semanas"
-      ]
-    },
-    
-    premium: {
-      name: "Premium",
-      price: "4.500€",
-      description: "Tienda online Shopify completa lista para vender",
-      features: [
-        "Identidad de marca incluida",
-        "Tienda Shopify personalizada",
-        "Diseño responsive profesional",
-        "Configuración hasta 50 productos",
-        "Integración pasarelas de pago",
-        "Sistema de envíos configurado",
-        "SEO para e-commerce",
-        "Email marketing automatizado",
-        "Capacitación Shopify completa",
-        "4 rondas de revisiones",
-        "Soporte 60 días",
-        "Entrega en 6-8 semanas"
-      ]
-    },
-    
-    cta: "Cuéntanos tu Proyecto",
-    note: "Cada ronda de revisión incluye ajustes completos en diseño, funcionalidad y contenido."
+pricing: {
+  title: "Paquetes de Branding y Desarrollo Web",
+  subtitle: "Soluciones profesionales adaptadas a cada fase de tu negocio",
+  
+  starter: {
+    name: "Essential",
+    price: "799€",
+    description: "Landing page profesional para validar tu negocio",
+    features: [
+      "1 página responsive diseñada a medida",
+      "Diseño moderno y profesional",
+      "Formulario de contacto integrado",
+      "Optimización SEO básica",
+      "Google Analytics configurado",
+      "1 ronda de revisiones",
+      "Soporte 7 días",
+      "Entrega en 7-10 días"
+    ]
   },
+  
+  growth: {
+    name: "Growth",
+    price: "1.800€",
+    description: "Web completa + identidad visual para negocios en crecimiento",
+    features: [
+      "Todo del plan anterior",
+      "Hasta 5 páginas estratégicas",
+      "Diseño de logotipo profesional",
+      "Paleta de colores y tipografías",
+      "Google Analytics configurado",
+      "Blog opcional integrado",
+      "SEO on-page completo",
+      "Formularios avanzados",
+      "2 rondas de revisiones",
+      "Soporte 15 días",
+      "Entrega en 3-4 semanas"
+    ],
+    popular: true
+  },
+  
+  professional: {
+    name: "Professional",
+    price: "3.500€",
+    description: "Branding completo + desarrollo web avanzado",
+    features: [
+      "Todo del plan anterior",
+      "Manual de marca (15-20 páginas)",
+      "3 propuestas de logotipo",
+      "Papelería digital completa",
+      "Iconografía personalizada",
+      "Web hasta 8 páginas",
+      "Animaciones y microinteracciones",
+      "Optimización Core Web Vitals",
+      "Integración email marketing",
+      "SEO técnico avanzado",
+      "3 rondas de revisiones",
+      "Soporte 30 días",
+      "Entrega en 5-6 semanas"
+    ]
+  },
+  
+  premium: {
+    name: "Premium",
+    price: "4.500€",
+    description: "La solución más completa de branding y web profesional",
+    features: [
+      "Todo del plan Professional",
+      "Web hasta 12-15 páginas",
+      "Sistema de diseño documentado",
+      "Biblioteca de componentes",
+      "Animaciones avanzadas",
+      "Integraciones complejas (CRM, analytics)",
+      "Optimización de conversión (CRO)",
+      "4-5 rondas de revisiones",
+      "Soporte prioritario 60 días",
+      "Documentación técnica completa",
+      "Entrega en 8-10 semanas"
+    ]
+  },
+  
+  cta: "Cuéntanos tu Proyecto",
+  note: "Cada ronda de revisión incluye ajustes completos en diseño, funcionalidad y contenido."
+},
   
   
   team: {
