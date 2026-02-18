@@ -348,7 +348,7 @@ pricing: {
     title: "Blog de Branding y Desarrollo Web",
     subtitle: "Artículos sobre diseño, desarrollo y estrategia digital",
     cta: "Leer en Medium",
-    link: "https://medium.com/@prismabranding"
+    link: "https://medium.com/@contact_22039"
   },
   
   contact: {
@@ -448,29 +448,29 @@ export default function PrismaBrandingPage() {
   const [fieldErrors, setFieldErrors] = useState({});
 
   // Blog posts con slugs para Medium
-  const blogPosts = [
-    {
-      title: "10 Tendencias de Branding para 2025",
-      date: "15 Ene 2025",
-      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80",
-      excerpt: "Descubre las tendencias que definirán el diseño de marcas este año.",
-      slug: "10-tendencias-branding-2025"
-    },
-    {
-      title: "Cómo Crear una Identidad Visual Memorable",
-      date: "8 Ene 2025",
-      image: "https://images.unsplash.com/photo-1558655146-364adaf1fcc9?w=600&q=80",
-      excerpt: "Guía completa para desarrollar una identidad que destaque.",
-      slug: "crear-identidad-visual-memorable"
-    },
-    {
-      title: "El Poder del Storytelling en el Branding",
-      date: "2 Ene 2025",
-      image: "https://images.unsplash.com/photo-1542435503-956c469947f6?w=600&q=80",
-      excerpt: "Por qué contar historias auténticas impulsa la conexión con tu audiencia.",
-      slug: "storytelling-branding"
-    }
-  ];
+const blogPosts = [
+  {
+    title: "What Makes a Brand Stand Out in 2026 (In 60 Seconds)",
+    date: "3 Dic 2025",
+    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80",
+    excerpt: "Clarity beats trends, strategy beats aesthetics, and consistency creates trust. What every modern brand needs to win in 2026.",
+    slug: "what-makes-a-brand-stand-out-in-2026-in-60-seconds-c09f711da463"
+  },
+  {
+    title: "What Is Full Stack — And Why Your Website Needs It in 2026",
+    date: "8 Dic 2025",
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80",
+    excerpt: "Full Stack = building a house from the foundation to the windows. Why a website that only looks nice won't survive 2026.",
+    slug: "what-is-full-stack-in-simple-words-and-why-your-website-needs-it-in-2026-27f4691af69e"
+  },
+  {
+    title: "10 Tendencias de Branding para 2025",
+    date: "15 Ene 2025",
+    image: "https://images.unsplash.com/photo-1542435503-956c469947f6?w=600&q=80",
+    excerpt: "Descubre las tendencias que definirán el diseño de marcas este año.",
+    slug: "10-tendencias-branding-2025"
+  }
+];
 
   useEffect(() => {
     const handleScroll = () => {
