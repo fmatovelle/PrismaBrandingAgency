@@ -1387,7 +1387,10 @@ const blogPosts = [
                   <span className={`text-sm transition-colors ${
                     formData.message.length < 20 ? 'text-red-600' : 'text-gray-500'
                   }`}>
-                    {formData.message.length}/20 min
+                    {formData.message.length < 20 
+  ? `Mínimo 20 caracteres (faltan ${20 - formData.message.length})`
+  : '✓ Listo'
+}
                   </span>
                 </div>
                 <textarea
