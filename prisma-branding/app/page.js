@@ -105,9 +105,9 @@ const t = {
   },
   
   hero: {
-    title: "Agencia de Branding y Desarrollo Web en Barcelona",
+    title: "Diseñamos marcas y webs que te posicionan, conectan y venden.",
     subtitle: "Combinamos diseño estratégico con tecnología Next.js para crear marcas duraderas y páginas web de alto rendimiento. Soluciones profesionales que escalan con tu crecimiento.",
-    cta: "Solicitar Presupuesto",
+    cta: "Agendar consultoría",
     viewWork: "Ver Servicios"
   },
   
@@ -115,7 +115,7 @@ const t = {
   
   about: {
     title: "Estudio Creativo en Barcelona con Atención Personalizada",
-    text1: "Prisma Branding es un estudio creativo boutique especializado en branding y desarrollo web. Trabajamos directamente con emprendedores y pequeños negocios para crear identidades de marca profesionales y páginas web que funcionan.",
+    text1: "Prisma Branding es un estudio creativo boutique especializado en branding y desarrollo web. Trabajamos directamente con emprendedores y negocios para crear identidades de marca profesionales y páginas web que funcionan.",
     text2: "Como equipo boutique, ofrecemos algo que las agencias grandes no pueden: comunicación directa, decisiones rápidas y precios justos. Cada proyecto recibe atención personalizada desde la estrategia hasta el lanzamiento.",
     stat1: "2025",
     stat1Label: "Fundado en Barcelona",
@@ -196,7 +196,7 @@ const t = {
       },
       {
         title: "Lanzamiento: Entrega y Soporte",
-        description: "Lanzamos tu marca o web con un plan de implementación completo. Incluye capacitación personalizada, documentación técnica y 30-60 días de soporte."
+        description: "Lanzamos tu marca o web con un plan de implementación completo. Incluye documentación técnica y un período inicial de soporte para ajustes técnicos."
       }
     ]
   },
@@ -299,8 +299,8 @@ pricing: {
       },
       {
         title: "Red de Colaboradores",
-        role: "Talento On-Demand",
-        bio: "Red curada de profesionales especializados. Cada proyecto se forma un equipo personalizado según las necesidades específicas del cliente.",
+        role: "Talento On-Demand, seleccionado según tu proyecto",
+        bio: "Colaboramos con especialistas seleccionados para cada proyecto. Activamos solo el talento necesario para garantizar coherencia, calidad y resultados estratégicos.",
         icon: "network",
         type: "network",
         skills: [
@@ -319,23 +319,23 @@ pricing: {
     items: [
       {
         q: "¿Cuánto cuesta hacer una página web en Barcelona?",
-        a: "El precio de una página web depende de la complejidad. Una landing page profesional cuesta desde 799€. Una web completa de 5 páginas con diseño de marca 1.800€. Un proyecto con branding completo y desarrollo web avanzado 3.500€. Una tienda online Shopify 4.500€."
+        a: "El precio depende de la complejidad del proyecto. Una landing page profesional cuesta desde 799€. Una web completa de 5 páginas con diseño de marca 1.800€. Un proyecto con branding completo y desarrollo web avanzado 3.500€. El paquete Premium con web avanzada e integraciones complejas 4.500€."
       },
       {
         q: "¿Cuánto tiempo tarda en desarrollarse una web profesional?",
-        a: "Una landing page se entrega en 7-10 días. Una página web de 5 páginas con branding tarda 3-4 semanas. Proyectos más complejos con branding completo toman 5-6 semanas. Tiendas online pueden requerir 6-8 semanas."
+        a: "Una landing page se entrega en 7-10 días. Una página web de 5 páginas con branding tarda 3-4 semanas. Proyectos con branding completo toman 5-6 semanas. Proyectos Premium con integraciones avanzadas pueden requerir 8-10 semanas."
       },
       {
         q: "¿Qué incluye el desarrollo de una página web con vosotros?",
-        a: "Nuestro servicio incluye diseño responsive, desarrollo con código limpio, formularios de contacto, Google Analytics, optimización SEO on-page, hosting primer año y capacitación completa. Entregas el código fuente completo y todos los accesos."
+        a: "Nuestro servicio incluye diseño responsive, desarrollo con código limpio, formularios de contacto, Google Analytics, optimización SEO on-page. Entregas el código fuente completo y todos los accesos."
       },
       {
         q: "¿Sois freelance o agencia? ¿Cuántas personas trabajáis?",
         a: "Somos un estudio creativo boutique. Actualmente el equipo core trabaja directamente en cada proyecto. Esto significa comunicación directa, decisiones rápidas y precios más eficientes que agencias grandes."
       },
       {
-        q: "¿Hacéis tiendas online con Shopify?",
-        a: "Sí, nos especializamos en tiendas online con Shopify. Nuestro paquete e-commerce incluye diseño personalizado, configuración completa de productos, integración de pagos, sistema de envíos y capacitación completa. Precio desde 4.500€."
+        q: "¿Qué incluye el paquete Premium?",
+        a: "El paquete Premium (4.500€) es la solución más completa: web hasta 12-15 páginas, sistema de diseño documentado, biblioteca de componentes, animaciones avanzadas, integraciones complejas (CRM, analytics), optimización de conversión (CRO), 4-5 rondas de revisiones y soporte prioritario 60 días. Ideal si buscas posicionamiento alto y autoridad de marca."
       },
       {
         q: "¿La web incluye posicionamiento SEO en Google?",
@@ -365,7 +365,7 @@ pricing: {
   },
   
   footer: {
-    description: "Estudio creativo en Barcelona especializado en branding y desarrollo web para emprendedores y pequeños negocios. Creamos marcas memorables y páginas web que convierten.",
+    description: "Estudio creativo en Barcelona especializado en branding y desarrollo web para emprendedores y negocios. Creamos marcas memorables y páginas web que convierten.",
     services: "Servicios de Branding",
     company: "El Estudio",
     aboutUs: "Sobre Nosotros",
