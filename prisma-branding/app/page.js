@@ -143,8 +143,8 @@ const t = {
         description: "Desarrollo de páginas web modernas y rápidas con Next.js y React. Diseño responsive, optimización de rendimiento y SEO técnico incluido."
       },
       {
-        title: "Tiendas Online y E-commerce con Shopify",
-        description: "Creación de tiendas online profesionales con Shopify. Diseño personalizado, integración de pagos y envíos, optimización para conversión."
+        title: "Integraciones y Automatizaciones Web",
+        description: "Conectamos tu web con herramientas clave: CRM, email marketing, analytics avanzado, pasarelas de pago y automatizaciones que optimizan tu operación y mejoran resultados."
       },
       {
         title: "Diseño UX/UI y Optimización Web",
@@ -293,7 +293,7 @@ pricing: {
       {
         name: "Federico Matovelle",
         role: "Fundador & Lead Developer",
-        bio: "Full-stack developer especializado en Next.js, React y Shopify. Lidera el desarrollo técnico y la estrategia digital de cada proyecto.",
+        bio: "Full-stack developer especializado en Next.js, React y desarrollo web avanzado. Lidera el desarrollo técnico y la estrategia digital de cada proyecto.",
         image: "/federicomatovellepf.jpg",
         type: "core"
       },
@@ -692,29 +692,37 @@ const blogPosts = [
             {t.hero.subtitle}
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => scrollToSection('contact')}
-              className="bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-800 transition-all inline-flex items-center space-x-2"
+         <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4"
             >
-              <span>{t.hero.cta}</span>
-              <ArrowRight className="w-5 h-5" />
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => scrollToSection('services')}
-              className="border-2 border-gray-900 text-gray-900 px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-900 hover:text-white transition-all"
-            >
-              {t.hero.viewWork}
-            </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => scrollToSection('contact')}
+                className="bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-800 transition-all inline-flex items-center space-x-2"
+              >
+                <span>{t.hero.cta}</span>
+                <ArrowRight className="w-5 h-5" />
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => scrollToSection('services')}
+                className="border-2 border-gray-900 text-gray-900 px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-900 hover:text-white transition-all"
+              >
+                Ver Servicios
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => scrollToSection('pricing')}
+                className="border-2 border-gray-900 text-gray-900 px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-900 hover:text-white transition-all"
+              >
+                Ver Paquetes
+              </motion.button>
           </motion.div>
 
           {/* Micro-proof / Trust badges */}
@@ -734,7 +742,7 @@ const blogPosts = [
             </span>
             <span className="flex items-center gap-2">
               <Check className="w-4 h-4 text-gray-900" />
-              <span>Soporte 30 días</span>
+              <span>Soporte incluido</span>
             </span>
           </motion.div>
         </div>
@@ -1609,20 +1617,30 @@ const blogPosts = [
         </div>
       </footer>
 
-      {/* WhatsApp Floating Button */}
-      <motion.a
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        href="https://wa.me/34637738054"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all z-40"
-        aria-label="¿Consulta rápida? Escríbenos por WhatsApp"
-      >
-        <MessageSquare className="w-6 h-6" />
-      </motion.a>
+          {/* WhatsApp Floating Button - Oficial */}
+          <motion.a
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            href="https://wa.me/34637738054"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="fixed bottom-6 right-6 rounded-full shadow-2xl hover:shadow-3xl transition-all z-40"
+            style={{ backgroundColor: '#25D366' }}
+            aria-label="¿Consulta rápida? Escríbenos por WhatsApp"
+          >
+            <div className="p-4">
+              <svg 
+                viewBox="0 0 32 32" 
+                className="w-7 h-7"
+                fill="white"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M16 0C7.163 0 0 7.163 0 16c0 2.825.736 5.478 2.025 7.787L0 32l8.374-2.168A15.917 15.917 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.378A13.373 13.373 0 019.011 27.4l-.486-.289-5.043 1.304 1.344-4.911-.318-.506A13.324 13.324 0 012.622 16c0-7.362 5.991-13.353 13.353-13.353S29.328 8.638 29.328 15.975c.025 7.387-5.966 13.403-13.328 13.403zm7.312-10.016c-.4-.2-2.375-1.175-2.744-1.3-.369-.15-.637-.225-.906.2-.269.4-1.044 1.3-1.275 1.575-.231.25-.469.287-.869.1-.4-.2-1.688-.625-3.213-1.988-1.188-1.063-1.987-2.375-2.219-2.775-.231-.4-.025-.619.175-.819.181-.175.4-.45.6-.675.2-.225.269-.375.4-.625.131-.25.069-.475-.031-.675-.1-.2-.906-2.188-1.244-2.994-.331-.781-.668-.675-.906-.688-.231-.012-.5-.012-.769-.012s-.706.1-1.075.5c-.369.4-1.406 1.375-1.406 3.35s1.438 3.888 1.638 4.15c.2.269 2.825 4.319 6.844 6.056.956.413 1.706.662 2.288.844.963.306 1.838.263 2.531.163.769-.119 2.375-.975 2.706-1.919.331-.944.331-1.75.231-1.919-.1-.169-.369-.269-.769-.469z"/>
+              </svg>
+            </div>
+          </motion.a>
 
       {/* Modal Legal */}
       {legalModal && (
