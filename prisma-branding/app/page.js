@@ -217,7 +217,7 @@ pricing: {
       "Google Analytics configurado",
       "1 ronda de revisiones",
       "Soporte 7 días",
-      "Entrega en 7-10 días"
+      "Entrega en 2-3 semanas"
     ]
   },
   
