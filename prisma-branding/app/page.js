@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowRight, Palette, Globe, Check, Mail, Instagram, Linkedin, Target, Users, Lightbulb, Rocket, Camera, Package, Newspaper, FileText, MessageSquare, Phone, Calendar, ChevronDown, Plus, Minus, Send, ExternalLink } from 'lucide-react';
+import { Menu, X, ArrowRight, Palette, Globe, Check, Mail, Instagram, Linkedin, Target, Users, Lightbulb, Rocket, Camera, Package, Newspaper, FileText, MessageSquare, Phone, Calendar, ChevronDown, Plus, Minus, Send, ExternalLink, Bell, Smartphone, Zap, Sparkles, CheckCheck } from 'lucide-react';
 
 // Schema JSON-LD para SEO
 const organizationSchema = {
@@ -98,6 +98,7 @@ const t = {
     home: "Inicio",
     about: "Agencia",
     services: "Servicios",
+    assistant: "Asistente IA",
     process: "Metodología",
     team: "Equipo",
     blog: "Blog",
@@ -125,6 +126,35 @@ const t = {
     stat3Label: "Tiempo de Respuesta"
   },
   
+  assistant: {
+    kicker: "Nuevo producto",
+    title1: "Tu WhatsApp",
+    title2: "responde solo.",
+    text: "Un asistente con inteligencia artificial que atiende a tus clientes en tu propio número de WhatsApp Business, de día y de noche. Contesta con tu información y tu tono, da citas, las recuerda y te avisa solo de lo importante.",
+    features: [
+      { icon: "zap", title: "Responde en segundos", text: "Precios, horarios, dirección o servicios: siempre con tus datos reales." },
+      { icon: "calendar", title: "Da citas solo", text: "Ofrece tus huecos libres y las apunta en tu Google Calendar." },
+      { icon: "bell", title: "Recuerda las citas", text: "Avisa al paciente el día antes, con botones para confirmar o cambiar." },
+      { icon: "phone", title: "Lo controlas desde el móvil", text: "Un panel sencillo para corregirle y ver cada conversación." }
+    ],
+    price: "Desde 25 €/mes · listo en días · sin permanencia",
+    cta: "Conocer el asistente",
+    demo: "Pruébalo en WhatsApp",
+    stats: [
+      { value: "24/7", label: "Atiende siempre, también de noche" },
+      { value: "< 10 s", label: "Lo que tarda en responder" },
+      { value: "0", label: "Apps nuevas: usa tu WhatsApp de siempre" }
+    ],
+    chat: [
+      { me: false, text: "Hola 👋 ¿cuánto cuesta la primera consulta?", time: "21:42" },
+      { me: true, text: "¡Hola, Ana! La primera consulta cuesta 50 € y dura una hora. ¿Te gustaría reservarla?", time: "21:42" },
+      { me: false, text: "Sí, ¿tienes el martes por la tarde?", time: "21:43" },
+      { me: true, text: "El martes 24 tengo libre a las 16:00 o a las 17:00. ¿Cuál prefieres?", time: "21:43" },
+      { me: false, text: "A las 17:00 👍", time: "21:44" },
+      { me: true, text: "✅ Listo, Ana: martes 24 a las 17:00. Te escribo el día antes para recordártela.", time: "21:44" }
+    ]
+  },
+
   services: {
     title: "Servicios de Branding y Desarrollo Web",
     subtitle: "Soluciones integrales para construir y hacer crecer tu marca",
@@ -474,7 +504,7 @@ const blogPosts = [
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'services', 'process', 'work', 'team', 'blog', 'contact'];
+      const sections = ['home', 'about', 'services', 'assistant', 'process', 'work', 'team', 'blog', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -864,6 +894,157 @@ const blogPosts = [
               </motion.button>
             </div>
           </ScrollReveal>
+        </div>
+      </section>
+
+      {/* WhatsApp AI Assistant: our own product, with its page and the demo to try */}
+      <section id="assistant" className="relative py-24 sm:py-32 px-6 bg-[#07070c] text-white overflow-hidden">
+        {/* Soft colour light and a faint grid behind (fixed, never following the mouse) */}
+        <div aria-hidden className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-40 -left-32 w-[36rem] h-[36rem] rounded-full bg-violet-600/25 blur-[120px]" />
+          <div className="absolute -bottom-48 right-[-10rem] w-[40rem] h-[40rem] rounded-full bg-emerald-500/20 blur-[130px]" />
+          <div className="absolute inset-0 opacity-[0.07] [background-image:linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] [background-size:56px_56px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_75%)]" />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto w-full grid lg:grid-cols-[1.1fr_1fr] gap-16 items-center">
+          <ScrollReveal>
+            <div>
+              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-300 bg-emerald-400/10 border border-emerald-400/30 rounded-full px-3 py-1.5 mb-7">
+                <Sparkles className="w-3.5 h-3.5" />
+                {t.assistant.kicker} · Asistente de WhatsApp con IA
+              </span>
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-[1.05] tracking-tight">
+                {t.assistant.title1}{" "}
+                <span className="bg-gradient-to-r from-emerald-300 via-teal-200 to-violet-300 bg-clip-text text-transparent">{t.assistant.title2}</span>
+              </h2>
+              <p className="text-lg sm:text-xl text-gray-300 leading-relaxed mb-10 max-w-xl">
+                {t.assistant.text}
+              </p>
+
+              <div className="grid sm:grid-cols-2 gap-4 mb-10">
+                {t.assistant.features.map((ft, i) => {
+                  const Icon = { zap: Zap, calendar: Calendar, bell: Bell, phone: Smartphone }[ft.icon];
+                  return (
+                    <motion.div
+                      key={ft.title}
+                      initial={{ opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
+                      whileHover={{ y: -4 }}
+                      className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm p-5 hover:border-emerald-400/40 transition-colors"
+                    >
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400/25 to-violet-500/25 border border-white/10 flex items-center justify-center mb-3">
+                        <Icon className="w-5 h-5 text-emerald-200" />
+                      </div>
+                      <h3 className="font-semibold mb-1">{ft.title}</h3>
+                      <p className="text-sm text-gray-400 leading-relaxed">{ft.text}</p>
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <motion.a
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.97 }}
+                  href="https://asistente.brandprisma.com"
+                  className="bg-white text-gray-900 px-8 py-4 rounded-full text-lg font-semibold inline-flex items-center justify-center gap-2 shadow-[0_10px_40px_-10px_rgba(255,255,255,0.5)]"
+                >
+                  <span>{t.assistant.cta}</span>
+                  <ArrowRight className="w-5 h-5" />
+                </motion.a>
+                <motion.a
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.97 }}
+                  href="https://wa.me/34661669650?text=Hola%2C%20quer%C3%ADa%20informaci%C3%B3n"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#25D366] text-[#06210f] px-8 py-4 rounded-full text-lg font-semibold inline-flex items-center justify-center gap-2 shadow-[0_10px_40px_-10px_rgba(37,211,102,0.7)]"
+                >
+                  <MessageSquare className="w-5 h-5" />
+                  <span>{t.assistant.demo}</span>
+                </motion.a>
+              </div>
+              <p className="text-sm text-gray-400 mt-5">{t.assistant.price}</p>
+            </div>
+          </ScrollReveal>
+
+          {/* The phone: the conversation types itself out, with the moments that matter floating around it */}
+          <ScrollReveal delay={0.2}>
+            <div className="relative mx-auto w-full max-w-[340px]">
+              <div className="relative rounded-[2.8rem] border border-white/15 bg-gradient-to-b from-gray-800 to-gray-900 p-2.5 shadow-[0_40px_120px_-30px_rgba(16,185,129,0.45)]">
+                <div className="rounded-[2.3rem] overflow-hidden bg-[#0b141a]">
+                  <div className="flex items-center gap-3 px-4 pt-6 pb-3 bg-[#1f2c34]">
+                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center text-sm font-bold">C</div>
+                    <div className="leading-tight">
+                      <p className="font-semibold text-sm">Consulta Dra. Ruiz</p>
+                      <p className="text-[11px] text-emerald-300">en línea</p>
+                    </div>
+                  </div>
+                  <div className="px-3 py-4 space-y-2 min-h-[430px] [background-image:radial-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:14px_14px]">
+                    {t.assistant.chat.map((m, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, y: 12, scale: 0.96 }}
+                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.35, delay: 0.4 + i * 0.9 }}
+                        className={`max-w-[82%] px-3 py-2 rounded-xl text-[13px] leading-snug shadow ${m.me ? "ml-auto bg-[#005c4b] text-white rounded-tr-sm" : "bg-[#202c33] text-gray-100 rounded-tl-sm"}`}
+                      >
+                        {m.text}
+                        <span className="flex items-center justify-end gap-1 mt-1 text-[10px] text-white/50">
+                          {m.time}
+                          {m.me && <CheckCheck className="w-3.5 h-3.5 text-sky-400" />}
+                        </span>
+                      </motion.div>
+                    ))}
+                    {/* «escribiendo…» until the last answer arrives */}
+                    <motion.div
+                      initial={{ opacity: 1 }}
+                      whileInView={{ opacity: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.4 + t.assistant.chat.length * 0.9 }}
+                      className="w-14 px-3 py-2 rounded-xl bg-[#202c33] flex gap-1"
+                    >
+                      {[0, 1, 2].map((d) => (
+                        <motion.span key={d} className="w-1.5 h-1.5 rounded-full bg-gray-400" animate={{ y: [0, -3, 0] }} transition={{ repeat: Infinity, duration: 0.8, delay: d * 0.15 }} />
+                      ))}
+                    </motion.div>
+                  </div>
+                </div>
+              </div>
+
+              {[
+                { icon: Zap, text: "Respondió en 4 s", cls: "right-full -mr-8 top-16", delay: 1.4 },
+                { icon: Calendar, text: "Cita guardada en Google Calendar", cls: "left-full -ml-8 top-[46%]", delay: 5.2 },
+                { icon: Bell, text: "Recordatorio: lunes 23, 17:00", cls: "left-full -ml-8 bottom-14", delay: 6.2 }
+              ].map(({ icon: Icon, text, cls, delay }) => (
+                <motion.div
+                  key={text}
+                  initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay }}
+                  className={`hidden lg:flex absolute ${cls} whitespace-nowrap z-10 items-center gap-2 rounded-2xl border border-white/15 bg-white/10 backdrop-blur-md px-3.5 py-2.5 text-sm font-medium shadow-xl`}
+                >
+                  <span className="w-7 h-7 rounded-lg bg-emerald-400/20 flex items-center justify-center"><Icon className="w-4 h-4 text-emerald-200" /></span>
+                  {text}
+                </motion.div>
+              ))}
+            </div>
+          </ScrollReveal>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto w-full grid sm:grid-cols-3 gap-4 mt-20">
+          {t.assistant.stats.map((st, i) => (
+            <ScrollReveal key={st.label} delay={i * 0.1}>
+              <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-6 text-center">
+                <p className="text-4xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">{st.value}</p>
+                <p className="text-sm text-gray-400 mt-1">{st.label}</p>
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
       </section>
 
