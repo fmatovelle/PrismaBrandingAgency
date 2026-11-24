@@ -1751,6 +1751,8 @@ const blogPosts = [
                 <li><button onClick={() => scrollToSection('services')} className="hover:text-white transition-colors text-left leading-relaxed">{t.services.items[2].title}</button></li>
                 <li><button onClick={() => scrollToSection('services')} className="hover:text-white transition-colors text-left leading-relaxed">{t.services.items[3].title}</button></li>
                 <li><button onClick={() => scrollToSection('services')} className="hover:text-white transition-colors text-left leading-relaxed">{t.services.items[4].title}</button></li>
+                <li><a href="https://asistente.brandprisma.com/" className="hover:text-white transition-colors">Asistente de WhatsApp con IA</a></li>
+                <li><a href="https://asistente.brandprisma.com/blog/" className="hover:text-white transition-colors">Guías de WhatsApp para negocios</a></li>
               </ul>
             </div>
 
