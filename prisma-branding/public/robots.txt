@@ -4,10 +4,8 @@
 User-agent: *
 Allow: /
 
-# Bloquear archivos no necesarios
+# Google necesita /_next/static/ (CSS y JS) para ver la página como un visitante: no se bloquea.
 Disallow: /api/
-Disallow: /_next/static/
-Disallow: /_next/data/
 
 # Sitemap
 Sitemap: https://brandprisma.com/sitemap.xml

@@ -151,6 +151,19 @@ export function OrganizationSchema() {
         "price": "4500",
         "priceCurrency": "EUR",
         "availability": "https://schema.org/InStock"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Asistente de WhatsApp con IA",
+          "description": "Asistente de WhatsApp con inteligencia artificial para consultas, clínicas y negocios: responde 24/7 con tu información, ayuda a reservar y avisa de cada interesado.",
+          "url": "https://asistente.brandprisma.com/"
+        },
+        "url": "https://asistente.brandprisma.com/#precios",
+        "price": "25",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
       }
     ],
     
@@ -261,15 +274,8 @@ export function WebsiteSchema() {
     "publisher": {
       "@id": "https://brandprisma.com/#organization"
     },
-    "inLanguage": "es-ES",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://brandprisma.com/search?q={search_term_string}"
-      },
-      "query-input": "required name=search_term_string"
-    }
+    "inLanguage": "es-ES"
+    // No SearchAction: the site has no /search page (it answered 404).
   }
 
   return (
